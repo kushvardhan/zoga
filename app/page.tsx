@@ -1,5 +1,6 @@
 "use client"
-import React, { useState, useEffect, useRef,PropsWithChildren } from 'react';
+import React, { useState, useEffect, useRef,PropsWithChildren, ReactNode, useMemo } from 'react';
+import { IconType } from "react-icons";
 import { 
   motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, 
   AnimatePresence, useInView,useReducedMotion, 
@@ -14,11 +15,18 @@ import {
   Cpu, Server, Database, Layout, Send, Star, MousePointer2,
   Megaphone,
   Clapperboard,
-  Play
+  Play,
+  Shield
 } from 'lucide-react';
 import Image from 'next/image';
 
 // --- Brand & Content Data ---
+
+interface RevealProps {
+  children: ReactNode;
+  width?: string;
+  delay?: number;
+}
 
 const PHONE_NUMBER = "+91 98355 04582";
 const EMAIL = "hello@zoga.agency";
@@ -151,9 +159,130 @@ const DASHBOARD_COLORS = {
   { id: "Aje2oek3UqY", title: "Documentary" },
 ];
 
+export interface Review {
+  quote: string;
+  name: string;
+  title?: string;
+}
+
+interface Props {
+  review: Review;
+}
+
+const ReviewCard: React.FC<Props> = ({ review }) => {
+  return (
+    <article className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 h-full flex flex-col justify-between">
+      <div>
+        <div className="mb-3 inline-flex items-center gap-2">
+          <svg className="w-5 h-5 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M12 .587l3.668 7.431L23.6 9.75l-5.8 5.653 1.368 7.967L12 18.896 5.832 23.37 7.2 15.403.4 9.75l7.932-1.732z" />
+          </svg>
+        </div>
+
+        <p className="text-lg md:text-xl italic text-slate-700 dark:text-slate-300 mb-6 leading-relaxed break-words whitespace-pre-wrap">
+          “{review.quote}”
+        </p>
+      </div>
+
+      <footer className="mt-4">
+        <p className="font-semibold text-slate-900 dark:text-white truncate">{review.name}</p>
+        {review.title && <p className="text-sm text-blue-500 truncate">{review.title}</p>}
+      </footer>
+    </article>
+  );
+};
+
 // --- UI Components ---
 
-const Reveal = ({ children, width = "100%", delay = 0.25 }) => {
+// 3D Tilt Card for Value Proposition
+const ValueCard3D = ({ item }: ValueCard3DProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    const { clientX, clientY } = e;
+    const { width, height, left, top } = ref.current.getBoundingClientRect();
+
+    const xVal = ((clientX - (left + width / 2)) / width) * 30;
+    const yVal = ((clientY - (top + height / 2)) / height) * 30;
+
+    x.set(xVal);
+    y.set(yVal);
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setIsHovered(false);
+  };
+
+  const rotateX = useTransform(y, (value) => `${-value}deg`);
+  const rotateY = useTransform(x, (value) => `${value}deg`);
+
+  const Icon = item.icon;
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        perspective: 1000,
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        boxShadow: isHovered
+          ? "0 30px 60px rgba(0, 0, 0, 0.15)"
+          : "0 10px 20px rgba(0, 0, 0, 0.05)",
+      }}
+      className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-shadow duration-500 will-change-transform"
+    >
+      <motion.div
+        className="p-3 rounded-full inline-block mb-4"
+        style={{ transform: "translateZ(50px)" }}
+        whileHover={{ scale: 1.1, backgroundColor: "rgba(59,130,246,0.1)" }}
+      >
+        <Icon className="w-8 h-8 text-blue-500" />
+      </motion.div>
+
+      <motion.h3
+        className="text-2xl font-bold text-slate-900 dark:text-white mb-3"
+        style={{ transform: "translateZ(30px)" }}
+      >
+        {item.title}
+      </motion.h3>
+
+      <motion.p
+        className="text-slate-600 dark:text-slate-400 leading-relaxed"
+        style={{ transform: "translateZ(10px)" }}
+      >
+        {item.description}
+      </motion.p>
+    </motion.div>
+  );
+};
+
+const REASONS = [
+    { icon: Sparkles, title: "Creative Velocity", description: "We don't just iterate; we accelerate innovation. Expect unique designs and code tailored to outperform the market, not just match it." },
+    { icon: Shield, title: "Engineering Rigor", description: "Our commitment to performance means zero jitter, absolute responsiveness, and code that is both elegant and obsessively optimized for scale and security." },
+    { icon: Users, title: "Authentic Partnership", description: "We embed ourselves in your vision. Our collaboration model is transparent, proactive, and focused on delivering measurable, long-term business value." },
+];
+
+const REVIEWS = [
+    { id: 1, name: "Arvind Singh", title: "CEO, TechNova", rating: 5, quote: "Zoga’s work is simply dominant. The subtle animations and performance gains they introduced set a new standard for our industry." },
+    { id: 2, name: "Priya Sharma", title: "Head of Product, FinEdge", rating: 5, quote: "They took our complex data and rendered it beautifully. The scroll fluidity and zero lag are a testament to their engineering prowess." },
+    { id: 3, name: "Kiran Rao", title: "Founder, UrbanFlow", rating: 5, quote: "The most creative team we’ve ever worked with. The UI is dynamic and interactive—it’s not just a website, it’s an experience." },
+    { id: 4, name: "Mohan Lal", title: "Director, Global Corp", rating: 5, quote: "From responsiveness to content writing, Zoga encapsulated our brand perfectly. They truly engineered digital dominance for us." },
+    { id: 5, name: "Suresh N.", title: "Venture Partner, AlphaVC", rating: 5, quote: "Their portfolio showcased creativity; their delivery proved rigor. A reliable partner for any serious digital transformation." },
+];
+
+const Reveal = ({ children, width = "100%", delay = 0.25 }: RevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-75px" });
   const mainControls = useAnimation();
@@ -184,6 +313,16 @@ const Reveal = ({ children, width = "100%", delay = 0.25 }) => {
 type TiltCardProps = PropsWithChildren<{
   className?: string;
 }>;
+
+interface ValueItem {
+  icon: IconType;
+  title: string;
+  description: string;
+}
+
+interface ValueCard3DProps {
+  item: ValueItem;
+}
 
 /**
  * Simple TiltCard wrapper
@@ -307,19 +446,24 @@ const Navbar = ({ isDark, toggleTheme }) => {
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-  <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-purple-500/40 transition-all overflow-hidden">
+<a href="#" className="flex items-center gap-3 group">
+  <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 
+                  flex items-center justify-center shadow-lg shadow-blue-500/20 
+                  group-hover:shadow-purple-500/40 transition-all overflow-hidden">
+
     <Image
-      src="/logo.png"
+      src="/logowithBGREMOVE.png"
       alt="Zoga Logo"
       fill
-      className="object-contain p-1 invert-0 dark:invert text-black"
+      className="object-contain p-1 invert text-black text-fill-black bg-white"
     />
   </div>
+
   <span className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white">
     Zoga
   </span>
 </a>
+
 
 
           {/* Desktop Menu */}
@@ -898,6 +1042,196 @@ const Portfolio = () => (
   </section>
 );
 
+const ReasonsSection = () => {
+    return (
+        <section id="why-us" className="py-24 md:py-32 bg-white dark:bg-slate-800 transition-colors duration-500">
+            <div className="max-w-7xl mx-auto px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.7 }}
+                    className="text-center mb-16"
+                >
+                    <h2 className="text-5xl md:text-6xl font-extrabold leading-tight text-slate-900 dark:text-white">
+                        Why Trust <span className="text-blue-500">The Zoga Difference?</span>
+                    </h2>
+                    <p className="text-xl text-slate-600 dark:text-slate-400 mt-4 max-w-3xl mx-auto">
+                        Our value proposition is built on three non-negotiable pillars: Creativity, Rigor, and Partnership. We are not a vendor; we are your growth engine.
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {REASONS.map((item, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                        >
+                            <ValueCard3D item={item} />
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+
+// --- Client Reviews Section (The Continuous Flow) ---
+const ReviewsSection = () => {
+    // Duplicate reviews to create continuous loop effect
+    const reviewLoop = useMemo(() => [...REVIEWS, ...REVIEWS, ...REVIEWS], []);
+
+    return (
+<section
+  id="reviews"
+  className="
+    relative
+    py-28 md:py-36
+    bg-slate-100 
+    dark:bg-[#050509]
+    transition-colors duration-500
+  "
+>
+  {/* TOP GRADIENT FADE */}
+    <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white dark:from-[#030014] to-transparent pointer-events-none" />
+
+
+  <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7 }}
+      className="text-center mb-16"
+    >
+      <h2
+        className="
+          text-5xl md:text-6xl font-extrabold leading-tight
+          text-slate-900 dark:text-white
+        "
+      >
+        Voices of <span className="text-purple-500">Impact</span>.
+      </h2>
+
+      <p
+        className="
+          text-lg md:text-xl 
+          text-slate-600 dark:text-slate-400 
+          mt-4 max-w-3xl mx-auto leading-relaxed
+        "
+      >
+        Real words from real clients — reflecting the clarity, precision, and
+        performance we deliver consistently.
+      </p>
+    </motion.div>
+  </div>
+
+  {/* SCROLLER */}
+  <div
+    className="
+      relative w-full overflow-hidden whitespace-nowrap 
+      [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]
+      dark:[mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]
+      z-10
+    "
+  >
+    <motion.div
+      className="inline-flex w-fit"
+      animate={{ x: ['0%', '-33.33%'] }}
+      transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
+    >
+      {reviewLoop.map((review, index) => (
+        <div
+          key={index}
+          className="
+            w-[250px] sm:w-[280px] md:w-[320px]
+            inline-block p-3 flex-shrink-0
+          "
+        >
+          <div
+            className="
+              relative rounded-2xl p-6 h-full flex flex-col justify-between
+              bg-white dark:bg-[#0a0a12]/95
+              border border-slate-200 dark:border-white/10
+
+              shadow-[0_4px_18px_-4px_rgba(0,0,0,0.12)]
+              dark:shadow-[0_8px_32px_-6px_rgba(0,0,0,0.55)]
+
+              transition-all duration-300
+              hover:-translate-y-1
+              hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)]
+              dark:hover:shadow-[0_14px_40px_-6px_rgba(0,0,0,0.75)]
+              hover:border-purple-400/40
+              overflow-hidden
+            "
+          >
+            <div className="mb-4 opacity-70">
+              <svg
+                width="26"
+                height="26"
+                fill="currentColor"
+                className="text-purple-500 dark:text-purple-400"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7 5C4.24 5 2 7.24 2 10v6c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4h2V9c0-2.21-1.79-4-4-4zm10 0c-2.76 0-5 2.24-5 5v6c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4h2V9c0-2.21-1.79-4-4-4z"/>
+              </svg>
+            </div>
+
+            <p
+              className="
+                text-[15px] leading-relaxed 
+                text-slate-700 dark:text-zinc-300
+                mb-6 break-words whitespace-pre-wrap
+              "
+            >
+              “{review.quote}”
+            </p>
+
+            <div className="pt-2 mt-auto">
+              <p className="font-semibold text-slate-900 dark:text-white break-words">
+                {review.name}
+              </p>
+
+              {review.title && (
+                <p className="text-xs text-purple-600 dark:text-purple-400 mt-1 break-words">
+                  {review.title}
+                </p>
+              )}
+            </div>
+
+            <div
+              className="
+                absolute inset-0 rounded-2xl pointer-events-none opacity-0
+                bg-gradient-to-tr from-purple-500/10 to-blue-500/10
+                dark:from-purple-600/10 dark:to-blue-600/10
+                transition-opacity duration-500 hover:opacity-100
+              "
+            />
+          </div>
+        </div>
+      ))}
+    </motion.div>
+  </div>
+
+  {/* BOTTOM GRADIENT FADE */}
+  <div
+    className="
+      pointer-events-none
+      absolute bottom-0 left-0 w-full h-20
+      bg-gradient-to-t from-slate-50 dark:from-[#0f0f14] to-transparent
+    "
+  />
+</section>
+
+
+    );
+};
+
+
 const Contact = () => (
   <section id="contact" className="py-32 bg-slate-50 dark:bg-[#050509]">
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
@@ -1035,8 +1369,10 @@ const App = () => {
         <MarqueeSection />
         <WhyChooseUs />
         <Services />
+        <ReasonsSection />
         <VideoProduction />
         <Portfolio />
+        <ReviewsSection />
         <Contact />
       </main>
       
