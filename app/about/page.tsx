@@ -1,0 +1,601 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { 
+  ArrowRight, Zap, Globe, Cpu, Award, ChevronDown, Linkedin, ExternalLink, 
+  Play, Code, Search, Layout, Smartphone, PenTool, Database, TrendingUp, 
+  RefreshCcw, Monitor, Video, MapPin, Layers, Star, Menu, X, Sun, Moon 
+} from 'lucide-react';
+
+// --- GLOBAL UTILITIES & NAVIGATION ---
+
+// A replacement for Next.js Link to handle client-side state navigation
+const NavLink = ({ to, children, className, setView, active }: any) => (
+  <button 
+    onClick={() => setView(to)}
+    className={`${className} ${active ? 'text-purple-500' : ''}`}
+  >
+    {children}
+  </button>
+);
+
+// --- ANIMATION COMPONENTS ---
+
+const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.1 }}
+    transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+  >
+    {children}
+  </motion.div>
+);
+
+const ParallaxText = ({ children }: { children: string }) => {
+  return (
+    <div className="overflow-hidden flex flex-nowrap whitespace-nowrap select-none pointer-events-none absolute top-1/2 -translate-y-1/2 w-full opacity-[0.03] dark:opacity-[0.05]">
+      <motion.div 
+        animate={{ x: [0, -1000] }} 
+        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+        className="text-[15vw] font-black uppercase text-zinc-900 dark:text-white"
+      >
+        {children} {children} {children} {children}
+      </motion.div>
+    </div>
+  );
+};
+
+const MagneticButton = ({ children, onClick, className }: any) => (
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+    className={className}
+  >
+    {children}
+  </motion.button>
+);
+
+// --- DATA SETS ---
+
+const faqs = [
+  { q: "How do you guarantee SEO results?", a: "We don't guess; we engineer. Our process involves deep semantic analysis, core web vitals optimization (95+ scores), and high-authority backlinking strategies that align with Google's latest algorithm updates." },
+  { q: "Can you handle enterprise-scale traffic?", a: "Absolutely. We build on Next.js and Vercel/AWS Edge networks. Our architectures are designed to handle millions of requests with auto-scaling databases and global CDNs." },
+  { q: "Do you do video & motion graphics?", a: "Yes. Our in-house motion team uses Cinema 4D and After Effects to create cinema-grade assets that integrate seamlessly into the web experience without killing load times." },
+  { q: "What is the typical timeline?", a: "For a premium custom build, typically 6-10 weeks. We sprint in 2-week cycles with full transparency, ensuring you see progress every single Friday." },
+];
+
+const team = [
+  { name: "Alex V.", roles: ["Creative Dir", "UI/UX"], img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&fit=crop" },
+  { name: "Sarah J.", roles: ["Lead Dev", "System Arch"], img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&fit=crop" },
+  { name: "Davide R.", roles: ["3D Motion", "VFX"], img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&fit=crop" },
+  { name: "Emily W.", roles: ["SEO Strat", "Growth"], img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&fit=crop" },
+  { name: "Marcus L.", roles: ["Full Stack", "Security"], img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&fit=crop" },
+  { name: "Priya K.", roles: ["Copywriter", "Brand"], img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&fit=crop" },
+];
+
+const servicesList = [
+  { icon: Layout, title: "Website Development", desc: "Enterprise-grade headless architecture on Next.js." },
+  { icon: Smartphone, title: "Mobile Apps", desc: "Native-quality experiences using React Native or Swift/Kotlin." },
+  { icon: PenTool, title: "UI/UX Design", desc: "Human-centric design systems built for engagement and conversion." },
+  { icon: Database, title: "Full-Stack Development", desc: "End-to-end platform creation from database to frontend." },
+  { icon: TrendingUp, title: "SEO & Digital Growth", desc: "Technical SEO integration and growth strategy execution." },
+  { icon: RefreshCcw, title: "Maintenance & Support", desc: "24/7 proactive monitoring and optimization." },
+];
+
+const detailedServices = [
+  { 
+    title: "Website Development", 
+    content: "We don't just launch sites; we deploy performance machines. Leveraging Next.js and Vercel for instant loading and scale. This ensures a flawless user experience and a foundational edge in search rankings.",
+    bullets: ["Headless CMS integration (Contentful, Sanity)", "Scalable serverless deployment", "Custom animation libraries"],
+  },
+  { 
+    title: "UI/UX Design Systems", 
+    content: "Our design process is rooted in behavioral psychology. We engineer emotion, creating design systems that reduce cognitive load and drive users effortlessly towards key actions. We deliver meticulous documentation for future scale.",
+    bullets: ["User journey mapping", "High-fidelity prototyping", "Accessibility compliance (WCAG)"],
+  },
+  { 
+    title: "SEO & Digital Growth", 
+    content: "Growth is not accidental. We hardwire your platform for maximum discoverability. Our approach combines technical SEO audits, content strategy planning, and continuous performance monitoring to ensure organic leadership.",
+    bullets: ["Technical SEO audits", "Core Web Vitals optimization", "Conversion Rate Optimization (CRO)"],
+  },
+];
+
+const portfolioCategories = [
+  { id: 'all', label: 'All Work', icon: Layers, desc: 'A curated selection of our finest digital engineering.' },
+  { id: 'web-dev', label: 'Web Development', icon: Monitor, desc: 'High-performance Next.js websites tailored for SEO and speed.' },
+  { id: 'app-dev', label: 'App Development', icon: Smartphone, desc: 'Native iOS & Android applications built with React Native.' },
+  { id: 'video', label: 'Video Editing', icon: Video, desc: 'Cinematic storytelling, motion graphics, and post-production.' },
+  { id: 'seo', label: 'SEO & Growth', icon: Search, desc: 'Data-driven strategies to rank #1 on Google.' },
+  { id: 'design', label: 'Designing', icon: PenTool, desc: 'UI/UX, Branding, and Visual Identity systems.' },
+  { id: 'gmb', label: 'GMB & Marketing', icon: MapPin, desc: 'Google My Business optimization and local domination.' },
+];
+
+const projects = [
+  { id: 1, title: 'Nebula Finance', cat: 'web-dev', size: 'large', img: 'https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?q=80&w=2000&auto=format&fit=crop', tags: ['Next.js', 'FinTech'] },
+  { id: 2, title: 'Apex Fitness App', cat: 'app-dev', size: 'small', img: 'https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1000&auto=format&fit=crop', tags: ['iOS', 'Health'] },
+  { id: 3, title: 'Luxe Real Estate', cat: 'seo', size: 'tall', img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop', tags: ['SEO', 'Growth'] },
+  { id: 4, title: 'Neon Cyberpunk Ad', cat: 'video', size: 'wide', img: 'https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?q=80&w=1000&auto=format&fit=crop', tags: ['VFX', 'Editing'] },
+  { id: 5, title: 'Zenith Branding', cat: 'design', size: 'small', img: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop', tags: ['Identity', 'UI/UX'] },
+  { id: 6, title: 'Local Bakery GMB', cat: 'gmb', size: 'small', img: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=1000&auto=format&fit=crop', tags: ['GMB', 'Maps'] },
+  { id: 7, title: 'Crypto Dashboard', cat: 'web-dev', size: 'tall', img: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1000&auto=format&fit=crop', tags: ['Web3', 'React'] },
+  { id: 8, title: 'Fashion Promo', cat: 'video', size: 'small', img: 'https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?q=80&w=1000&auto=format&fit=crop', tags: ['4K', 'Color Grade'] },
+];
+
+// --- PAGE COMPONENTS ---
+
+// 1. ABOUT PAGE COMPONENT
+const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+  const yHero = useTransform(scrollYProgress, [0, 0.5], ["0%", "30%"]);
+  const [activeFAQ, setActiveFAQ] = useState<number | null>(0);
+
+  return (
+    <div ref={containerRef} className="pb-24 overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[90vh] flex flex-col justify-center items-center px-6 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20 pointer-events-none">
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/30 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-pulse delay-1000" />
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay" />
+        </div>
+
+        <motion.div style={{ y: yHero }} className="relative z-10 max-w-5xl mx-auto text-center">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md mb-8 shadow-sm">
+               <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+               </span>
+               <span className="text-xs font-bold text-zinc-600 dark:text-zinc-300 uppercase tracking-widest">
+                  Global Digital Architects
+               </span>
+            </div>
+          </FadeIn>
+
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-zinc-900 dark:text-white mb-8 leading-[1]"
+          >
+            We don't just write code. <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500">
+               We write the future.
+            </span>
+          </motion.h1>
+
+          <FadeIn delay={0.2}>
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
+              Zoga is where <b className="text-zinc-900 dark:text-white">art meets algorithm</b>. Founded on the belief that a website should be a living, breathing extension of your brand, we merge cinema-grade visuals with enterprise-grade engineering.
+            </p>
+          </FadeIn>
+        </motion.div>
+      </section>
+
+      {/* Philosophy */}
+      <section className="relative py-24 px-6 border-y border-zinc-200 dark:border-zinc-900/50 bg-white dark:bg-zinc-900/20">
+        <ParallaxText>PHILOSOPHY</ParallaxText>
+        <div className="max-w-6xl mx-auto relative z-10 grid gap-20">
+             {[
+                { title: "Obsessive Precision.", text: "Average is a disease. We cure it with pixel-perfect engineering and SEO strategies that don't just rank, they rule." },
+                { title: "Cinematic Motion.", text: "Static is dead. We breathe life into UI with physics-based animations that feel liquid, responsive, and alive." },
+             ].map((item, i) => (
+                <FadeIn key={i} delay={i * 0.1}>
+                    <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center border-l-4 border-purple-500 pl-8 md:pl-12 hover:pl-16 transition-all duration-500">
+                        <h3 className="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white w-full md:w-1/2 leading-tight">
+                            {item.title}
+                        </h3>
+                        <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 w-full md:w-1/2 leading-relaxed">
+                            {item.text}
+                        </p>
+                    </div>
+                </FadeIn>
+             ))}
+        </div>
+      </section>
+
+      {/* Impact */}
+      <section className="py-32 px-6 bg-zinc-100 dark:bg-[#0a0a0a] overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+             <h2 className="text-4xl md:text-5xl font-bold text-center mb-20 text-zinc-900 dark:text-white">
+               The <span className="text-purple-500 italic">Ripple Effect</span>
+             </h2>
+          </FadeIn>
+          
+          <div className="relative">
+             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent hidden md:block" />
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                {[
+                  { icon: Globe, val: "45+", label: "Countries Reached", sub: "Global digital footprint" },
+                  { icon: Award, val: "15+", label: "Awards Won", sub: "Design excellence recognized" },
+                  { icon: Cpu, val: "99.9%", label: "Uptime Guaranteed", sub: "Enterprise reliability" },
+                  { icon: Zap, val: "500%", label: "Avg. ROI", sub: "Client growth focus" }
+                ].map((stat, i) => (
+                  <motion.div 
+                    key={i}
+                    whileHover={{ y: -20, scale: 1.05 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20, delay: i * 0.1 }}
+                    className="relative bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-2xl z-10 group"
+                  >
+                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                     <div className="w-12 h-12 bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center mb-6 text-purple-500 group-hover:text-white group-hover:bg-purple-500 transition-colors duration-300">
+                        <stat.icon size={24} />
+                     </div>
+                     <h3 className="text-5xl font-black text-zinc-900 dark:text-white mb-2">{stat.val}</h3>
+                     <p className="text-lg font-bold text-zinc-700 dark:text-zinc-300">{stat.label}</p>
+                     <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-2">{stat.sub}</p>
+                  </motion.div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-200 dark:border-zinc-800 pb-6">
+               <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">The Architects</h2>
+                  <p className="text-zinc-500 mt-2">A multidisciplinary collective.</p>
+               </div>
+               <button onClick={() => setView('work')} className="text-purple-500 font-bold flex items-center gap-2 hover:gap-4 transition-all mt-4 md:mt-0">
+                  View Our Portfolio <ArrowRight size={20} />
+               </button>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {team.map((member, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -5 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors"
+              >
+                <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
+                   <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <Linkedin className="text-white hover:text-blue-400 cursor-pointer w-4 h-4" />
+                      <ExternalLink className="text-white hover:text-purple-400 cursor-pointer w-4 h-4" />
+                   </div>
+                </div>
+                <h3 className="font-bold text-zinc-900 dark:text-white text-sm">{member.name}</h3>
+                <div className="flex flex-wrap gap-1 mt-2">
+                   {member.roles.map(r => (
+                      <span key={r} className="text-[10px] uppercase font-bold px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md">
+                        {r}
+                      </span>
+                   ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 px-6 bg-zinc-50 dark:bg-black border-t border-zinc-200 dark:border-zinc-900">
+         <div className="max-w-4xl mx-auto">
+            <FadeIn>
+               <h2 className="text-3xl font-bold mb-12 text-center text-zinc-900 dark:text-white">Common Questions</h2>
+            </FadeIn>
+            
+            <div className="space-y-4">
+               {faqs.map((item, i) => (
+                  <motion.div 
+                     key={i}
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     className="border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900/40"
+                  >
+                     <button 
+                        onClick={() => setActiveFAQ(activeFAQ === i ? null : i)}
+                        className="w-full flex items-center justify-between p-6 text-left"
+                     >
+                        <span className="text-lg font-bold text-zinc-800 dark:text-zinc-200">{item.q}</span>
+                        <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${activeFAQ === i ? 'rotate-180 text-purple-500' : 'text-zinc-400'}`} />
+                     </button>
+                     <AnimatePresence>
+                        {activeFAQ === i && (
+                           <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                           >
+                              <div className="px-6 pb-6 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                                 {item.a}
+                              </div>
+                           </motion.div>
+                        )}
+                     </AnimatePresence>
+                  </motion.div>
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 px-6 bg-zinc-900 dark:bg-white text-white dark:text-black mt-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+           <div className="md:w-1/2 text-left">
+              <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6">
+                 Enough Talk. <br/> Let's Build.
+              </h2>
+              <p className="text-lg text-zinc-400 dark:text-zinc-600 max-w-md">
+                 Our schedule fills up fast. Secure your spot in our production pipeline today.
+              </p>
+           </div>
+           
+           <div className="md:w-1/2 flex flex-col items-start md:items-end gap-6">
+              <div className="w-full md:w-auto">
+                 <MagneticButton
+                    onClick={() => setView('contact')}
+                    className="w-full md:w-auto px-10 py-5 bg-white dark:bg-black text-black dark:text-white rounded-full text-xl font-bold flex items-center justify-center gap-4 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] transition-shadow"
+                 >
+                    Start Project <Zap fill="currentColor" />
+                 </MagneticButton>
+              </div>
+              
+              <div className="flex gap-8 text-sm font-medium text-zinc-400 dark:text-zinc-600">
+                 <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Taking New Clients</span>
+                 <span>avg. reply 2 hrs</span>
+              </div>
+           </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+// 2. PORTFOLIO PAGE COMPONENT
+const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
+  const [filter, setFilter] = useState('all');
+  const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.cat === filter);
+  const activeCategory = portfolioCategories.find(c => c.id === filter);
+
+  return (
+    <div className="pt-24 pb-24 min-h-screen">
+       <section className="px-6 text-center mb-16">
+          <motion.h1 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="text-6xl md:text-9xl font-black text-zinc-900 dark:text-white tracking-tighter mb-6"
+          >
+            OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">WORK</span>
+          </motion.h1>
+          <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto relative z-20">
+            {portfolioCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setFilter(cat.id)}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 border
+                  ${filter === cat.id 
+                    ? 'bg-zinc-900 dark:bg-white text-white dark:text-black border-transparent scale-105 shadow-xl shadow-purple-500/20' 
+                    : 'bg-transparent text-zinc-500 border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 dark:hover:border-zinc-600 hover:text-zinc-800 dark:hover:text-zinc-200'
+                  }`}
+              >
+                <cat.icon className="w-4 h-4" />
+                {cat.label}
+              </button>
+            ))}
+          </div>
+       </section>
+
+       <div className="max-w-7xl mx-auto px-6 mb-32">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[300px]">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+                className={`${project.size === 'large' ? 'md:col-span-2 md:row-span-2' : ''} ${project.size === 'wide' ? 'md:col-span-2' : ''} ${project.size === 'tall' ? 'md:row-span-2' : ''}`}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02, zIndex: 10 }}
+                  className="relative rounded-3xl overflow-hidden group cursor-pointer w-full h-full bg-zinc-800 border border-zinc-700"
+                >
+                    <img src={project.img} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <div className="flex gap-2 mb-3">
+                            {project.tags.map(tag => (
+                                <span key={tag} className="text-xs font-bold px-2 py-1 bg-white/20 backdrop-blur-md rounded text-white">{tag}</span>
+                            ))}
+                        </div>
+                        <h3 className="text-3xl font-bold text-white mb-2">{project.title}</h3>
+                        <div className="h-1 w-12 bg-purple-500 group-hover:w-full transition-all duration-500" />
+                    </div>
+                    <div className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+                        <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <ArrowRight className="w-6 h-6 text-black -rotate-45" />
+                        </div>
+                    </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+// 3. SERVICES PAGE COMPONENT
+const ServicesPage = ({ setView }: { setView: (view: string) => void }) => {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <div className="pt-24 pb-24 px-6 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-20"
+        >
+            <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter text-zinc-900 dark:text-white mb-6">
+                <span className="block">Services Engineered</span> for <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">Growth</span>
+            </h1>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+          {servicesList.map((service, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -5 }}
+              className="group p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/20"
+            >
+              <service.icon className="w-8 h-8 text-indigo-500 mb-4 group-hover:text-blue-500 transition-colors" />
+              <h3 className="text-2xl font-bold mb-3 text-zinc-900 dark:text-white">{service.title}</h3>
+              <p className="text-md text-zinc-600 dark:text-zinc-400">{service.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mb-24">
+            <h2 className="text-5xl font-bold tracking-tighter mb-12 text-center text-zinc-900 dark:text-white">
+                The Full <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-blue-500">Breakdown</span>
+            </h2>
+            <div className="max-w-5xl mx-auto space-y-4">
+                {detailedServices.map((service, index) => (
+                    <div key={index} className="border-b border-zinc-200 dark:border-zinc-800">
+                        <button
+                            onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+                            className="flex justify-between items-center w-full py-6 text-left"
+                        >
+                            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white">{service.title}</h3>
+                            <motion.div animate={{ rotate: openIndex === index ? 180 : 0 }}>
+                                <ChevronDown className="w-6 h-6 text-indigo-500" />
+                            </motion.div>
+                        </button>
+                        <AnimatePresence>
+                        {openIndex === index && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                        >
+                            <div className="pb-6">
+                                <p className="text-lg mb-4 text-zinc-600 dark:text-zinc-400">{service.content}</p>
+                                <ul className="list-disc pl-5 space-y-2">
+                                    {service.bullets.map((bullet, i) => (
+                                        <li key={i} className="text-md text-zinc-600 dark:text-zinc-400">{bullet}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </motion.div>
+                        )}
+                        </AnimatePresence>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- MAIN APP COMPONENT ---
+
+export default function App() {
+  const [view, setView] = useState('about');
+  const [darkMode, setDarkMode] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Simple scroll to top on view change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setMenuOpen(false);
+  }, [view]);
+
+  return (
+    <div className={`min-h-screen transition-colors duration-700 ${darkMode ? 'bg-[#050505] text-white' : 'bg-zinc-50 text-zinc-900'} ${darkMode ? 'dark' : ''}`}>
+      
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+        <div className="max-w-7xl mx-auto bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
+          <button onClick={() => setView('about')} className="text-xl font-black tracking-tighter">
+            ZOGA<span className="text-purple-500">.</span>
+          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+            <NavLink to="about" setView={setView} active={view === 'about'}>About</NavLink>
+            <NavLink to="work" setView={setView} active={view === 'work'}>Work</NavLink>
+            <NavLink to="services" setView={setView} active={view === 'services'}>Services</NavLink>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <button 
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            >
+                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button 
+                onClick={() => setView('contact')}
+                className="hidden md:block px-6 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform"
+            >
+                Let's Talk
+            </button>
+            {/* Mobile Toggle */}
+            <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                {menuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="fixed inset-0 z-40 bg-white dark:bg-black pt-24 px-6 md:hidden flex flex-col gap-6 text-2xl font-bold"
+            >
+                <button onClick={() => setView('about')} className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800">About</button>
+                <button onClick={() => setView('work')} className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800">Work</button>
+                <button onClick={() => setView('services')} className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800">Services</button>
+                <button onClick={() => setView('contact')} className="text-left py-4 text-purple-500">Contact Us</button>
+            </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Main Content */}
+      <main className="min-h-screen">
+        <AnimatePresence mode='wait'>
+            {view === 'about' && <motion.div key="about" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}><AboutPage setView={setView} /></motion.div>}
+            {view === 'work' && <motion.div key="work" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}><PortfolioPage setView={setView} /></motion.div>}
+            {view === 'services' && <motion.div key="services" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}><ServicesPage setView={setView} /></motion.div>}
+            {view === 'contact' && (
+                <motion.div key="contact" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="pt-32 px-6 text-center min-h-screen flex flex-col items-center justify-center">
+                    <h1 className="text-6xl font-black mb-6">Let's start the conversation.</h1>
+                    <a href="mailto:hello@zoga.agency" className="text-2xl text-purple-500 hover:underline">hello@zoga.agency</a>
+                </motion.div>
+            )}
+        </AnimatePresence>
+      </main>
+
+    </div>
+  );
+}
