@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { 
@@ -66,7 +68,7 @@ const SpotlightCard = ({ children, className = "" }: { children: React.ReactNode
 
 const ParallaxText = ({ children, baseVelocity = 100 }: { children: string; baseVelocity?: number }) => {
   return (
-    <div className="overflow-hidden flex flex-nowrap whitespace-nowrap select-none pointer-events-none absolute top-1/2 -translate-y-1/2 w-full opacity-[0.03] dark:opacity-[0.05]">
+    <div className="overflow-hidden flex flex-nowrap whitespace-nowrap select-none pointer-events-none absolute top-1/2 -translate-y-1/2 w-full opacity-[0.07] dark:opacity-[0.05]">
       <motion.div 
         animate={{ x: [0, -1000] }} 
         transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
