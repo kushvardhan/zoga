@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { 
   ArrowRight, Zap, Globe, Cpu, Award, ChevronDown, Linkedin, ExternalLink, 
@@ -11,14 +11,23 @@ import {
 
 // --- GLOBAL UTILITIES ---
 
-const NavLink = ({ to, children, className, setView, active }: any) => (
-  <button 
+interface NavLinkProps {
+  to: string
+  children: React.ReactNode
+  className?: string
+  setView: (value: string) => void
+  active?: boolean
+}
+
+const NavLink = ({ to, children, className = "", setView, active = false }: NavLinkProps) => (
+  <button
     onClick={() => setView(to)}
-    className={`${className} ${active ? 'text-purple-500' : ''}`}
+    className={`${className} ${active ? "text-purple-500" : ""}`}
   >
     {children}
   </button>
 );
+
 
 // --- ANIMATION COMPONENTS ---
 
@@ -592,10 +601,16 @@ export default function App() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   // Simple scroll to top on view change
-  useEffect(() => {
-    window.scrollTo(0, 0);
+useEffect(() => {
+  window.scrollTo(0, 0);
+
+  const timer = setTimeout(() => {
     setMenuOpen(false);
-  }, [view]);
+  }, 0);
+
+  return () => clearTimeout(timer);
+}, [view]);
+
 
   return (
     <div className={`min-h-screen transition-colors duration-700 ${darkMode ? 'bg-[#050505] text-white' : 'bg-zinc-50 text-zinc-900'} ${darkMode ? 'dark' : ''}`}>
@@ -615,6 +630,7 @@ export default function App() {
             <NavLink to="about" setView={setView} active={view === 'about'}>About</NavLink>
             <NavLink to="work" setView={setView} active={view === 'work'}>Work</NavLink>
             <NavLink to="services" setView={setView} active={view === 'services'}>Services</NavLink>
+            <NavLink to="why-us" setView={setView} active={view === 'why-us'}>Why-Us</NavLink>
           </div>
 
           <div className="flex items-center gap-4">
@@ -628,7 +644,7 @@ export default function App() {
                 onClick={() => setView('contact')}
                 className="hidden md:block px-6 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform"
             >
-                Let's Talk
+                Let&apos;s Talk
             </button>
             {/* Mobile Toggle */}
             <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -663,7 +679,7 @@ export default function App() {
             {view === 'services' && <motion.div key="services" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}><ServicesPage setView={setView} /></motion.div>}
             {view === 'contact' && (
                 <motion.div key="contact" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} className="pt-32 px-6 text-center min-h-screen flex flex-col items-center justify-center">
-                    <h1 className="text-6xl font-black mb-6">Let's start the conversation.</h1>
+                    <h1 className="text-6xl font-black mb-6">Let&apos;s start the conversation.</h1>
                     <a href="mailto:hello@zoga.agency" className="text-2xl text-purple-500 hover:underline">hello@zoga.agency</a>
                 </motion.div>
             )}
