@@ -15,7 +15,7 @@ import {
 
 // --- GLOBAL UTILITIES & ANIMATION COMPONENTS ---
 
-const NavLink = ({ to, children, className, setView, active }: any) => (
+const NavLink = ({ to, children, className, setView, active }: unknown) => (
   <button 
     onClick={() => setView(to)}
     className={`${className} ${active ? 'text-purple-500' : ''}`}
@@ -172,7 +172,7 @@ const ReviewsSection = () => {
             Voices of <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">Impact.</span>
           </h2>
           <p className="text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
-            Real words from real partners. We don't just deliver files; we deliver outcomes that reshape businesses.
+            Real words from real partners. We don&apos;t just deliver files; we deliver outcomes that reshape businesses.
           </p>
         </FadeIn>
       </div>
@@ -197,7 +197,7 @@ const ReviewsSection = () => {
                         {[1,2,3,4,5].map(s => <Star key={s} fill="currentColor" className="inline-block text-yellow-500 w-4 h-4 mr-1" />)}
                     </div>
                     <p className="text-lg font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6">
-                      "{review.quote}"
+                      &quot;{review.quote}"
                     </p>
                   </div>
                   <div className="flex items-center gap-4 mt-auto">
