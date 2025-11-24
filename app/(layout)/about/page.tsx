@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { 
-  ArrowRight, Zap, Globe, Cpu, Award, ChevronDown, Linkedin, ExternalLink, 
-  Play, Code, Search, Layout, Smartphone, PenTool, Database, TrendingUp, 
-  RefreshCcw, Monitor, Video, MapPin, Layers, Star, Menu, X, Sun, Moon,
+  ArrowRight, Zap, Globe, Cpu, Award, ChevronDown, Search, Layout, Smartphone, PenTool, Database, TrendingUp, 
+  RefreshCcw, Monitor, Video, MapPin, Layers,  Menu, X, Sun, Moon,
   ShieldCheck, Rocket, MousePointer2, Gem
 } from 'lucide-react';
+import Image from 'next/image';
 
 // --- GLOBAL UTILITIES ---
 
@@ -352,7 +352,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                 className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors"
               >
                 <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
-                   <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                   <Image src={member.img} alt={member.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 </div>
                 <h3 className="font-bold text-zinc-900 dark:text-white text-sm">{member.name}</h3>
                 <div className="flex flex-wrap gap-1 mt-2">
@@ -417,7 +417,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
            <div className="md:w-1/2 text-left">
               <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6">
-                 Enough Talk. <br/> Let's Build.
+                 Enough Talk. <br/> Let&apos;s Build.
               </h2>
               <p className="text-lg text-zinc-400 dark:text-zinc-600 max-w-md">
                  Our schedule fills up fast. Secure your spot in our production pipeline today.
@@ -490,7 +490,7 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
                   whileHover={{ scale: 1.02, zIndex: 10 }}
                   className="relative rounded-3xl overflow-hidden group cursor-pointer w-full h-full bg-zinc-800 border border-zinc-700"
                 >
-                    <img src={project.img} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <Image src={project.img} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity" />
                     <div className="absolute bottom-0 left-0 right-0 p-8 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                         <div className="flex gap-2 mb-3">
