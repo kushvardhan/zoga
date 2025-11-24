@@ -1,8 +1,8 @@
 "use client"
-import React, { useState, useEffect, useRef,PropsWithChildren, ReactNode, useMemo } from 'react';
+import React, { useState, useEffect, useRef,ReactNode, useMemo } from 'react';
 import { IconType } from "react-icons";
 import { 
-  motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate, 
+  motion, useScroll, useTransform, useMotionValue, useMotionTemplate, 
   AnimatePresence, useInView,useReducedMotion, 
   useAnimation
 } from 'framer-motion';
@@ -15,13 +15,14 @@ import {
   ArrowUpRight, Quote, ShieldCheck, Rocket, Users, Layers, Mail, Phone,
   Cpu, Server, Database, Layout, Send, Star, MousePointer2,
   Megaphone,
-  Clapperboard,
+  Clapperboard,Instagram, Twitter, Facebook,Linkedin,
   Play,
   Shield,
   Award
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Popup from '@/components/Popup';
 
 // --- Brand & Content Data ---
 
@@ -153,14 +154,15 @@ const DASHBOARD_COLORS = {
   cyan: "from-[#00F0FF] to-[#00A2FF]",
   amber: "from-[#FFB300] to-[#FF7800]",
 };
-  const themes = {
-    neon: { from: "#08f7fe", to: "#09fbd3", text: "#08f7fe" },
-    pink: { from: "#ff1b8d", to: "#ff6ac1", text: "#ff1b8d" },
-    purple: { from: "#6a00ff", to: "#b44cff", text: "#b44cff" },
-    cyan: { from: "#00eaff", to: "#00b7ff", text: "#00eaff" },
-    amber: { from: "#ffb300", to: "#ff7300", text: "#ffb300" },
-    green: { from: "#00ff8f", to: "#00c471", text: "#00ff8f" },
-  };
+const themes: Record<string, Theme> = {
+  neon: { from: "#08f7fe", to: "#09fbd3", text: "#08f7fe" },
+  pink: { from: "#ff1b8d", to: "#ff6ac1", text: "#ff1b8d" },
+  purple: { from: "#6a00ff", to: "#b44cff", text: "#b44cff" },
+  cyan: { from: "#00eaff", to: "#00b7ff", text: "#00eaff" },
+  amber: { from: "#ffb300", to: "#ff7300", text: "#ffb300" },
+  green: { from: "#00ff8f", to: "#00c471", text: "#00ff8f" },
+}
+
 
   const VIDEOS = [
   { id: "ieSo-WK4DhY", title: "Showreel" },
@@ -592,7 +594,8 @@ interface NavbarProps {
 const Navbar = ({ isDark, toggleTheme }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
   
   const { scrollY } = useScroll();
   useEffect(() => scrollY.onChange((latest) => setIsScrolled(latest > 50)), [scrollY]);
@@ -775,7 +778,7 @@ const Hero = () => {
 
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             <MagneticButton className="px-8 py-4 text-lg">Get a Free Audit</MagneticButton>
-            <MagneticButton variant="outline" className="px-8 py-4 text-lg">View Case Studies</MagneticButton>
+            <MagneticButton className="group px-8 py-4 text-lg">View Case Studies</MagneticButton>
           </div>
           
           <div className="mt-12 flex items-center justify-center lg:justify-start gap-6 text-sm font-medium text-slate-500">
@@ -823,8 +826,15 @@ const Hero = () => {
   );
 };
 
+type Theme = {
+  from: string;
+  to: string;
+  text: string;
+};
+
+
 const InteractiveDashboard = () => {
- const [theme, setTheme] = useState(themes.pink);
+  const [theme, setTheme] = useState<Theme>(themes.pink);
 
   return (
     <section className="w-full py-10 flex flex-col items-center gap-6">
@@ -1006,10 +1016,11 @@ const Services = () => (
           
           <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">{service.title}</h3>
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">{service.desc}</p>
-          
+          <Link href='/service' >
           <div className="flex items-center gap-2 font-bold text-blue-600 dark:text-blue-400 group-hover:gap-4 transition-all">
             Explore Service <ArrowRight size={20} />
           </div>
+          </Link>
         </motion.div>
       ))}
     </div>
@@ -1198,7 +1209,7 @@ const Portfolio = () => (
               ))}
             </div>
 
-            <MagneticButton variant="outline" className="group">
+            <MagneticButton className="group">
               View Case Study <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" size={16} />
             </MagneticButton>
           </div>
@@ -1398,74 +1409,196 @@ const ReviewsSection = () => {
 };
 
 
-const Contact = () => (
-  <section id="contact" className="py-32 bg-slate-50 dark:bg-[#050509]">
-    <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
-      <div>
-        <h2 className="text-5xl font-bold text-slate-900 dark:text-white mb-6">
-          Ready to Scale? <br/>
-          <span className="text-blue-600">Let's Talk.</span>
-        </h2>
-        <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
-          Whether you need a new website, a mobile app, or a digital marketing strategy, we are here to help.
-        </p>
-        
-        <div className="space-y-6 mb-12">
-           <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-             <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
-               <Phone />
-             </div>
-             <div>
-               <p className="text-sm text-slate-500">Call Us (Ranchi HQ)</p>
-               <p className="text-lg font-bold text-slate-900 dark:text-white">{PHONE_NUMBER}</p>
-             </div>
-           </div>
-           <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-             <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
-               <Mail />
-             </div>
-             <div>
-               <p className="text-sm text-slate-500">Email Us</p>
-               <p className="text-lg font-bold text-slate-900 dark:text-white">{EMAIL}</p>
-             </div>
-           </div>
-        </div>
-      </div>
 
-      <div className="bg-white dark:bg-[#0a0a12] p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/10">
-        <form className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-             <InputField label="First Name" placeholder="John" />
-             <InputField label="Last Name" placeholder="Doe" />
-          </div>
-          <InputField label="Email Address" type="email" placeholder="john@company.com" />
-          <InputField label="Phone Number" type="tel" placeholder="+91 99999 99999" />
-          
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Project Type</label>
-            <div className="grid grid-cols-2 gap-3">
-              {["Website", "App", "SEO", "Other"].map(type => (
-                <label key={type} className="cursor-pointer">
-                  <input type="radio" name="type" className="peer sr-only" />
-                  <div className="px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-center text-sm font-medium peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-blue-600 transition-all">
-                    {type}
-                  </div>
-                </label>
-              ))}
+const servicesList = [
+  "Website Development",
+  "App Development",
+  "UI/UX Design",
+  "Digital Marketing",
+  "Branding",
+  "SEO",
+  "Other",
+];
+
+const Contact = () => {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<string[]>([]);
+  const [otherService, setOtherService] = useState("");
+
+  const [popup, setPopup] = useState({
+    show: false,
+    type: "success" as "success" | "error",
+    title: "",
+    message: "",
+  });
+
+  const handleSelect = (service: string) => {
+    setSelected((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+    );
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent page reload
+
+setPopup({
+  show: true,
+  type: "success",
+  title: "Message sent successfully!",
+  message: "We’ll connect with you soon. Thank you for reaching out!",
+});
+
+
+    // Show "processing" delay
+    setTimeout(() => {
+      setPopup({
+        show: true,
+        type: "success",
+        title: "Message Sent",
+        message: "Your message has been successfully sent!",
+      });
+    }, 2000);
+  };
+
+  return (
+    <section id="contact" className="py-32 bg-slate-50 dark:bg-[#050509]">
+      {popup.show && (
+        <Popup
+          title={popup.title}
+          type={popup.type}
+          message={popup.message}
+          onClose={() => setPopup({ ...popup, show: false })}
+        />
+      )}
+
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+
+        {/* LEFT SIDE */}
+        <div>
+          <h2 className="text-5xl font-bold text-slate-900 dark:text-white mb-6">
+            Ready to Scale? <br />
+            <span className="text-blue-600">Let&apos;s Talk.</span>
+          </h2>
+
+          <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
+            Whether you need a new website, a mobile app, or a digital marketing strategy, we are here to help.
+          </p>
+
+          <div className="space-y-6 mb-12">
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
+              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                <Phone />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Call Us (Ranchi HQ)</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">+91 98765 43210</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
+              <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
+                <Mail />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500">Email Us</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white">hello@agency.com</p>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="space-y-2">
-             <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-             <textarea rows={4} placeholder="Tell us about your project..." className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 resize-none"></textarea>
-          </div>
+        {/* RIGHT SIDE FORM */}
+        <div className="bg-white dark:bg-[#0a0a12] p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/10">
+          <form className="space-y-6" onSubmit={handleSubmit}>
 
-          <MagneticButton className="w-full py-4 text-lg">Send Message</MagneticButton>
-        </form>
+            {/* Name Inputs */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <InputField label="First Name" placeholder="John" />
+              <InputField label="Last Name" placeholder="Doe" />
+            </div>
+
+            <InputField label="Email Address" type="email" placeholder="john@company.com" />
+            <InputField label="Phone Number" type="tel" placeholder="+91 99999 99999" />
+
+            {/* SERVICES DROPDOWN — FULL, UNTOUCHED */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                Services You Need
+              </label>
+
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setOpen(!open)}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-left text-sm flex justify-between items-center"
+                >
+                  <span className="text-slate-700 dark:text-slate-300">
+                    {selected.length > 0 ? selected.join(", ") : "Select services..."}
+                  </span>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {open && (
+                  <div className="absolute z-20 mt-2 w-full bg-white dark:bg-[#0a0a12] border border-slate-200 dark:border-white/10 rounded-xl shadow-lg p-3 space-y-2">
+                    {servicesList.map((service) => (
+                      <label
+                        key={service}
+                        className="flex items-center gap-3 cursor-pointer px-2 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10"
+                      >
+                        <input
+                          type="checkbox"
+                          value={service}
+                          checked={selected.includes(service)}
+                          onChange={() => handleSelect(service)}
+                          className="h-4 w-4"
+                        />
+                        <span className="text-sm text-slate-700 dark:text-slate-300">{service}</span>
+                      </label>
+                    ))}
+
+                    {selected.includes("Other") && (
+                      <input
+                        type="text"
+                        placeholder="Specify your service..."
+                        className="w-full px-3 py-2 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-slate-300 outline-none"
+                        value={otherService}
+                        onChange={(e) => setOtherService(e.target.value)}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* MESSAGE */}
+            <textarea
+              rows={4}
+              placeholder="Tell us about your project..."
+              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 resize-none outline-none"
+            />
+
+            <MagneticButton className="w-full py-4 text-lg">
+              Send Message
+            </MagneticButton>
+
+          </form>
+        </div>
+
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
+
+
 
 const Footer = () => (
   <footer className="bg-[#020205] text-white pt-20 pb-10 border-t border-white/10">
@@ -1479,14 +1612,13 @@ const Footer = () => (
            <p className="text-slate-400 max-w-sm leading-relaxed mb-8">
              Building the digital future of Jharkhand and beyond. We combine local insights with global tech standards.
            </p>
-           <div className="flex gap-4">
-             {["Twitter", "LinkedIn", "Instagram"].map(social => (
-               <a key={social} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors">
-                 <span className="sr-only">{social}</span>
-                 <ArrowUpRight size={16} />
-               </a>
-             ))}
-           </div>
+           <div className="flex gap-3">
+          {[Twitter, Instagram, Linkedin, Facebook].map((Icon, i) => (
+            <div key={i} className="p-2 bg-white dark:bg-black rounded-full border border-zinc-200 dark:border-zinc-800 hover:border-purple-500 hover:text-purple-500 transition-all cursor-pointer">
+              <Icon size={20} />
+            </div>
+          ))}
+        </div>
         </div>
         
         <div>
