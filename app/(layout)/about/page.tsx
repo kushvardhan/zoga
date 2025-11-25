@@ -8,6 +8,7 @@ import {
   ShieldCheck, Rocket, MousePointer2, Gem
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // --- GLOBAL UTILITIES ---
 
@@ -640,7 +641,9 @@ useEffect(() => {
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
         <div className="max-w-7xl mx-auto bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
           <button onClick={() => setView('about')} className="text-xl font-black tracking-tighter">
+            <Link href="/">
             ZOGA<span className="text-purple-500">.</span>
+            </Link>
           </button>
 
           {/* Desktop Menu */}

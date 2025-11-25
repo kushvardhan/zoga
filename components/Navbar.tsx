@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const SERVICES = [
   {
@@ -110,6 +111,8 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
           {/* Logo */}
+          
+          <Link href="/">
           <a href="#" className="flex items-center gap-3 group">
             <div
               className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 
@@ -128,6 +131,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
               Zoga
             </span>
           </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">

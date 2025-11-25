@@ -37,6 +37,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 // --- GLOBAL UTILITIES & ANIMATION COMPONENTS ---
@@ -638,9 +639,11 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
   <footer className="bg-zinc-100 dark:bg-zinc-900 pt-20 pb-10 px-6 border-t border-zinc-200 dark:border-zinc-800 relative z-10">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
       <div className="md:col-span-2">
+        <Link href="/">
         <h2 className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-white mb-6">
           ZOGA<span className="text-purple-500">.</span>
         </h2>
+        </Link>
         <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-8">
           We engineer digital dominance. A full-service creative agency building
           the future of the web, one pixel at a time.
@@ -1220,7 +1223,9 @@ export default function App() {
             onClick={() => setView("about")}
             className="text-xl font-black tracking-tighter"
           >
+            <Link href="/">
             ZOGA<span className="text-purple-500">.</span>
+            </Link>
           </button>
 
           <div className="hidden md:flex items-center gap-8 font-medium text-sm">
