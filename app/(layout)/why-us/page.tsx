@@ -1,12 +1,28 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Sun, Moon, Menu, X, ArrowRight, 
-  Video, BarChart, Search, MapPin, Zap, 
-   MousePointer2, Hexagon, Fingerprint, Activity,
-   MoveRight, Heart, Users, Globe2, Sparkles,
-   Code2, Cpu
-} from 'lucide-react';
+import {
+  Activity,
+  ArrowRight,
+  BarChart,
+  Code2,
+  Cpu,
+  Fingerprint,
+  Globe2,
+  Heart,
+  Hexagon,
+  MapPin,
+  Menu,
+  Moon,
+  MousePointer2,
+  MoveRight,
+  Search,
+  Sparkles,
+  Sun,
+  Users,
+  Video,
+  X,
+  Zap,
+} from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 
 // --- PERFORMANCE OPTIMIZED COMPONENTS ---
 
@@ -29,7 +45,6 @@ const NavLink: React.FC<NavLinkProps> = ({ to, children, setView, active }) => (
   </button>
 );
 
-
 // 2. Intersection Observer Hook
 const useInView = (threshold = 0.1) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -40,7 +55,7 @@ const useInView = (threshold = 0.1) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.unobserve(entry.target); 
+          observer.unobserve(entry.target);
         }
       },
       { threshold }
@@ -52,17 +67,19 @@ const useInView = (threshold = 0.1) => {
   return [ref, isInView];
 };
 
-
-
 interface FadeInProps {
   children: React.ReactNode;
   delay?: number;
   className?: string;
 }
 
-const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, className = "" }) => {
+const FadeIn: React.FC<FadeInProps> = ({
+  children,
+  delay = 0,
+  className = "",
+}) => {
   const [ref, isInView] = useInView() as [
-    React.RefObject<HTMLDivElement>, 
+    React.RefObject<HTMLDivElement>,
     boolean
   ];
 
@@ -96,7 +113,7 @@ interface ServiceRowProps {
   icon: React.ComponentType<{ size?: number; className?: string }>;
   color: string;
   softColor: string;
-  snapshot: SnapshotData;
+  snapshot?: SnapshotData;
 }
 
 const ServiceRow: React.FC<ServiceRowProps> = ({
@@ -107,7 +124,7 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
   icon: Icon,
   color,
   softColor,
-  snapshot,
+  snapshot = { label: "", value: "", sub: "", button: "" },
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -127,9 +144,7 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
         <div className="flex items-center gap-6 md:w-1/3">
           <span
             className={`font-mono text-sm transition-colors ${
-              isOpen
-                ? "text-black dark:text-white font-bold"
-                : "text-zinc-400"
+              isOpen ? "text-black dark:text-white font-bold" : "text-zinc-400"
             }`}
           >
             0{number}
@@ -189,7 +204,6 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
         }`}
       >
         <div className="py-8 px-4 md:pl-20 grid md:grid-cols-12 gap-8 bg-zinc-50/50 dark:bg-zinc-900/20">
-          
           {/* Description */}
           <div className="md:col-span-7 space-y-6">
             <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed font-medium">
@@ -209,9 +223,7 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
           </div>
 
           {/* Snapshot */}
-          <div
-            className="md:col-span-5 flex flex-col justify-between h-full min-h-[160px] p-6 rounded-2xl relative overflow-hidden group/card border border-zinc-200 dark:border-zinc-700 shadow-xl"
-          >
+          <div className="md:col-span-5 flex flex-col justify-between h-full min-h-[160px] p-6 rounded-2xl relative overflow-hidden group/card border border-zinc-200 dark:border-zinc-700 shadow-xl">
             {/* Glow Background */}
             <div
               className={`absolute inset-0 bg-gradient-to-br ${softColor} opacity-80 blur-xl pointer-events-none`}
@@ -250,157 +262,203 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
   );
 };
 
-
-
 // --- MAIN APP ---
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [view, setView] = useState('home');
+  const [view, setView] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Added colors to services to fix "monotony"
-const servicesList = [
-  { 
-    title: "Web & App Dev",
-    icon: Code2,
-    color: "from-cyan-400 to-blue-600",
-    softColor: "via-cyan-200/20 to-blue-200/20",
-    snapshot: {
-      label: "Deployment Speed",
-      value: "4.8x",
-      sub: "Faster delivery",
-      button: "Explore Development"
+  const servicesList = [
+    {
+      title: "Web & App Dev",
+      icon: Code2,
+      color: "from-cyan-400 to-blue-600",
+      softColor: "via-cyan-200/20 to-blue-200/20",
+      snapshot: {
+        label: "Deployment Speed",
+        value: "4.8x",
+        sub: "Faster delivery",
+        button: "Explore Development",
+      },
+      description:
+        "We don't use templates. We engineer bespoke digital infrastructure using React, Node, and Python. Performance is our religion.",
+      tags: ["React", "Next.js", "Native", "Cloud"],
     },
-    description:
-      "We don't use templates. We engineer bespoke digital infrastructure using React, Node, and Python. Performance is our religion.",
-    tags: ["React", "Next.js", "Native", "Cloud"]
-  },
-  { 
-    title: "UI/UX Design",
-    icon: MousePointer2,
-    color: "from-pink-500 to-rose-500",
-    softColor: "via-pink-200/20 to-rose-200/20",
-    snapshot: {
-      label: "User Engagement",
-      value: "92%",
-      sub: "Increase in retention",
-      button: "See Design Work"
+    {
+      title: "UI/UX Design",
+      icon: MousePointer2,
+      color: "from-pink-500 to-rose-500",
+      softColor: "via-pink-200/20 to-rose-200/20",
+      snapshot: {
+        label: "User Engagement",
+        value: "92%",
+        sub: "Increase in retention",
+        button: "See Design Work",
+      },
+      description:
+        "Beauty converts. Our design philosophy blends behavioral psychology with avant-garde aesthetics to create interfaces users love.",
+      tags: ["Figma", "Motion", "User Research"],
     },
-    description:
-      "Beauty converts. Our design philosophy blends behavioral psychology with avant-garde aesthetics to create interfaces users love.",
-    tags: ["Figma", "Motion", "User Research"]
-  },
-  { 
-    title: "Video Editing",
-    icon: Video,
-    color: "from-purple-500 to-indigo-600",
-    softColor: "via-purple-200/20 to-indigo-200/20",
-    snapshot: {
-      label: "Watch Time",
-      value: "3.2x",
-      sub: "Longer viewer retention",
-      button: "View Editing Samples"
+    {
+      title: "Video Editing",
+      icon: Video,
+      color: "from-purple-500 to-indigo-600",
+      softColor: "via-purple-200/20 to-indigo-200/20",
+      snapshot: {
+        label: "Watch Time",
+        value: "3.2x",
+        sub: "Longer viewer retention",
+        button: "View Editing Samples",
+      },
+      description:
+        "Retention is the new currency. We craft high-octane visual narratives optimized for the dopamine-driven social landscape.",
+      tags: ["Premiere", "After Effects", "Shorts"],
     },
-    description:
-      "Retention is the new currency. We craft high-octane visual narratives optimized for the dopamine-driven social landscape.",
-    tags: ["Premiere", "After Effects", "Shorts"]
-  },
-  { 
-    title: "SEO Dominance",
-    icon: Search,
-    color: "from-green-400 to-emerald-600",
-    softColor: "via-green-200/20 to-emerald-200/20",
-    snapshot: {
-      label: "Ranking Lift",
-      value: "87%",
-      sub: "Top-page results",
-      button: "Boost My SEO"
+    {
+      title: "SEO Dominance",
+      icon: Search,
+      color: "from-green-400 to-emerald-600",
+      softColor: "via-green-200/20 to-emerald-200/20",
+      snapshot: {
+        label: "Ranking Lift",
+        value: "87%",
+        sub: "Top-page results",
+        button: "Boost My SEO",
+      },
+      description:
+        "Being on page 2 is like being invisible. We use white-hat strategies to force your brand to the top.",
+      tags: ["Technical SEO", "Backlinking", "Audit"],
     },
-    description:
-      "Being on page 2 is like being invisible. We use white-hat strategies to force your brand to the top.",
-    tags: ["Technical SEO", "Backlinking", "Audit"]
-  },
-  { 
-    title: "Growth Marketing",
-    icon: Activity,
-    color: "from-orange-400 to-red-600",
-    softColor: "via-orange-200/20 to-red-200/20",
-    snapshot: {
-      label: "ROAS",
-      value: "6.4x",
-      sub: "Return on ad spend",
-      button: "Scale My Ads"
+    {
+      title: "Growth Marketing",
+      icon: Activity,
+      color: "from-orange-400 to-red-600",
+      softColor: "via-orange-200/20 to-red-200/20",
+      snapshot: {
+        label: "ROAS",
+        value: "6.4x",
+        sub: "Return on ad spend",
+        button: "Scale My Ads",
+      },
+      description:
+        "We turn ad spend into profit. Precision targeting on Meta and Google ensures every dollar works harder.",
+      tags: ["PPC", "Social Ads", "Retargeting"],
     },
-    description:
-      "We turn ad spend into profit. Precision targeting on Meta and Google ensures every dollar works harder.",
-    tags: ["PPC", "Social Ads", "Retargeting"]
-  },
-  { 
-    title: "GMB Optimization",
-    icon: MapPin,
-    color: "from-yellow-400 to-amber-600",
-    softColor: "via-yellow-200/20 to-amber-200/20",
-    snapshot: {
-      label: "Local Reach",
-      value: "3.9x",
-      sub: "More customer calls",
-      button: "Optimize My GMB"
+    {
+      title: "GMB Optimization",
+      icon: MapPin,
+      color: "from-yellow-400 to-amber-600",
+      softColor: "via-yellow-200/20 to-amber-200/20",
+      snapshot: {
+        label: "Local Reach",
+        value: "3.9x",
+        sub: "More customer calls",
+        button: "Optimize My GMB",
+      },
+      description:
+        "Capture the local market. We optimize your Google My Business profile to ensure you are the only choice.",
+      tags: ["Local SEO", "Reviews", "Maps"],
     },
-    description:
-      "Capture the local market. We optimize your Google My Business profile to ensure you are the only choice.",
-    tags: ["Local SEO", "Reviews", "Maps"]
-  }
-];
-
-
+  ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 selection:bg-cyan-500 selection:text-black ${darkMode ? 'dark bg-black' : 'bg-white'}`}>
+    <div
+      className={`min-h-screen transition-colors duration-500 selection:bg-cyan-500 selection:text-black ${
+        darkMode ? "dark bg-black" : "bg-white"
+      }`}
+    >
       <div className="text-zinc-900 dark:text-zinc-100 font-sans overflow-x-hidden">
-        
         {/* --- Navigation --- */}
         <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
           <div className="max-w-7xl mx-auto bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
-            <button onClick={() => setView('home')} className="text-xl font-black tracking-tighter flex items-center gap-1 group">
-              ZORA<div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full group-hover:scale-125 transition-transform" />
+            <button
+              onClick={() => setView("home")}
+              className="text-xl font-black tracking-tighter flex items-center gap-1 group"
+            >
+              ZORA
+              <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full group-hover:scale-125 transition-transform" />
             </button>
 
             <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-              <NavLink to="about" setView={setView} active={view === 'about'}>About</NavLink>
-              <NavLink to="work" setView={setView} active={view === 'work'}>Work</NavLink>
-              <NavLink to="services" setView={setView} active={view === 'services'}>Services</NavLink>
-              <NavLink to="why-us" setView={setView} active={view === 'why-us'}>Why-Us</NavLink>
-
+              <NavLink to="about" setView={setView} active={view === "about"}>
+                About
+              </NavLink>
+              <NavLink to="work" setView={setView} active={view === "work"}>
+                Work
+              </NavLink>
+              <NavLink
+                to="services"
+                setView={setView}
+                active={view === "services"}
+              >
+                Services
+              </NavLink>
+              <NavLink to="why-us" setView={setView} active={view === "why-us"}>
+                Why-Us
+              </NavLink>
             </div>
 
             <div className="flex items-center gap-4">
-              <button onClick={() => setDarkMode(!darkMode)} className="cursor-pointer p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-500 hover:text-cyan-500">
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="cursor-pointer p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-500 hover:text-cyan-500"
+              >
                 {darkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              <button onClick={() => setView('contact')} className="hidden md:block px-6 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]">
+              <button
+                onClick={() => setView("contact")}
+                className="hidden md:block px-6 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
+              >
                 Let&apos;s Talk
               </button>
-              <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+              <button
+                className="md:hidden"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
                 {menuOpen ? <X /> : <Menu />}
               </button>
             </div>
           </div>
-          
-           {/* Mobile Menu */}
-           {menuOpen && (
+
+          {/* Mobile Menu */}
+          {menuOpen && (
             <div className="absolute top-20 left-4 right-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-2xl shadow-2xl flex flex-col gap-4 animate-in slide-in-from-top-5 z-50">
-              <button onClick={() => {setView('home'); setMenuOpen(false)}} className="text-left text-lg font-bold">About</button>
-              <button onClick={() => {setView('services'); setMenuOpen(false)}} className="text-left text-lg font-bold">Services</button>
-              <button onClick={() => {setView('contact'); setMenuOpen(false)}} className="w-full py-3 bg-purple-600 text-white rounded-lg font-bold">Start Project</button>
+              <button
+                onClick={() => {
+                  setView("home");
+                  setMenuOpen(false);
+                }}
+                className="text-left text-lg font-bold"
+              >
+                About
+              </button>
+              <button
+                onClick={() => {
+                  setView("services");
+                  setMenuOpen(false);
+                }}
+                className="text-left text-lg font-bold"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => {
+                  setView("contact");
+                  setMenuOpen(false);
+                }}
+                className="w-full py-3 bg-purple-600 text-white rounded-lg font-bold"
+              >
+                Start Project
+              </button>
             </div>
           )}
         </nav>
 
         <main className="pt-32 pb-20">
-          
           {/* --- SECTION 1: HERO (Vibrant & Clean) --- */}
-                    <section className="px-6 mb-32 max-w-7xl mx-auto min-h-[70vh] flex flex-col justify-center relative">
+          <section className="px-6 mb-32 max-w-7xl mx-auto min-h-[70vh] flex flex-col justify-center relative">
             {/* Ambient Background Glow - CSS Only, No heavy SVG filters */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] -z-10" />
 
@@ -414,14 +472,23 @@ const servicesList = [
             <FadeIn delay={100}>
               <h1 className="text-5xl md:text-7xl lg:text-[9rem] font-black tracking-tighter leading-[0.85] mb-8">
                 DIGITAL <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 animate-gradient-x">ALCHEMY.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 animate-gradient-x">
+                  ALCHEMY.
+                </span>
               </h1>
             </FadeIn>
 
             <FadeIn delay={200}>
               <div className="flex flex-col md:flex-row gap-8 md:items-end max-w-4xl">
                 <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed md:border-l-4 md:border-zinc-800 md:pl-6">
-                  We transmute code into revenue. Zora is the agency that bridges the gap between <span className="text-cyan-500 font-bold">obsessive engineering</span> and <span className="text-pink-500 font-bold">human emotion</span>.
+                  We transmute code into revenue. Zora is the agency that
+                  bridges the gap between{" "}
+                  <span className="text-cyan-500 font-bold">
+                    obsessive engineering
+                  </span>{" "}
+                  and{" "}
+                  <span className="text-pink-500 font-bold">human emotion</span>
+                  .
                 </p>
               </div>
             </FadeIn>
@@ -431,277 +498,409 @@ const servicesList = [
                 Inititate Project <ArrowRight size={20} />
               </button>
               <div className="flex items-center gap-4 px-6 py-4 rounded-full border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm">
-                 <div className="flex -space-x-3">
-                   {[1,2,3].map(i => (
-                     <div key={i} className="w-8 h-8 rounded-full bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-black" />
-                   ))}
-                 </div>
-                 <span className="text-sm font-bold">Trusted by 500+ clients</span>
+                <div className="flex -space-x-3">
+                  {[1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-full bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-black"
+                    />
+                  ))}
+                </div>
+                <span className="text-sm font-bold">
+                  Trusted by 500+ clients
+                </span>
               </div>
             </FadeIn>
           </section>
 
-
           {/* --- SECTION 2: THE PROBLEM (Stark Contrast) --- */}
           <section className="bg-zinc-100 dark:bg-zinc-900 py-24 px-6 border-y border-zinc-200 dark:border-zinc-800 overflow-hidden">
-             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative">
-                {/* Decorative Elements */}
-                <div className="absolute -right-20 top-0 text-[20rem] font-black text-zinc-200 dark:text-zinc-800 opacity-20 pointer-events-none select-none">
-                  ?
+            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative">
+              {/* Decorative Elements */}
+              <div className="absolute -right-20 top-0 text-[20rem] font-black text-zinc-200 dark:text-zinc-800 opacity-20 pointer-events-none select-none">
+                ?
+              </div>
+
+              <FadeIn>
+                <h2 className="text-4xl md:text-6xl font-black uppercase leading-[0.9]">
+                  Most Websites <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-600 dark:from-zinc-600 dark:to-zinc-400">
+                    Feel Like
+                  </span>{" "}
+                  <br />
+                  Empty Rooms.
+                </h2>
+              </FadeIn>
+              <FadeIn delay={200} className="space-y-8 z-10">
+                <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 transition-colors shadow-lg">
+                  <div className="flex gap-4 mb-4">
+                    <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-xl">
+                      <Fingerprint />
+                    </div>
+                    <h4 className="text-xl font-bold">
+                      The &quot;Zombie&quot; Template
+                    </h4>
+                  </div>
+                  <p className="text-zinc-600 dark:text-zinc-400 pl-14">
+                    Your competitors are using the same $50 themes. It&apos;s
+                    lifeless. We build custom identities that have a pulse.
+                  </p>
                 </div>
-
-                <FadeIn>
-                  <h2 className="text-4xl md:text-6xl font-black uppercase leading-[0.9]">
-                    Most Websites <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-600 dark:from-zinc-600 dark:to-zinc-400">Feel Like</span> <br />
-                    Empty Rooms.
-                  </h2>
-                </FadeIn>
-                <FadeIn delay={200} className="space-y-8 z-10">
-                   <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 transition-colors shadow-lg">
-                      <div className="flex gap-4 mb-4">
-                        <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-xl"><Fingerprint /></div>
-                        <h4 className="text-xl font-bold">The &quot;Zombie&quot; Template</h4>
-                      </div>
-                      <p className="text-zinc-600 dark:text-zinc-400 pl-14">Your competitors are using the same $50 themes. It&apos;s lifeless. We build custom identities that have a pulse.</p>
-                   </div>
-                   <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-lg">
-                      <div className="flex gap-4 mb-4">
-                        <div className="p-3 bg-orange-100 dark:bg-orange-900/30 text-orange-500 rounded-xl"><Activity /></div>
-                        <h4 className="text-xl font-bold">Lag Kills Sales</h4>
-                      </div>
-                      <p className="text-zinc-600 dark:text-zinc-400 pl-14">A pretty site that loads in 3 seconds is a failed site. We engineer for sub-second loads and 100/100 scores.</p>
-                   </div>
-                </FadeIn>
-             </div>
+                <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-lg">
+                  <div className="flex gap-4 mb-4">
+                    <div className="p-3 bg-orange-100 dark:bg-orange-900/30 text-orange-500 rounded-xl">
+                      <Activity />
+                    </div>
+                    <h4 className="text-xl font-bold">Lag Kills Sales</h4>
+                  </div>
+                  <p className="text-zinc-600 dark:text-zinc-400 pl-14">
+                    A pretty site that loads in 3 seconds is a failed site. We
+                    engineer for sub-second loads and 100/100 scores.
+                  </p>
+                </div>
+              </FadeIn>
+            </div>
           </section>
-
 
           {/* --- SECTION 3: THE ARSENAL (Colorful & Interactive) --- */}
           <section id="services" className="py-32 px-6 max-w-7xl mx-auto">
             <FadeIn className="mb-20">
-               <span className="px-4 py-1 rounded-full border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-widest bg-purple-500/5">
-                 Our Capabilities
-               </span>
-               <h2 className="text-5xl md:text-8xl font-black mt-6 mb-6">THE ARSENAL</h2>
-               <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full"></div>
+              <span className="px-4 py-1 rounded-full border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-widest bg-purple-500/5">
+                Our Capabilities
+              </span>
+              <h2 className="text-5xl md:text-8xl font-black mt-6 mb-6">
+                THE ARSENAL
+              </h2>
+              <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full"></div>
             </FadeIn>
 
             <div className="flex flex-col border-t border-zinc-200 dark:border-zinc-800">
-               {servicesList.map((s, i) => (
-                 <FadeIn key={i} delay={i * 50}>
-                   <ServiceRow number={i + 1} {...s} />
-                 </FadeIn>
-               ))}
+              {servicesList.map((s, i) => (
+                <FadeIn key={i} delay={i * 50}>
+                  <ServiceRow number={i + 1} {...s} />
+                </FadeIn>
+              ))}
             </div>
           </section>
 
-
           {/* --- SECTION 4: THE BLUEPRINT (Grid Layout) --- */}
           <section className="py-24 bg-black text-white relative overflow-hidden">
-             {/* Vibrant Grid Background */}
-             <div className="absolute inset-0 opacity-20" 
-                  style={{ 
-                    backgroundImage: 'linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)', 
-                    backgroundSize: '40px 40px',
-                    maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
-                  }}>
-             </div>
-             
-             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <FadeIn className="text-center mb-16">
-                   <h2 className="text-4xl md:text-6xl font-black mb-4">THE BLUEPRINT</h2>
-                   <p className="text-zinc-400">How we turn chaos into order.</p>
-                </FadeIn>
+            {/* Vibrant Grid Background */}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)",
+                backgroundSize: "40px 40px",
+                maskImage:
+                  "radial-gradient(circle at center, black, transparent 80%)",
+              }}
+            ></div>
 
-                <div className="grid md:grid-cols-4 gap-6">
-                   {[
-                     { title: "Audit", desc: "We tear down your current presence to find the leaks.", icon: Search, color: "text-cyan-400" },
-                     { title: "Architect", desc: "Strategy first. We build the roadmap before writing code.", icon: Hexagon, color: "text-purple-400" },
-                     { title: "Execute", desc: "Rapid deployment. High-velocity sprints. Zero lag.", icon: Zap, color: "text-pink-400" },
-                     { title: "Dominate", desc: "Launch is just day one. We optimize for scale.", icon: Trophy, color: "text-yellow-400" }
-                   ].map((step, i) => (
-                      <FadeIn key={i} delay={i * 100} className="relative p-8 border border-zinc-800 bg-zinc-900/80 backdrop-blur-xl rounded-3xl hover:-translate-y-2 transition-transform duration-300 group overflow-hidden">
-                         <div className={`absolute top-0 right-0 p-32 bg-gradient-to-br from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-2xl translate-x-10 -translate-y-10`} />
-                         
-                         <div className="flex justify-between items-start mb-6">
-                            <step.icon size={32} className={`${step.color} group-hover:scale-110 transition-transform`} />
-                            <span className="font-mono text-zinc-600 font-bold">0{i+1}</span>
-                         </div>
-                         <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                         <p className="text-zinc-400 text-sm leading-relaxed">{step.desc}</p>
-                      </FadeIn>
-                   ))}
-                </div>
-             </div>
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              <FadeIn className="text-center mb-16">
+                <h2 className="text-4xl md:text-6xl font-black mb-4">
+                  THE BLUEPRINT
+                </h2>
+                <p className="text-zinc-400">How we turn chaos into order.</p>
+              </FadeIn>
+
+              <div className="grid md:grid-cols-4 gap-6">
+                {[
+                  {
+                    title: "Audit",
+                    desc: "We tear down your current presence to find the leaks.",
+                    icon: Search,
+                    color: "text-cyan-400",
+                  },
+                  {
+                    title: "Architect",
+                    desc: "Strategy first. We build the roadmap before writing code.",
+                    icon: Hexagon,
+                    color: "text-purple-400",
+                  },
+                  {
+                    title: "Execute",
+                    desc: "Rapid deployment. High-velocity sprints. Zero lag.",
+                    icon: Zap,
+                    color: "text-pink-400",
+                  },
+                  {
+                    title: "Dominate",
+                    desc: "Launch is just day one. We optimize for scale.",
+                    icon: Trophy,
+                    color: "text-yellow-400",
+                  },
+                ].map((step, i) => (
+                  <FadeIn
+                    key={i}
+                    delay={i * 100}
+                    className="relative p-8 border border-zinc-800 bg-zinc-900/80 backdrop-blur-xl rounded-3xl hover:-translate-y-2 transition-transform duration-300 group overflow-hidden"
+                  >
+                    <div
+                      className={`absolute top-0 right-0 p-32 bg-gradient-to-br from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-2xl translate-x-10 -translate-y-10`}
+                    />
+
+                    <div className="flex justify-between items-start mb-6">
+                      <step.icon
+                        size={32}
+                        className={`${step.color} group-hover:scale-110 transition-transform`}
+                      />
+                      <span className="font-mono text-zinc-600 font-bold">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
+                    <p className="text-zinc-400 text-sm leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
           </section>
-
 
           {/* --- NEW SECTION 5: THE DNA (Heartwarming & Authentic) --- */}
           <section className="py-32 px-6 max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-12 gap-12">
-               <div className="lg:col-span-5">
-                  <FadeIn>
-                    <div className="inline-flex items-center gap-2 mb-6">
-                       <Heart className="text-rose-500 fill-rose-500 animate-pulse" size={20} />
-                       <span className="font-bold tracking-widest text-xs uppercase text-zinc-500">The Human Element</span>
-                    </div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
-                       We are <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">Obsessed</span><br />
-                       With Details.
-                    </h2>
-                    <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
-                       Technology is cold. We bring the heat. Zora isn&apos;t just a collection of code; it&apos;s a team of perfectionists who care deeply about your success. We don&apos;t hide behind account managers—you talk to the builders.
-                    </p>
-                    <div className="flex gap-4">
-                       <div className="flex -space-x-4">
-                          {[1,2,3,4].map(i => (
-                             <div key={i} className="w-12 h-12 rounded-full border-4 border-white dark:border-black bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center font-bold text-xs">
-                                <Users size={16} className="opacity-50" />
-                             </div>
-                          ))}
-                       </div>
-                       <div className="flex flex-col justify-center">
-                          <span className="font-bold">Meet the Core Team</span>
-                          <span className="text-xs text-zinc-500">Real Humans. No AI Support.</span>
-                       </div>
-                    </div>
-                  </FadeIn>
-               </div>
-
-               <div className="lg:col-span-7">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                     {[
-                        { title: "Radical Transparency", desc: "No hidden fees. No jargon. We show you the dashboard.", color: "bg-rose-500" },
-                        { title: "Pixel Perfection", desc: "We agonize over 1px misalignments so you don't have to.", color: "bg-orange-500" },
-                        { title: "24/7 Reliability", desc: "We sleep in shifts so your website never goes down.", color: "bg-cyan-500" },
-                        { title: "Owner Mindset", desc: "We treat your budget like it's our own money.", color: "bg-purple-500" },
-                     ].map((card, i) => (
-                        <FadeIn key={i} delay={i * 100}>
-                           <div className="p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-transparent group hover:shadow-xl transition-all duration-300 relative overflow-hidden h-full">
-                              <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 ${card.color} transition-opacity duration-300`} />
-                              <div className={`w-2 h-12 ${card.color} rounded-full mb-6`} />
-                              <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-                              <p className="text-sm text-zinc-500 dark:text-zinc-400">{card.desc}</p>
-                           </div>
-                        </FadeIn>
-                     ))}
+              <div className="lg:col-span-5">
+                <FadeIn>
+                  <div className="inline-flex items-center gap-2 mb-6">
+                    <Heart
+                      className="text-rose-500 fill-rose-500 animate-pulse"
+                      size={20}
+                    />
+                    <span className="font-bold tracking-widest text-xs uppercase text-zinc-500">
+                      The Human Element
+                    </span>
                   </div>
-               </div>
+                  <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                    We are{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">
+                      Obsessed
+                    </span>
+                    <br />
+                    With Details.
+                  </h2>
+                  <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
+                    Technology is cold. We bring the heat. Zora isn&apos;t just
+                    a collection of code; it&apos;s a team of perfectionists who
+                    care deeply about your success. We don&apos;t hide behind
+                    account managers—you talk to the builders.
+                  </p>
+                  <div className="flex gap-4">
+                    <div className="flex -space-x-4">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="w-12 h-12 rounded-full border-4 border-white dark:border-black bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center font-bold text-xs"
+                        >
+                          <Users size={16} className="opacity-50" />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <span className="font-bold">Meet the Core Team</span>
+                      <span className="text-xs text-zinc-500">
+                        Real Humans. No AI Support.
+                      </span>
+                    </div>
+                  </div>
+                </FadeIn>
+              </div>
+
+              <div className="lg:col-span-7">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    {
+                      title: "Radical Transparency",
+                      desc: "No hidden fees. No jargon. We show you the dashboard.",
+                      color: "bg-rose-500",
+                    },
+                    {
+                      title: "Pixel Perfection",
+                      desc: "We agonize over 1px misalignments so you don't have to.",
+                      color: "bg-orange-500",
+                    },
+                    {
+                      title: "24/7 Reliability",
+                      desc: "We sleep in shifts so your website never goes down.",
+                      color: "bg-cyan-500",
+                    },
+                    {
+                      title: "Owner Mindset",
+                      desc: "We treat your budget like it's our own money.",
+                      color: "bg-purple-500",
+                    },
+                  ].map((card, i) => (
+                    <FadeIn key={i} delay={i * 100}>
+                      <div className="p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-transparent group hover:shadow-xl transition-all duration-300 relative overflow-hidden h-full">
+                        <div
+                          className={`absolute inset-0 opacity-0 group-hover:opacity-10 ${card.color} transition-opacity duration-300`}
+                        />
+                        <div
+                          className={`w-2 h-12 ${card.color} rounded-full mb-6`}
+                        />
+                        <h3 className="text-xl font-bold mb-3">{card.title}</h3>
+                        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                          {card.desc}
+                        </p>
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 
-
           {/* --- NEW SECTION 6: VELOCITY ECOSYSTEM (Live/Authentic Data) --- */}
           <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
-             {/* Moving Background Mesh */}
-             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/40 via-zinc-950 to-zinc-950" />
-             
-             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-800 pb-8">
-                   <div>
-                      <h2 className="text-3xl md:text-5xl font-black mb-2">VELOCITY ECOSYSTEM</h2>
-                      <p className="text-indigo-400">Live metrics from our client network.</p>
-                   </div>
-                   <div className="flex items-center gap-2 text-green-400 text-sm font-mono mt-4 md:mt-0">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      LIVE DATA FEED
-                   </div>
+            {/* Moving Background Mesh */}
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/40 via-zinc-950 to-zinc-950" />
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+              <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-800 pb-8">
+                <div>
+                  <h2 className="text-3xl md:text-5xl font-black mb-2">
+                    VELOCITY ECOSYSTEM
+                  </h2>
+                  <p className="text-indigo-400">
+                    Live metrics from our client network.
+                  </p>
                 </div>
-
-                {/* The "Ticker" Style Cards */}
-                <div className="grid md:grid-cols-3 gap-6">
-                   <FadeIn delay={0}>
-                      <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
-                         <div className="flex justify-between items-start mb-8">
-                            <span className="text-zinc-500 text-xs font-bold uppercase">Total Traffic Generated</span>
-                            <Globe2 className="text-cyan-500" size={20} />
-                         </div>
-                         <div className="text-4xl font-mono font-bold mb-2 tabular-nums">14.2M+</div>
-                         <div className="text-xs text-green-400 flex items-center gap-1">
-                            <MoveRight className="-rotate-45" size={12} /> +12% this week
-                         </div>
-                      </div>
-                   </FadeIn>
-
-                   <FadeIn delay={100}>
-                      <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
-                         <div className="flex justify-between items-start mb-8">
-                            <span className="text-zinc-500 text-xs font-bold uppercase">Revenue Unlocked</span>
-                            <BarChart className="text-purple-500" size={20} />
-                         </div>
-                         <div className="text-4xl font-mono font-bold mb-2 tabular-nums">$52.8M</div>
-                         <div className="text-xs text-green-400 flex items-center gap-1">
-                            <MoveRight className="-rotate-45" size={12} /> +8.4% vs last month
-                         </div>
-                      </div>
-                   </FadeIn>
-
-                   <FadeIn delay={200}>
-                      <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
-                         <div className="flex justify-between items-start mb-8">
-                            <span className="text-zinc-500 text-xs font-bold uppercase">Uptime Guarantee</span>
-                            <Cpu className="text-pink-500" size={20} />
-                         </div>
-                         <div className="text-4xl font-mono font-bold mb-2 tabular-nums">99.99%</div>
-                         <div className="text-xs text-zinc-500">
-                            Zero unplanned outages
-                         </div>
-                      </div>
-                   </FadeIn>
+                <div className="flex items-center gap-2 text-green-400 text-sm font-mono mt-4 md:mt-0">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  LIVE DATA FEED
                 </div>
+              </div>
 
-                {/* Client Scrolling Ticker (Simulated) */}
-                <div className="mt-12 pt-8 border-t border-zinc-800">
-                   <p className="text-center text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">Powering Next-Gen Brands</p>
-                   <div className="flex justify-between opacity-50 grayscale hover:grayscale-0 transition-all duration-500 px-4 md:px-20 overflow-hidden gap-8">
-                      {/* Simple placeholders for logos */}
-                      <span className="text-xl font-black">NEXUS</span>
-                      <span className="text-xl font-black">ORBITAL</span>
-                      <span className="text-xl font-black">VORTEX</span>
-                      <span className="text-xl font-black">LUMINA</span>
-                      <span className="text-xl font-black hidden md:block">QUANTUM</span>
-                   </div>
+              {/* The "Ticker" Style Cards */}
+              <div className="grid md:grid-cols-3 gap-6">
+                <FadeIn delay={0}>
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                    <div className="flex justify-between items-start mb-8">
+                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                        Total Traffic Generated
+                      </span>
+                      <Globe2 className="text-cyan-500" size={20} />
+                    </div>
+                    <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
+                      14.2M+
+                    </div>
+                    <div className="text-xs text-green-400 flex items-center gap-1">
+                      <MoveRight className="-rotate-45" size={12} /> +12% this
+                      week
+                    </div>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={100}>
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                    <div className="flex justify-between items-start mb-8">
+                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                        Revenue Unlocked
+                      </span>
+                      <BarChart className="text-purple-500" size={20} />
+                    </div>
+                    <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
+                      $52.8M
+                    </div>
+                    <div className="text-xs text-green-400 flex items-center gap-1">
+                      <MoveRight className="-rotate-45" size={12} /> +8.4% vs
+                      last month
+                    </div>
+                  </div>
+                </FadeIn>
+
+                <FadeIn delay={200}>
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                    <div className="flex justify-between items-start mb-8">
+                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                        Uptime Guarantee
+                      </span>
+                      <Cpu className="text-pink-500" size={20} />
+                    </div>
+                    <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
+                      99.99%
+                    </div>
+                    <div className="text-xs text-zinc-500">
+                      Zero unplanned outages
+                    </div>
+                  </div>
+                </FadeIn>
+              </div>
+
+              {/* Client Scrolling Ticker (Simulated) */}
+              <div className="mt-12 pt-8 border-t border-zinc-800">
+                <p className="text-center text-xs font-bold uppercase tracking-widest text-zinc-600 mb-8">
+                  Powering Next-Gen Brands
+                </p>
+                <div className="flex justify-between opacity-50 grayscale hover:grayscale-0 transition-all duration-500 px-4 md:px-20 overflow-hidden gap-8">
+                  {/* Simple placeholders for logos */}
+                  <span className="text-xl font-black">NEXUS</span>
+                  <span className="text-xl font-black">ORBITAL</span>
+                  <span className="text-xl font-black">VORTEX</span>
+                  <span className="text-xl font-black">LUMINA</span>
+                  <span className="text-xl font-black hidden md:block">
+                    QUANTUM
+                  </span>
                 </div>
-             </div>
+              </div>
+            </div>
           </section>
-
 
           {/* --- CTA SECTION --- */}
           <section id="contact" className="px-6 pb-20 pt-32">
-             <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-indigo-900 via-purple-900 to-black p-12 md:p-32 text-center text-white relative overflow-hidden group shadow-2xl shadow-purple-900/20">
-                {/* Decorative Circles */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-[150px] opacity-30 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-[150px] opacity-30 translate-x-1/2 translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
+            <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-indigo-900 via-purple-900 to-black p-12 md:p-32 text-center text-white relative overflow-hidden group shadow-2xl shadow-purple-900/20">
+              {/* Decorative Circles */}
+              <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-[150px] opacity-30 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
+              <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-[150px] opacity-30 translate-x-1/2 translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
 
-                <div className="relative z-10">
-                   <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-8">
-                      READY TO <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white">ASCEND?</span>
-                   </h2>
-                   <p className="text-xl md:text-2xl text-indigo-200 mb-12 max-w-2xl mx-auto">
-                      Your competition isn&apos;t waiting. Neither should you.
-                   </p>
-                   
-                   <button className="group relative inline-flex items-center gap-4 px-12 py-6 bg-white text-black rounded-full font-black text-xl hover:scale-105 transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]">
-                      Book Strategy Call
-                      <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
-                         <ArrowRight size={16} />
-                      </div>
-                   </button>
-                </div>
-             </div>
+              <div className="relative z-10">
+                <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-8">
+                  READY TO{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white">
+                    ASCEND?
+                  </span>
+                </h2>
+                <p className="text-xl md:text-2xl text-indigo-200 mb-12 max-w-2xl mx-auto">
+                  Your competition isn&apos;t waiting. Neither should you.
+                </p>
+
+                <button className="group relative inline-flex items-center gap-4 px-12 py-6 bg-white text-black rounded-full font-black text-xl hover:scale-105 transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]">
+                  Book Strategy Call
+                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
+                    <ArrowRight size={16} />
+                  </div>
+                </button>
+              </div>
+            </div>
           </section>
 
           {/* Footer */}
           <footer className="border-t border-zinc-200 dark:border-zinc-800 pt-16 pb-8 text-center text-zinc-500 text-sm bg-zinc-50 dark:bg-black">
-             <div className="flex justify-center gap-8 mb-8">
-               <a href="#" className="hover:text-black dark:hover:text-white transition-colors">Instagram</a>
-               <a href="#" className="hover:text-black dark:hover:text-white transition-colors">Twitter</a>
-               <a href="#" className="hover:text-black dark:hover:text-white transition-colors">LinkedIn</a>
-             </div>
-             <p>&copy; 2024 Zora Digital Agency. All Systems Operational.</p>
+            <div className="flex justify-center gap-8 mb-8">
+              <a
+                href="#"
+                className="hover:text-black dark:hover:text-white transition-colors"
+              >
+                Instagram
+              </a>
+              <a
+                href="#"
+                className="hover:text-black dark:hover:text-white transition-colors"
+              >
+                Twitter
+              </a>
+              <a
+                href="#"
+                className="hover:text-black dark:hover:text-white transition-colors"
+              >
+                LinkedIn
+              </a>
+            </div>
+            <p>&copy; 2024 Zora Digital Agency. All Systems Operational.</p>
           </footer>
-
         </main>
       </div>
     </div>
@@ -709,22 +908,17 @@ const servicesList = [
 }
 
 // Icon helper
-const Trophy = ({
-  size,
-  className,
-}: {
-  size?: number
-  className?: string
-}) => (  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+const Trophy = ({ size, className }: { size?: number; className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
