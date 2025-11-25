@@ -1185,7 +1185,7 @@ const Portfolio = () => (
           {/* Image Side */}
           <div className={`relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500`} />
-             <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+             <Image src={project.image} alt={project.title} width={300} height={200} className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
              
              <div className="absolute bottom-8 left-8 z-20">
                <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-bold inline-block mb-2">
