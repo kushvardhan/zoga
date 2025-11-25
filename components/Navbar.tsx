@@ -153,9 +153,9 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                     className="absolute top-[80%] left-1/2 -translate-x-1/2 w-[600px] p-6 bg-white dark:bg-[#0a0a12] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl grid grid-cols-2 gap-4 z-50"
                   >
                     {SERVICES.map((s) => (
-                      <a
+                      <Link
                         key={s.id}
-                        href="#services"
+                        href="/service"
                         className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group"
                       >
                         <div
@@ -171,7 +171,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                             {s.desc}
                           </p>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </motion.div>
                 )}
