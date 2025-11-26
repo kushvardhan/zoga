@@ -18,7 +18,8 @@ import {
   Clapperboard,Instagram, Twitter, Facebook,Linkedin,
   Play,
   Shield,
-  Award
+  Award,
+  Camera
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -973,7 +974,7 @@ const Hero = () =>{
 
           {/* Trust Indicators */}
           <FadeIn delay={400}>
-            <div className="mt-12 pt-5 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-center lg:justify-start gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+            <div className="mt-12 pt-5 border-zinc-200 dark:border-zinc-800 flex items-center justify-center lg:justify-start gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
               <div className="group cursor-default">
                 <span className="block text-2xl text-zinc-900 dark:text-white mb-1 group-hover:text-blue-500 transition-colors">50+</span>
                 Active Systems
@@ -1020,10 +1021,10 @@ const Hero = () =>{
                <Globe className="text-blue-500 w-8 h-8" />
              </motion.div>
              <motion.div animate={{ x: [-20, 20, -20] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute top-1/2 right-0 bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-white/10">
-               <Cpu className="text-purple-500 w-8 h-8" />
+               <Camera className="text-purple-500 w-8 h-8" /> 
              </motion.div>
              <motion.div animate={{ y: [20, -20, 20] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-white/10">
-               <Server className="text-green-500 w-8 h-8" />
+               <Code2 className="text-green-500 w-8 h-8" />
              </motion.div>
 
              {/* Central Core */}
