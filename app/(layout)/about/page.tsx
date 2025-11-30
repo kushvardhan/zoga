@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import {
   AnimatePresence,
@@ -995,6 +996,9 @@ export default function App() {
       <main className="min-h-screen">
         <AboutPage setView={setView} />
       </main>
+
+      {/* Shared Footer */}
+      <Footer />
     </div>
   );
 }
