@@ -126,19 +126,27 @@ const ParallaxText = ({
 const faqs = [
   {
     q: "How do you guarantee SEO results?",
-    a: "We don't guess; we engineer. Our process involves deep semantic analysis, core web vitals optimization (95+ scores), and high-authority backlinking strategies that align with Google's latest algorithm updates.",
+    a: "We don't guess — we engineer. Our process involves deep semantic analysis, core web vitals optimization (95+ scores), and high-authority backlinking strategies. We've helped clients achieve 10x organic traffic in 12 months. That's not luck, that's science.",
   },
   {
     q: "Can you handle enterprise-scale traffic?",
-    a: "Absolutely. We build on Next.js and Vercel/AWS Edge networks. Our architectures are designed to handle millions of requests with auto-scaling databases and global CDNs.",
+    a: "Absolutely. We build on Next.js and Vercel/AWS Edge networks. Our architectures handle millions of requests with auto-scaling databases and global CDNs. Your site will stay up even if you go viral. (And we'll help you go viral.)",
   },
   {
     q: "Do you do video & motion graphics?",
-    a: "Yes. Our in-house motion team uses Cinema 4D and After Effects to create cinema-grade assets that integrate seamlessly into the web experience without killing load times.",
+    a: "Yes! Our in-house motion team creates cinema-grade assets that integrate seamlessly into web experiences without killing load times. From reels to brand films, we make content that people actually watch.",
   },
   {
     q: "What is the typical timeline?",
-    a: "For a premium custom build, typically 6-10 weeks. We sprint in 2-week cycles with full transparency, ensuring you see progress every single Friday.",
+    a: "For a premium custom build, typically 6-10 weeks. We sprint in 2-week cycles with full transparency — you see progress every Friday. No surprises, no 'it's almost done' for 3 months.",
+  },
+  {
+    q: "Why should we choose Zoga over bigger agencies?",
+    a: "Bigger agencies have layers of account managers between you and the people doing the work. With us, you talk directly to the experts. Plus, we're hungry. We treat every project like our reputation depends on it — because it does.",
+  },
+  {
+    q: "Do you work with clients outside Ranchi?",
+    a: "Absolutely! We work with clients across India — Mumbai, Delhi, Bangalore, Chennai, Hyderabad, Pune, and beyond. We've even worked with international clients. Distance is just a Zoom call away.",
   },
 ];
 
@@ -179,32 +187,42 @@ const servicesList = [
   {
     icon: Layout,
     title: "Website Development",
-    desc: "Websites that load before you blink. Built on Next.js because we believe in speed, not excuses.",
+    desc: "Templates are for people who've given up. We handcraft blazing-fast websites that load before your competitors finish their morning chai. 🚀",
   },
   {
     icon: Smartphone,
     title: "Mobile Apps",
-    desc: "Apps so smooth, your users will think they're using magic. (It's just really good code.)",
+    desc: "iOS & Android apps so buttery smooth, Apple and Google will ask for our secrets. (We won't tell them. Client confidentiality and all that.)",
   },
   {
     icon: PenTool,
     title: "UI/UX Design",
-    desc: "Designs that make people go 'wow' AND click 'buy'. Beauty with brains, basically.",
+    desc: "We design interfaces that make users fall in love AND click 'Buy Now'. Pretty that converts — that's the Zoga way. 💜",
   },
   {
     icon: Database,
     title: "Full-Stack Development",
-    desc: "From database to frontend, we build the whole thing. No finger-pointing, just results.",
+    desc: "From database architecture to pixel-perfect frontend — we build the whole thing. No finger-pointing, just results that speak for themselves.",
   },
   {
     icon: TrendingUp,
     title: "SEO & Digital Growth",
-    desc: "Get found on Google before your chai gets cold. Real traffic, real customers, real growth.",
+    desc: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live. 📈",
   },
   {
     icon: RefreshCcw,
     title: "Maintenance & Support",
-    desc: "We don't ghost after launch. 24/7 support because your business doesn't sleep, and neither do we.",
+    desc: "We don't ghost after launch. 24/7 support with real humans who actually pick up calls. Revolutionary concept, we know!",
+  },
+  {
+    icon: Video,
+    title: "Video & Creative Media",
+    desc: "In a world of 3-second attention spans, we create videos people actually finish watching. Reels, ads, brand films — all scroll-stopping content. 🎬",
+  },
+  {
+    icon: MapPin,
+    title: "Google My Business",
+    desc: "When someone searches 'best [your service] near me', you should be first. We make you the local legend from Ranchi to Mumbai. 📍",
   },
 ];
 
@@ -212,11 +230,12 @@ const detailedServices = [
   {
     title: "Website Development",
     content:
-      "We don't just build websites — we craft digital experiences that make your competitors nervous. Using Next.js and Vercel, your site loads faster than your morning alarm. And yes, Google notices.",
+      "We don't just build websites — we craft digital experiences that make your competitors nervous. Using Next.js and Vercel, your site loads faster than your morning alarm. And yes, Google notices. (So do your customers.)",
     bullets: [
       "Headless CMS integration (Contentful, Sanity, Strapi)",
       "Serverless deployment that scales automatically",
       "Custom animations that make users go 'ooh'",
+      "E-commerce solutions (Shopify, WooCommerce, Custom)",
     ],
   },
   {
@@ -227,6 +246,7 @@ const detailedServices = [
       "User journey mapping (we stalk your users, ethically)",
       "High-fidelity prototypes you can actually click",
       "Accessibility compliance (because everyone deserves good UX)",
+      "Brand identity & visual systems",
     ],
   },
   {
@@ -237,6 +257,29 @@ const detailedServices = [
       "Technical SEO audits (we find what's broken)",
       "Core Web Vitals optimization (speed matters)",
       "Conversion Rate Optimization (more clicks, more customers)",
+      "Local SEO & Google My Business domination",
+    ],
+  },
+  {
+    title: "Video & Creative Media",
+    content:
+      "In a world where attention spans are shorter than a TikTok video, we create content that stops the scroll. From brand films to social media reels, our videos don't just get views — they get results.",
+    bullets: [
+      "Brand films & corporate videos",
+      "Social media reels & shorts",
+      "Motion graphics & animations",
+      "Product demos & explainer videos",
+    ],
+  },
+  {
+    title: "Digital Marketing & Ads",
+    content:
+      "We don't burn your ad budget on 'brand awareness'. Every rupee comes back with friends. Google Ads, Meta Ads, LinkedIn — we speak their language fluently. Your CFO will finally understand what marketing does.",
+    bullets: [
+      "Google Ads & PPC campaigns",
+      "Facebook & Instagram advertising",
+      "LinkedIn B2B campaigns",
+      "Retargeting & remarketing strategies",
     ],
   },
 ];
