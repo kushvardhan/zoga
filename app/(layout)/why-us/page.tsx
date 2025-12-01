@@ -1,4 +1,6 @@
 "use client";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import {
   Activity,
   ArrowRight,
@@ -10,40 +12,17 @@ import {
   Heart,
   Hexagon,
   MapPin,
-  Menu,
-  Moon,
   MousePointer2,
   MoveRight,
   Search,
   Sparkles,
-  Sun,
   Users,
   Video,
-  X,
   Zap,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 // --- PERFORMANCE OPTIMIZED COMPONENTS ---
-
-// 1. Optimized Nav Link
-interface NavLinkProps {
-  to: string;
-  children: React.ReactNode;
-  setView: (view: string) => void;
-  active: boolean;
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ to, children, setView, active }) => (
-  <button
-    onClick={() => setView(to)}
-    className={`px-4 py-2 transition-colors ${
-      active ? "text-purple-500" : "text-zinc-700 dark:text-zinc-300"
-    }`}
-  >
-    {children}
-  </button>
-);
 
 // 2. Intersection Observer Hook
 const useInView = (threshold = 0.1) => {
@@ -265,10 +244,6 @@ const ServiceRow: React.FC<ServiceRowProps> = ({
 // --- MAIN APP ---
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [view, setView] = useState("home");
-  const [menuOpen, setMenuOpen] = useState(false);
-
   // Added colors to services to fix "monotony"
   const servicesList = [
     {
@@ -279,11 +254,11 @@ export default function App() {
       snapshot: {
         label: "Deployment Speed",
         value: "4.8x",
-        sub: "Faster delivery",
+        sub: "Faster than industry average",
         button: "Explore Development",
       },
       description:
-        "We don't use templates. We engineer bespoke digital infrastructure using React, Node, and Python. Performance is our religion.",
+        "Templates? Never heard of them. We build custom digital experiences from scratch using React, Next.js, and Node. Your competitors use templates. You'll use us.",
       tags: ["React", "Next.js", "Native", "Cloud"],
     },
     {
@@ -298,7 +273,7 @@ export default function App() {
         button: "See Design Work",
       },
       description:
-        "Beauty converts. Our design philosophy blends behavioral psychology with avant-garde aesthetics to create interfaces users love.",
+        "We design interfaces that make users fall in love (with your product, not us — though that happens too). Psychology meets pixels.",
       tags: ["Figma", "Motion", "User Research"],
     },
     {
@@ -313,7 +288,7 @@ export default function App() {
         button: "View Editing Samples",
       },
       description:
-        "Retention is the new currency. We craft high-octane visual narratives optimized for the dopamine-driven social landscape.",
+        "In a world of 3-second attention spans, we create videos people actually finish watching. Reels, ads, brand films — we make them all scroll-stopping.",
       tags: ["Premiere", "After Effects", "Shorts"],
     },
     {
@@ -328,7 +303,7 @@ export default function App() {
         button: "Boost My SEO",
       },
       description:
-        "Being on page 2 is like being invisible. We use white-hat strategies to force your brand to the top.",
+        "Page 2 of Google is where websites go to die. We make sure you're on page 1, where the customers are. No black-hat tricks, just solid strategy.",
       tags: ["Technical SEO", "Backlinking", "Audit"],
     },
     {
@@ -343,7 +318,7 @@ export default function App() {
         button: "Scale My Ads",
       },
       description:
-        "We turn ad spend into profit. Precision targeting on Meta and Google ensures every dollar works harder.",
+        "We don't burn your ad budget on 'brand awareness'. Every rupee you spend comes back with friends. Meta, Google, YouTube — we know them all.",
       tags: ["PPC", "Social Ads", "Retargeting"],
     },
     {
@@ -358,103 +333,16 @@ export default function App() {
         button: "Optimize My GMB",
       },
       description:
-        "Capture the local market. We optimize your Google My Business profile to ensure you are the only choice.",
+        "When someone searches 'best [your service] near me', you should be the first name they see. We make that happen. Local domination, guaranteed.",
       tags: ["Local SEO", "Reviews", "Maps"],
     },
   ];
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 selection:bg-cyan-500 selection:text-black ${
-        darkMode ? "dark bg-black" : "bg-white"
-      }`}
-    >
+    <div className="min-h-screen transition-colors duration-500 selection:bg-cyan-500 selection:text-black bg-white dark:bg-black">
       <div className="text-zinc-900 dark:text-zinc-100 font-sans overflow-x-hidden">
-        {/* --- Navigation --- */}
-        <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
-          <div className="max-w-7xl mx-auto bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
-            <button
-              onClick={() => setView("home")}
-              className="text-xl font-black tracking-tighter flex items-center gap-1 group"
-            >
-              ZORA
-              <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full group-hover:scale-125 transition-transform" />
-            </button>
-
-            <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-              <NavLink to="about" setView={setView} active={view === "about"}>
-                About
-              </NavLink>
-              <NavLink to="work" setView={setView} active={view === "work"}>
-                Work
-              </NavLink>
-              <NavLink
-                to="services"
-                setView={setView}
-                active={view === "services"}
-              >
-                Services
-              </NavLink>
-              <NavLink to="why-us" setView={setView} active={view === "why-us"}>
-                Why-Us
-              </NavLink>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="cursor-pointer p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-500 hover:text-cyan-500"
-              >
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              <button
-                onClick={() => setView("contact")}
-                className="hidden md:block px-6 py-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_-5px_rgba(0,0,0,0.3)] dark:shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]"
-              >
-                Let&apos;s Talk
-              </button>
-              <button
-                className="md:hidden"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                {menuOpen ? <X /> : <Menu />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {menuOpen && (
-            <div className="absolute top-20 left-4 right-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-2xl shadow-2xl flex flex-col gap-4 animate-in slide-in-from-top-5 z-50">
-              <button
-                onClick={() => {
-                  setView("home");
-                  setMenuOpen(false);
-                }}
-                className="text-left text-lg font-bold"
-              >
-                About
-              </button>
-              <button
-                onClick={() => {
-                  setView("services");
-                  setMenuOpen(false);
-                }}
-                className="text-left text-lg font-bold"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => {
-                  setView("contact");
-                  setMenuOpen(false);
-                }}
-                className="w-full py-3 bg-purple-600 text-white rounded-lg font-bold"
-              >
-                Start Project
-              </button>
-            </div>
-          )}
-        </nav>
+        {/* Shared Navbar */}
+        <Navbar />
 
         <main className="pt-32 pb-20">
           {/* --- SECTION 1: HERO (Vibrant & Clean) --- */}
@@ -878,29 +766,7 @@ export default function App() {
           </section>
 
           {/* Footer */}
-          <footer className="border-t border-zinc-200 dark:border-zinc-800 pt-16 pb-8 text-center text-zinc-500 text-sm bg-zinc-50 dark:bg-black">
-            <div className="flex justify-center gap-8 mb-8">
-              <a
-                href="#"
-                className="hover:text-black dark:hover:text-white transition-colors"
-              >
-                Instagram
-              </a>
-              <a
-                href="#"
-                className="hover:text-black dark:hover:text-white transition-colors"
-              >
-                Twitter
-              </a>
-              <a
-                href="#"
-                className="hover:text-black dark:hover:text-white transition-colors"
-              >
-                LinkedIn
-              </a>
-            </div>
-            <p>&copy; 2024 Zora Digital Agency. All Systems Operational.</p>
-          </footer>
+          <Footer />
         </main>
       </div>
     </div>

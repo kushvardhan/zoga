@@ -1,5 +1,7 @@
 "use client";
 
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import {
   AnimatePresence,
   motion,
@@ -15,30 +17,21 @@ import {
   BarChart3,
   Code,
   ExternalLink,
-  Facebook,
-  Instagram,
   Layers,
   Layout,
   Lightbulb,
-  Linkedin,
   MapPin,
   Megaphone,
-  Menu,
-  Moon,
   PenTool,
   Rocket,
   ShieldCheck,
   Smartphone,
   Star,
-  Sun,
   TrendingUp,
-  Twitter,
-  Video,
-  X,
+  Video,Linkedin,Instagram, Twitter, Facebook,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 // --- GLOBAL UTILITIES & ANIMATION COMPONENTS ---
 
@@ -634,95 +627,6 @@ const ProcessSection = () => {
   );
 };
 
-// --- FOOTER COMPONENT ---
-const Footer = ({ setView }: { setView: (view: string) => void }) => (
-  <footer className="bg-zinc-100 dark:bg-zinc-900 pt-20 pb-10 px-6 border-t border-zinc-200 dark:border-zinc-800 relative z-10">
-    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-      <div className="md:col-span-2">
-        <Link href="/">
-        <h2 className="text-3xl font-black tracking-tighter text-zinc-900 dark:text-white mb-6">
-          ZOGA<span className="text-purple-500">.</span>
-        </h2>
-        </Link>
-        <p className="text-zinc-500 dark:text-zinc-400 max-w-sm mb-8">
-          We engineer digital dominance. A full-service creative agency building
-          the future of the web, one pixel at a time.
-        </p>
-        <div className="flex gap-4">
-          {[Twitter, Instagram, Linkedin, Facebook].map((Icon, i) => (
-            <div
-              key={i}
-              className="p-2 bg-white dark:bg-black rounded-full border border-zinc-200 dark:border-zinc-800 hover:border-purple-500 hover:text-purple-500 transition-all cursor-pointer"
-            >
-              <Icon size={20} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-zinc-900 dark:text-white mb-6">
-          Explore
-        </h4>
-        <ul className="space-y-4 text-zinc-500 dark:text-zinc-400">
-          <li>
-            <button
-              onClick={() => setView("about")}
-              className="hover:text-purple-500 transition-colors"
-            >
-              About Us
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setView("work")}
-              className="hover:text-purple-500 transition-colors"
-            >
-              Portfolio
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setView("services")}
-              className="hover:text-purple-500 transition-colors"
-            >
-              Services
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => setView("contact")}
-              className="hover:text-purple-500 transition-colors"
-            >
-              Contact
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-zinc-900 dark:text-white mb-6">
-          Services
-        </h4>
-        <ul className="space-y-4 text-zinc-500 dark:text-zinc-400">
-          <li>Web Development</li>
-          <li>SEO & Growth</li>
-          <li>Brand Design</li>
-          <li>Video Production</li>
-        </ul>
-      </div>
-    </div>
-
-    <div className="max-w-7xl mx-auto pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-500">
-      <p>© 2024 Zoga Agency. All rights reserved.</p>
-      <div className="flex gap-6 mt-4 md:mt-0">
-        <span>Privacy Policy</span>
-        <span>Terms of Service</span>
-      </div>
-    </div>
-  </footer>
-);
-
 // --- PAGES ---
 
 const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
@@ -864,11 +768,12 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                 className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors"
               >
                 <div className="aspect-square rounded-xl overflow-hidden mb-4 relative">
-                  <Image 
+                  <Image
                     src={member.img}
                     alt={member.name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    width={800} height={600} 
+                    width={800}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                     <Linkedin className="text-white hover:text-blue-400 cursor-pointer w-4 h-4" />
@@ -894,7 +799,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
         </div>
       </section>
 
-      <Footer setView={setView} />
+      <Footer />
     </div>
   );
 };
@@ -1057,11 +962,12 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
                 <TiltCard className="h-full w-full">
                   <SpotlightCard className="rounded-3xl h-full w-full border-zinc-200 dark:border-zinc-800">
                     <div className="relative w-full h-full group cursor-pointer">
-                      <Image 
+                      <Image
                         src={project.img}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                         width={800} height={600} 
+                        width={800}
+                        height={600}
                       />
 
                       {/* Dark Overlay */}
@@ -1128,7 +1034,7 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
         </div>
       </section>
 
-      <Footer setView={setView} />
+      <Footer />
     </div>
   );
 };
@@ -1181,7 +1087,7 @@ const ServicesPage = ({ setView }: { setView: (view: string) => void }) => {
           ))}
         </div>
       </div>
-      <Footer setView={setView} />
+      <Footer />
     </div>
   );
 };
@@ -1189,9 +1095,6 @@ const ServicesPage = ({ setView }: { setView: (view: string) => void }) => {
 // --- MAIN APP COMPONENT ---
 
 export default function App() {
-  const [view, setView] = useState("work");
-  const [darkMode, setDarkMode] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -1199,162 +1102,21 @@ export default function App() {
     restDelta: 0.001,
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-       setMenuOpen(prev => (prev === false ? prev : false));
-    }, 0);
-  }, [view]);
+  // Dummy setView function for components that still expect it
+  const setView = () => {};
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-700 ${
-        darkMode ? "bg-[#050505] text-white" : "bg-zinc-50 text-zinc-900"
-      } ${darkMode ? "dark" : ""}`}
-    >
+    <div className="min-h-screen transition-colors duration-700 bg-zinc-50 dark:bg-[#050505] text-zinc-900 dark:text-white">
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 origin-left z-[60]"
         style={{ scaleX }}
       />
 
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
-        <div className="max-w-7xl mx-auto bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
-          <button
-            onClick={() => setView("about")}
-            className="text-xl font-black tracking-tighter"
-          >
-            <Link href="/">
-            ZOGA<span className="text-purple-500">.</span>
-            </Link>
-          </button>
-
-          <div className="hidden md:flex items-center gap-8 font-medium text-sm">
-            <NavLink to="about" setView={setView} active={view === "about"}>
-              About
-            </NavLink>
-            <NavLink to="work" setView={setView} active={view === "work"}>
-              Work
-            </NavLink>
-            <NavLink
-              to="services"
-              setView={setView}
-              active={view === "services"}
-            >
-              Services
-            </NavLink>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button
-              onClick={() => setView("contact")}
-              className="hidden md:block px-6 py-2 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-sm hover:scale-105 transition-transform"
-            >
-              Let&apos;s Talk
-            </button>
-            <button
-              className="md:hidden"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white dark:bg-black pt-24 px-6 md:hidden flex flex-col gap-6 text-2xl font-bold"
-          >
-            <button
-              onClick={() => setView("about")}
-              className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800"
-            >
-              About
-            </button>
-            <button
-              onClick={() => setView("work")}
-              className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800"
-            >
-              Work
-            </button>
-            <button
-              onClick={() => setView("services")}
-              className="text-left py-4 border-b border-zinc-200 dark:border-zinc-800"
-            >
-              Services
-            </button>
-            <button
-              onClick={() => setView("contact")}
-              className="text-left py-4 text-purple-500"
-            >
-              Contact Us
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Shared Navbar */}
+      <Navbar />
 
       <main className="min-h-screen">
-        <AnimatePresence mode="wait">
-          {view === "about" && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <AboutPage setView={setView} />
-            </motion.div>
-          )}
-          {view === "work" && (
-            <motion.div
-              key="work"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <PortfolioPage setView={setView} />
-            </motion.div>
-          )}
-          {view === "services" && (
-            <motion.div
-              key="services"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <ServicesPage setView={setView} />
-            </motion.div>
-          )}
-          {view === "contact" && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="pt-32 px-6 text-center min-h-screen flex flex-col items-center justify-center bg-zinc-50 dark:bg-black"
-            >
-              <h1 className="text-6xl font-black mb-6 dark:text-white">
-                Let&apos;s start the conversation.
-              </h1>
-              <a
-                href="mailto:hello@zoga.agency"
-                className="text-2xl text-purple-500 hover:underline"
-              >
-                hello@zoga.agency
-              </a>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <PortfolioPage setView={setView} />
       </main>
     </div>
   );
