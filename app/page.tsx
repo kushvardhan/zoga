@@ -69,42 +69,40 @@ const MARQUEE_BRANDS = [
 const SERVICES = [
   {
     id: "web",
-    title: "Web Engineering",
-    desc: "Next.js architectures that scale to millions. Fast, secure, SEO-ready.",
+    title: "Web Development",
+    desc: "We build websites that actually work — fast, secure, and Google-friendly. No templates. Just pure craftsmanship that makes your competitors wonder 'how?'",
     icon: Code2,
     color: "from-blue-600 to-cyan-500",
     span: "md:col-span-2",
   },
   {
     id: "app",
-    title: "Native Mobile",
-    desc: "iOS & Android apps with 60fps performance using React Native.",
+    title: "Mobile Apps",
+    desc: "iOS & Android apps so smooth, users will think it's magic. (Spoiler: It's just really good code and a lot of coffee.)",
     icon: Smartphone,
     color: "from-purple-600 to-pink-500",
     span: "md:col-span-1",
   },
   {
     id: "design",
-    title: "UX/UI Design",
-    desc: "Interfaces that convert. Award-winning aesthetics meet psychology.",
+    title: "UI/UX Design",
+    desc: "Designs that look gorgeous AND convert. Because pretty doesn't pay bills — but pretty that sells? Now that's art.",
     icon: Palette,
     color: "from-orange-500 to-red-500",
     span: "md:col-span-1",
   },
   {
     id: "growth",
-    title: "Growth & SEO",
-    desc: "Dominate Google rankings. Data-driven strategies for Indian & Global markets.",
+    title: "SEO & Growth",
+    desc: "Get found on Google before your chai gets cold. Organic traffic that brings real customers, not just bots pretending to be interested.",
     icon: LineChart,
     color: "from-green-500 to-emerald-500",
     span: "md:col-span-2",
   },
-
-  // ⭐ Added Services Below
   {
     id: "video",
-    title: "Video Editing",
-    desc: "Cinematic edits, reels, ads & brand stories built for high engagement.",
+    title: "Video Production",
+    desc: "From scroll-stopping reels to cinematic brand films. We turn your vision into content that people actually watch (and share).",
     icon: Video,
     color: "from-rose-500 to-fuchsia-500",
     span: "md:col-span-1",
@@ -112,7 +110,7 @@ const SERVICES = [
   {
     id: "marketing",
     title: "Digital Marketing",
-    desc: "ROI-focused campaigns across Google, Meta, Instagram & YouTube.",
+    desc: "Ads that convert, not just impressions that look good in reports. Real ROI, real growth, real talk.",
     icon: Megaphone,
     color: "from-indigo-600 to-blue-500",
     span: "md:col-span-1",
@@ -154,18 +152,18 @@ const PROJECTS = [
 
 const WHY_US = [
   {
-    title: "Ranchi Roots, Global Reach",
-    desc: "Born in Jharkhand, serving Silicon Valley. We bring world-class tech standards at competitive rates.",
+    title: "Ranchi Born, Globally Trusted",
+    desc: "From the heart of Jharkhand to clients worldwide. We deliver Silicon Valley quality without the Silicon Valley invoice. 💪",
     icon: Globe,
   },
   {
-    title: "24/7 Rapid Support",
-    desc: "We don't just ship and ghost. We are your long-term tech partners.",
+    title: "We Actually Answer Calls",
+    desc: "24/7 support that doesn't involve 'press 1 for...'. Real humans, real solutions, real fast. Ghost mode? Not our thing.",
     icon: Phone,
   },
   {
-    title: "ROI-Focused Development",
-    desc: "We don't just write code. We build assets that generate revenue for your business.",
+    title: "Your Growth = Our Obsession",
+    desc: "Every rupee you invest should multiply. We build digital assets that generate revenue, not just 'brand awareness'.",
     icon: TrendingUp,
   },
 ];
@@ -454,10 +452,10 @@ const REVIEWS = [
   {
     id: 1,
     name: "Arvind Singh",
-    title: "CEO, TechNova",
+    title: "CEO, TechNova Solutions",
     rating: 5,
     quote:
-      "Zoga’s work is simply dominant. The subtle animations and performance gains they introduced set a new standard for our industry.",
+      "Honestly? I was skeptical at first. Another agency, another promise. But Zoga delivered something remarkable. Our site loads faster than my coffee machine now, and conversions jumped 340%. These folks care.",
   },
   {
     id: 2,
@@ -465,7 +463,7 @@ const REVIEWS = [
     title: "Head of Product, FinEdge",
     rating: 5,
     quote:
-      "They took our complex data and rendered it beautifully. The scroll fluidity and zero lag are a testament to their engineering prowess.",
+      "We needed complex fintech dashboards that didn't look like a 2005 spreadsheet. Zoga made data beautiful AND functional. Our users actually enjoy looking at charts now. That's witchcraft!",
   },
   {
     id: 3,
@@ -473,23 +471,23 @@ const REVIEWS = [
     title: "Founder, UrbanFlow",
     rating: 5,
     quote:
-      "The most creative team we’ve ever worked with. The UI is dynamic and interactive—it’s not just a website, it’s an experience.",
+      "Worked with 7 agencies before. SEVEN. Zoga is the first one where I didn't have to explain things twice. They understood our vision, improved it, and delivered ahead of schedule. Rare breed.",
   },
   {
     id: 4,
     name: "Mohan Lal",
-    title: "Director, Global Corp",
+    title: "Director, Global Enterprise",
     rating: 5,
     quote:
-      "From responsiveness to content writing, Zoga encapsulated our brand perfectly. They truly engineered digital dominance for us.",
+      "From Mumbai to Ranchi felt like a risk. Turned out to be the best decision. World-class quality, genuine communication, and they actually pick up calls on weekends. Where else do you get that?",
   },
   {
     id: 5,
-    name: "Suresh N.",
-    title: "Venture Partner, AlphaVC",
+    name: "Suresh Nair",
+    title: "Partner, AlphaVC",
     rating: 5,
     quote:
-      "Their portfolio showcased creativity; their delivery proved rigor. A reliable partner for any serious digital transformation.",
+      "We've funded 50+ startups. The ones using Zoga consistently outperform on digital metrics. Not a coincidence. These guys understand what makes products tick.",
   },
 ];
 
