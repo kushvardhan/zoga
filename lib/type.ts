@@ -5,7 +5,11 @@ export type ServiceId =
   | "seo"
   | "branding"
   | "marketing"
-  | "gmb";
+  | "gmb"
+  | "content"
+  | "ecommerce"
+  | "automation"
+  | "tech";
 
 // Accept any Tailwind color string
 export type ColorKey =
@@ -15,7 +19,11 @@ export type ColorKey =
   | "lime"
   | "orange"
   | "amber"
-  | "teal";
+  | "teal"
+  | "violet"
+  | "emerald"
+  | "sky"
+  | "slate";
 
 export type AccentKey =
   | "indigo"
@@ -24,7 +32,9 @@ export type AccentKey =
   | "emerald"
   | "red"
   | "pink"
-  | "blue";
+  | "blue"
+  | "green"
+  | "gray";
 
 export interface ServiceData {
   id: ServiceId;
