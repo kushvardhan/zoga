@@ -17,7 +17,8 @@ import {
   Terminal,
   TrendingUp,
   User,
-  Zap,
+  FileText, Edit2, Save, CheckCircle,
+  Zap,Server, Shield, Globe,CornerDownRight, Database,ShoppingCart, DollarSign, BarChart2,
 } from "lucide-react";
 import React, {
   ChangeEvent,
@@ -27,7 +28,7 @@ import React, {
   RefObject,
   useEffect,
   useRef,
-  useState,
+  useState,useMemo,
 } from "react";
 
 import worldMapDark from "@/public/worldMapDark.png";
@@ -37,66 +38,73 @@ const SERVICES_DATA: ServiceData[] = [
   {
     id: "webdev",
     title: "Web & App Development",
-    subtitle: "Dynamic Code Holograms & Staged Scroll Narrative.",
-    copy: "We don't just write code; we architect resilient digital ecosystems. Leveraging Next.js and serverless cloud infrastructure, your application will handle any scale with zero latency. This is engineering as an art form.",
+    subtitle: "Where Code Meets Craft — No Templates, No Excuses.",
+    copy: "Templates are for people who've given up on life. We handcraft blazing-fast websites and apps using Next.js, React Native, and serverless architecture. Your site will load before your competitors finish their morning chai. 99.99% uptime? That's not a promise — that's our minimum standard. 🚀",
     color: "cyan",
     icon: Code,
     deliverables: [
-      "Custom Next.js Stack",
-      "Global CDN Deployment",
-      "CI/CD Pipelines",
+      "Custom Next.js/React Stack",
+      "iOS & Android Apps",
+      "Payment Gateway Integration",
+      "Global CDN & CI/CD Pipelines",
       "Enterprise-Grade Security",
+      "API Integration Services",
     ],
-    trust: "99.99% Uptime Guarantee. SOC 2 Compliant Architectures.",
-    accent: "indigo", // Secondary accent color
+    trust: "99.99% Uptime Guarantee. Trusted by 200+ businesses across India.",
+    accent: "indigo",
   },
   {
     id: "webdesign",
-    title: "Web Design & Experience",
-    subtitle: "Neon Grids, Morphing Shapes, and Iridescent Layouts.",
-    copy: "Beyond aesthetics, we craft intuitive digital blueprints. Our design systems focus on conversion rate optimization (CRO) and accessibility, ensuring every pixel works towards your business goal. Beautiful interfaces that perform.",
+    title: "UI/UX Design & Experience",
+    subtitle: "Designs That Convert — Not Just Look Pretty.",
+    copy: "Pretty websites that don't convert are just expensive digital art. We design interfaces that make users fall in love AND click that 'Buy Now' button. From wireframes to high-fidelity prototypes, every pixel is engineered for conversion. Your users will thank you. Your accountant will too. 💜",
     color: "fuchsia",
     icon: Layout,
     deliverables: [
-      "Atomic Design System",
-      "High-Fidelity Prototypes",
+      "Mobile App UI Design",
+      "Web App UI/UX",
+      "Wireframing & Prototyping",
       "User Journey Mapping",
       "A/B Tested Layouts",
+      "Atomic Design Systems",
     ],
-    trust: "Award-Winning UX/UI Portfolio. 100% Client Satisfaction Rate.",
+    trust: "Award-Winning Portfolio. 100% Client Satisfaction Rate.",
     accent: "purple",
   },
   {
     id: "video",
-    title: "Cinematic Video Editing",
-    subtitle: "Timeline Visualizer, Cinematic Reel Effects, and Glow Frames.",
-    copy: "Transform raw footage into high-impact visual narratives. We utilize advanced color grading, sound design, and motion graphics to produce content that captivates audiences and elevates brand perception.",
+    title: "Video & Creative Media",
+    subtitle: "Scroll-Stopping Content That Actually Gets Watched.",
+    copy: "In a world of 3-second attention spans, we create videos people actually finish watching. From cinematic brand films to viral reels, motion graphics to animation — we turn your vision into content that captivates, converts, and gets shared. Your competitors' videos will look like PowerPoint presentations. 🎬",
     color: "red",
     icon: Film,
     deliverables: [
+      "Promotional Videos",
+      "Motion Graphics & Animation",
+      "Reels & Short-Form Content",
       "4K/8K Mastering",
-      "Dolby Atmos Sound Mix",
-      "Advanced Motion Tracking",
-      "Full Rights & Royalty-Free Assets",
+      "Drone Videography",
+      "Product Photography",
     ],
-    trust: "Industry Certified Editors. Fast 48-Hour Turnaround Options.",
+    trust: "Industry Certified Editors. 48-Hour Turnaround Available.",
     accent: "orange",
   },
   {
     id: "seo",
     title: "SEO & Organic Growth",
-    subtitle:
-      "Animated Charts, Rank Growth Curves, and SERP Highlight Visuals.",
-    copy: "We build durable authority. Our strategies integrate predictive keyword modeling and advanced link-building to secure dominant positions in the search results, guaranteeing sustainable, non-paid traffic.",
+    subtitle: "Page 1 or Bust — We Don't Do Page 2.",
+    copy: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live. Our strategies combine predictive keyword modeling, authority link-building, and technical SEO that makes Google fall in love with your site. No black magic, just brilliant strategy. 📈",
     color: "lime",
     icon: TrendingUp,
     deliverables: [
-      "Authority Link Building",
       "Technical SEO Audit",
-      "Content Strategy & Gaps",
-      "Monthly Performance Modeling",
+      "Authority Link Building",
+      "Content Strategy & Gap Analysis",
+      "Local SEO Optimization",
+      "Monthly Performance Reports",
+      "Website Speed Optimization",
     ],
-    trust: "Clients have achieved 10x organic traffic in 12 months.",
+    trust: "Clients achieve 10x organic traffic in 12 months. Guaranteed.",
     accent: "emerald",
   },
   {
@@ -117,35 +125,107 @@ const SERVICES_DATA: ServiceData[] = [
   },
   {
     id: "marketing",
-    title: "Digital Marketing Strategy",
-    subtitle: "Growth Arrows, Spark Trails, and Dynamic Analytics Bars.",
-    copy: "Precision campaigns across paid media, social channels, and email automation. Our approach is data-driven, focusing only on verifiable ROI and audience segmentation for hyper-targeted engagement.",
+    title: "Digital Marketing & Ads",
+    subtitle: "Every Rupee Invested Should Come Back With Friends.",
+    copy: "We don't burn your ad budget on 'brand awareness'. Every rupee comes back with friends. Google Ads, Meta Ads, LinkedIn, YouTube - we speak their language fluently. Our data-driven campaigns focus on verifiable ROI, not vanity metrics.",
     color: "amber",
     icon: Target,
     deliverables: [
-      "Full Media Buying Strategy",
-      "A/B Test Funnel Setup",
-      "Proprietary Analytics Dashboard",
-      "Monthly Performance Forecasts",
+      "Google Ads Management",
+      "Facebook/Instagram Ads",
+      "LinkedIn & YouTube Ads",
+      "Retargeting Campaigns",
     ],
-    trust: "Managed $50M+ in ad spend with an average 4x ROAS.",
+    trust: "Managed Rs50Cr+ in ad spend with average 4x ROAS.",
     accent: "pink",
   },
   {
     id: "gmb",
-    title: "Google My Business Mastery",
-    subtitle: "Glowing Map, Local Highlight Pulses, and Trust Badges.",
-    copy: "Dominate local search. We optimize your GMB profile for maximum local visibility, managing reviews, posts, and accurate data to ensure your business is the immediate, trusted choice in your service area.",
+    title: "Google My Business & Local SEO",
+    subtitle: "Dominate Your Neighborhood - Then the City.",
+    copy: "When someone searches 'best [your service] near me', you should be the first name they see. We optimize your GMB profile for maximum local visibility, manage reviews, and ensure your business is THE trusted choice in your area. From Ranchi to Mumbai, we make you the local legend.",
     color: "teal",
     icon: MapPin,
     deliverables: [
-      "Geo-Targeted Content",
-      "Review Generation Strategy",
-      "Local Citation Cleanup",
-      "GMB Posting Schedule",
+      "GMB Profile Optimization",
+      "Review Generation & Management",
+      "Local Citation Building",
+      "Reputation Management",
     ],
     trust: "Top 3 local ranking achieved for 95% of clients.",
     accent: "blue",
+  },
+  {
+    id: "content",
+    title: "Content Creation & Writing",
+    subtitle: "Words That Sell - Not Just Fill Space.",
+    copy: "Content is king, but only if it's good content. We write website copy that converts, blogs that rank, and social media posts that actually get engagement. From scripts to emails, our words don't just fill space - they fill your pipeline with leads.",
+    color: "violet",
+    icon: MessageSquare,
+    deliverables: [
+      "Website Content Writing",
+      "Blog & Article Writing",
+      "Copywriting (Ads, Emails)",
+      "Script Writing for Videos",
+      "Social Media Content",
+      "Newsletter Design",
+    ],
+    trust: "Content that ranks AND converts. 500+ articles published.",
+    accent: "purple",
+  },
+  {
+    id: "ecommerce",
+    title: "E-Commerce Solutions",
+    subtitle: "Your Online Store, Built to Sell 24/7.",
+    copy: "Whether it's Shopify, WooCommerce, or custom - we build online stores that sell while you sleep. From product listings to inventory management, payment solutions to checkout optimization, we handle everything.",
+    color: "emerald",
+    icon: Aperture,
+    deliverables: [
+      "Shopify Store Setup",
+      "WooCommerce Development",
+      "Product Listing & Catalog",
+      "Inventory Management",
+      "Payment Solutions",
+      "Checkout Optimization",
+    ],
+    trust: "100+ successful e-commerce stores launched.",
+    accent: "green",
+  },
+  {
+    id: "automation",
+    title: "Email & Marketing Automation",
+    subtitle: "Set It, Forget It, Watch It Convert.",
+    copy: "Manual follow-ups are so 2010. We set up email marketing campaigns and automation workflows that nurture leads while you focus on running your business. CRM setup, newsletter design, drip campaigns - all working 24/7.",
+    color: "sky",
+    icon: Mail,
+    deliverables: [
+      "Email Marketing Campaigns",
+      "Newsletter Design",
+      "CRM Setup (HubSpot, Zoho)",
+      "Marketing Automation",
+      "Drip Campaign Setup",
+      "Lead Nurturing Workflows",
+    ],
+    trust: "Average 40% open rates. 3x industry standard.",
+    accent: "blue",
+  },
+  {
+    id: "tech",
+    title: "Tech & IT Solutions",
+    subtitle: "Custom Tech That Actually Works.",
+    copy: "Chatbots that don't annoy customers, CRMs that your team will actually use, APIs that integrate seamlessly - we build custom tech solutions that solve real problems. Cloud hosting, WhatsApp Business API, custom dashboards.",
+    color: "slate",
+    icon: Terminal,
+    deliverables: [
+      "Chatbot Integration",
+      "Custom CRM/ERP Solutions",
+      "API Integration Services",
+      "Cloud Hosting (AWS, GCP)",
+      "WhatsApp Business API",
+      "Custom Dashboards",
+    ],
+    trust: "Enterprise-grade solutions at startup-friendly prices.",
+    accent: "gray",
   },
 ];
 
@@ -224,9 +304,12 @@ type ColorKey =
   | "indigo"
   | "purple"
   | "emerald"
-  | "blue";
+  | "blue"
+  | "violet"
+  | "sky"
+  | "slate";
 
-type AccentKey = ColorKey | "pink";
+type AccentKey = ColorKey | "pink" | "green" | "gray";
 
 interface ServiceBlockProps {
   data: ServiceData;
@@ -248,6 +331,9 @@ const ServiceBlock = ({ data, children }: ServiceBlockProps) => {
     purple: "168, 85, 247",
     emerald: "16, 185, 129",
     blue: "59, 130, 246",
+    violet: "139, 92, 246",
+    sky: "14, 165, 233",
+    slate: "100, 116, 139",
   };
 
   const accentRgbMap: Record<AccentKey, string> = {
@@ -263,6 +349,11 @@ const ServiceBlock = ({ data, children }: ServiceBlockProps) => {
     emerald: "16, 185, 129",
     blue: "59, 130, 246",
     pink: "236, 72, 153",
+    violet: "139, 92, 246",
+    sky: "14, 165, 233",
+    slate: "100, 116, 139",
+    green: "34, 197, 94",
+    gray: "107, 114, 128",
   };
 
   const colorRgb = colorRgbMap[data.color];
@@ -680,11 +771,6 @@ const WebDesignVisual = ({ color, accent }: WebDesignProps) => {
 
 // 3. Cinematic Video Editing (Draggable Timeline)
 
-interface VisualProps {
-  color: keyof typeof colorMap;
-  accent: keyof typeof accentMap;
-}
-
 const colorMap = {
   cyan: "#22d3ee",
   fuchsia: "#e879f9",
@@ -693,6 +779,10 @@ const colorMap = {
   orange: "#fb923c",
   amber: "#fbbf24",
   teal: "#2dd4bf",
+  violet: "#8b5cf6",
+  emerald: "#10b981",
+  sky: "#0ea5e9",
+  slate: "#64748b",
 } as const;
 
 const accentMap = {
@@ -703,7 +793,22 @@ const accentMap = {
   red: "#b91c1c",
   pink: "#ec4899",
   blue: "#3b82f6",
+  green: "#22c55e",
+  gray: "#6b7280",
+  violet: "#8b5cf6",
+  sky: "#0ea5e9",
+  slate: "#64748b",
+  cyan: "#22d3ee",
+  fuchsia: "#e879f9",
+  lime: "#a3e635",
+  amber: "#fbbf24",
+  teal: "#2dd4bf",
 } as const;
+
+interface VisualProps {
+  color: keyof typeof colorMap;
+  accent: keyof typeof accentMap;
+}
 
 interface TrackClip {
   id: string;
@@ -845,28 +950,6 @@ export const VideoVisual = ({ color, accent }: VisualProps) => {
 };
 
 // 4. SEO (Interactive Growth Chart)
-type ColorKeySeo =
-  | "cyan"
-  | "fuchsia"
-  | "red"
-  | "lime"
-  | "orange"
-  | "amber"
-  | "teal";
-type AccentKeySeo =
-  | "red"
-  | "orange"
-  | "blue"
-  | "indigo"
-  | "pink"
-  | "purple"
-  | "emerald";
-
-interface VisualProps {
-  color: ColorKeySeo;
-  accent: AccentKeySeo;
-}
-
 interface HoverData {
   value: number;
   x: number;
@@ -1008,12 +1091,7 @@ export const SeoVisual = ({ color, accent }: VisualProps) => {
   );
 };
 
-interface BrandingVisualProps {
-  color: keyof typeof brandingColorMap;
-  accent: keyof typeof brandingAccentMap;
-}
-
-// Branding color maps
+// Branding color maps - extended to match all service colors
 const brandingColorMap = {
   cyan: "#22d3ee",
   fuchsia: "#e879f9",
@@ -1022,6 +1100,10 @@ const brandingColorMap = {
   orange: "#fb923c",
   amber: "#fbbf24",
   teal: "#2dd4bf",
+  violet: "#8b5cf6",
+  emerald: "#10b981",
+  sky: "#0ea5e9",
+  slate: "#64748b",
 } as const;
 
 const brandingAccentMap = {
@@ -1032,7 +1114,22 @@ const brandingAccentMap = {
   red: "#b91c1c",
   pink: "#ec4899",
   blue: "#3b82f6",
+  green: "#22c55e",
+  gray: "#6b7280",
+  violet: "#8b5cf6",
+  sky: "#0ea5e9",
+  slate: "#64748b",
+  cyan: "#22d3ee",
+  fuchsia: "#e879f9",
+  lime: "#a3e635",
+  amber: "#fbbf24",
+  teal: "#2dd4bf",
 } as const;
+
+interface BrandingVisualProps {
+  color: keyof typeof brandingColorMap;
+  accent: keyof typeof brandingAccentMap;
+}
 
 export const BrandingVisual = ({ color, accent }: BrandingVisualProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -1182,12 +1279,7 @@ interface FunnelStage {
   color: string;
 }
 
-interface MarketingVisualProps {
-  color: keyof typeof marketingColorMap;
-  accent: keyof typeof marketingAccentMap;
-}
-
-// Unique color maps for marketing visual
+// Unique color maps for marketing visual - extended to match all service colors
 const marketingColorMap = {
   cyan: "#22d3ee",
   fuchsia: "#e879f9",
@@ -1196,6 +1288,10 @@ const marketingColorMap = {
   orange: "#fb923c",
   amber: "#fbbf24",
   teal: "#2dd4bf",
+  violet: "#8b5cf6",
+  emerald: "#10b981",
+  sky: "#0ea5e9",
+  slate: "#64748b",
 } as const;
 
 const marketingAccentMap = {
@@ -1206,7 +1302,22 @@ const marketingAccentMap = {
   red: "#b91c1c",
   pink: "#ec4899",
   blue: "#3b82f6",
+  green: "#22c55e",
+  gray: "#6b7280",
+  violet: "#8b5cf6",
+  sky: "#0ea5e9",
+  slate: "#64748b",
+  cyan: "#22d3ee",
+  fuchsia: "#e879f9",
+  lime: "#a3e635",
+  amber: "#fbbf24",
+  teal: "#2dd4bf",
 } as const;
+
+interface MarketingVisualProps {
+  color: keyof typeof marketingColorMap;
+  accent: keyof typeof marketingAccentMap;
+}
 
 export const MarketingVisual = ({ color, accent }: MarketingVisualProps) => {
   const [hoverStage, setHoverStage] = useState<FunnelStage | null>(null);
@@ -1639,6 +1750,350 @@ const WebDevVisual: VisualComponent = ({ color, accent }) => {
   );
 };
 
+// Placeholder visuals for new services
+
+const ContentVisual: VisualComponent = ({ color, accent }) => {
+  const initialContent = "## The Future of AI Content\n\nArtificial Intelligence is revolutionizing content creation, allowing for rapid drafting and optimization. Our tools focus on providing high-quality, engaging, and SEO-friendly copy...\n\n- Drafted in under 5 minutes\n- Optimized for a high SEO Score\n\n[Optimization Status: 92% Complete]";
+  const [content, setContent] = useState(initialContent);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  
+  const words = content.split(/\s+/).filter(word => word.length > 0).length;
+
+  // Function to simulate saving (for animation effect)
+  const handleSave = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+    }, 1500);
+  };
+
+  // Function to render the content with syntax highlighting colors
+  const renderHighlightedContent = useMemo(() => {
+    return content.split('\n').map((line, index) => {
+      let lineContent = line;
+      let className = "text-gray-800 dark:text-gray-200"; // Default text color
+
+      if (line.startsWith('##')) {
+        // Heading Color (e.g., Sub-header)
+        lineContent = line.substring(2).trim();
+        className = `font-bold text-lg text-${color}-600 dark:text-${color}-400`;
+      } else if (line.startsWith('-')) {
+        // List Item Color
+        lineContent = line;
+        className = `text-${accent}-600 dark:text-${accent}-400 ml-4 font-mono`;
+      } else if (line.startsWith('[')) {
+        // Status/Comment Color
+        lineContent = line;
+        className = `text-sm text-yellow-600 dark:text-yellow-400 font-semibold italic`;
+      } else if (line.length === 0) {
+          // Empty line for spacing
+          lineContent = '\u200B'; // Non-breaking space
+          className = '';
+      }
+      
+      return (
+        <div key={index} className={`whitespace-pre-wrap leading-relaxed ${className}`}>
+          {lineContent}
+        </div>
+      );
+    });
+  }, [content, color, accent]);
+
+  // Use a simple div for rendering the text, simulating the look of an editor.
+  // Note: To make this truly interactive (editable), you'd use a library 
+  // or a contentEditable div, but this provides the required visual effect.
+  
+  return (
+    // Outer Container: Subtle Hover Effect & Pulsing Border
+    <div
+      className={`relative w-full h-full p-4 bg-white dark:bg-gray-800 border-2 border-transparent rounded-xl shadow-2xl overflow-hidden transition-all duration-500 
+        ${isFocused ? `ring-4 ring-${accent}-500/50` : `hover:shadow-${accent}-500/30 hover:shadow-xl`}
+        // Pulsing Gradient Border for visual appeal (requires animation in Tailwind config)
+        animate-border-pulse
+      `}
+      style={{
+          borderImageSource: `linear-gradient(to right, var(--tw-color-${color}-400), var(--tw-color-${accent}-500), var(--tw-color-${color}-400))`,
+          borderImageSlice: 1,
+      }}
+    >
+      {/* Header Bar - Tool Menu */}
+      <div
+        className={`flex items-center justify-between p-2 mb-3 rounded-lg 
+            bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur-sm 
+            border-b border-${accent}-500/30 transition-colors duration-300`}
+      >
+        <span className={`text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center`}>
+          <FileText className={`w-4 h-4 mr-2 text-${color}-500`} /> Document Editor
+        </span>
+        <div className="flex space-x-3 items-center">
+          {/* Save Button with Animation */}
+          <button 
+            onClick={handleSave}
+            className={`flex items-center text-xs px-2 py-1 rounded-full transition-all duration-300 
+                        ${isSaving ? `bg-green-500 text-white` : `bg-${accent}-100 dark:bg-${accent}-900 text-${accent}-600 hover:bg-${accent}-200 dark:hover:bg-${accent}-800`}`}
+            disabled={isSaving}
+          >
+            {isSaving ? (
+              <>
+                <CheckCircle className="w-3 h-3 mr-1 animate-ping-once" /> Saved!
+              </>
+            ) : (
+              <>
+                <Save className="w-3 h-3 mr-1" /> Save
+              </>
+            )}
+          </button>
+          
+          <Edit2 className={`w-4 h-4 text-${color}-500 hover:text-${color}-400 cursor-pointer transform hover:scale-110 transition-transform`} title="Edit Mode" />
+          <Zap className={`w-4 h-4 text-${accent}-500 hover:text-${accent}-400 cursor-pointer transform hover:scale-110 transition-transform`} title="Optimize" />
+        </div>
+      </div>
+
+      {/* Content Area - Highly Visual Content Display */}
+      <div 
+        className={`w-full h-4/5 p-2 font-serif text-sm bg-transparent resize-none outline-none 
+            transition-all duration-300 overflow-y-auto cursor-text
+            ${isFocused ? 'bg-gray-50/50 dark:bg-gray-700/50' : ''}
+        `}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      >
+        {renderHighlightedContent}
+      </div>
+
+
+      {/* Footer/Status Bar: Dynamic Status Indicator */}
+      <div className={`absolute bottom-0 left-0 right-0 p-2 text-xs 
+          bg-gray-50 dark:bg-gray-900 border-t 
+          border-gray-200 dark:border-gray-700`}>
+        <div className="flex justify-between items-center">
+          <span className="text-gray-600 dark:text-gray-400">
+            Words: <span className={`font-bold text-${color}-500`}>{words}</span> | 
+            SEO Score: <span className={`font-bold text-${accent}-500`}>A+</span>
+          </span>
+          <span className={`flex items-center font-medium 
+              ${isSaving ? 'text-green-500' : `text-${color}-500 dark:text-${color}-400`}
+              transition-colors duration-500
+          `}>
+            {isSaving ? (
+                <>Saving... <span className="ml-1 animate-spin-slow">⚙️</span></>
+            ) : (
+                <>Draft Saved</>
+            )}
+          </span>
+        </div>
+      </div>
+
+      {/* Subtle Background Watermark */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+        text-6xl md:text-7xl font-extrabold opacity-5 dark:opacity-10 
+        pointer-events-none transition-opacity duration-300 z-0">
+        CONTENT
+      </div>
+    </div>
+  );
+};
+
+const EcommerceVisual: VisualComponent = ({ color, accent }) => {
+  const [sales, setSales] = useState(157); // Simulating dynamic data
+
+  return (
+    <div
+      className={`relative w-full h-full p-4 bg-gray-50 dark:bg-gray-900 border border-${accent}-500/50 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-${color}-500/30`}
+    >
+      {/* Top Banner/Title */}
+      <div
+        className={`flex items-center justify-between p-3 mb-4 bg-${color}-100 dark:bg-${color}-900 rounded-lg shadow-inner`}
+      >
+        <h3 className={`text-lg font-bold text-${color}-800 dark:text-${color}-300 flex items-center`}>
+          <ShoppingCart className="w-5 h-5 mr-2" /> E-Commerce Dashboard
+        </h3>
+        <span className={`text-sm font-medium text-${accent}-600 dark:text-${accent}-400`}>Live Data</span>
+      </div>
+
+      {/* Metrics Grid (Responsive) */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-2">
+        {/* Metric 1: Sales */}
+        <div className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}>
+          <DollarSign className={`w-6 h-6 mb-2 text-${color}-500`} />
+          <p className="text-sm text-gray-500 dark:text-gray-400">Total Sales</p>
+          <p className="text-xl font-extrabold text-gray-900 dark:text-white">${(sales * 78.5).toFixed(2)}</p>
+        </div>
+
+        {/* Metric 2: Orders */}
+        <div className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}>
+          <BarChart2 className={`w-6 h-6 mb-2 text-${accent}-500`} />
+          <p className="text-sm text-gray-500 dark:text-gray-400">New Orders</p>
+          <p className="text-xl font-extrabold text-gray-900 dark:text-white">{sales}</p>
+        </div>
+      </div>
+      
+      {/* Mini Product Card Simulation */}
+      <div className={`mt-4 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-inner`}>
+          <div className="flex items-center">
+            <div className={`w-10 h-10 bg-${color}-400/50 rounded-md mr-3 flex items-center justify-center text-sm font-bold text-white`}>
+                P
+            </div>
+            <div>
+                <p className="font-semibold text-gray-800 dark:text-gray-100">Pro-Stack Widget</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Inventory: 45 in stock</p>
+            </div>
+          </div>
+      </div>
+
+      {/* Animated Growth Indicator */}
+      <div
+        className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-${accent}-400/0 via-${accent}-500 to-${accent}-400/0 animate-pulse`}
+      />
+    </div>
+  );
+};
+
+
+const AutomationVisual: VisualComponent = ({ color, accent }) => {
+  const Step = ({ icon: Icon, title, status, className }) => (
+    <div className={`flex items-center space-x-2 ${className}`}>
+      <div className={`p-2 rounded-full bg-${accent}-100 dark:bg-${accent}-900 border-2 border-${accent}-500 flex-shrink-0`}>
+        <Icon className={`w-5 h-5 text-${accent}-500`} />
+      </div>
+      <div className="flex-grow">
+        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{title}</p>
+        <p className={`text-xs ${status === 'Active' ? `text-${color}-500` : 'text-gray-400'}`}>{status}</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div
+      className={`relative w-full h-full p-6 bg-white dark:bg-gray-900 border border-${accent}-600/50 rounded-xl shadow-2xl transition-all duration-500 hover:shadow-lg hover:shadow-${accent}-500/50`}
+    >
+      {/* Title */}
+      <h3 className={`text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center`}>
+        <Zap className={`w-6 h-6 mr-2 text-${color}-500`} /> Workflow: New Lead Sequence
+      </h3>
+
+      {/* Workflow Steps - Column/Stack layout for responsiveness */}
+      <div className="flex flex-col space-y-3">
+        {/* Step 1: Trigger */}
+        <Step
+          icon={Database}
+          title="CRM Lead Input"
+          status="Trigger"
+          className="animate-fade-in"
+        />
+
+        {/* Arrow 1 */}
+        <div className="flex justify-start pl-4">
+          <CornerDownRight className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-4`} />
+        </div>
+
+        {/* Step 2: Processing */}
+        <Step
+          icon={Zap}
+          title="Process & Validate Data"
+          status="Active"
+          className="ml-8 border-l-2 border-dashed border-gray-300 dark:border-gray-700 pl-4"
+        />
+        
+        {/* Arrow 2 */}
+        <div className="flex justify-start pl-4">
+          <CornerDownRight className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-8`} />
+        </div>
+
+        {/* Step 3: Action */}
+        <Step
+          icon={Mail}
+          title="Send Initial Welcome Email"
+          status="Complete"
+          className="ml-16 border-l-2 border-dashed border-gray-300 dark:border-gray-700 pl-4"
+        />
+      </div>
+
+      {/* Footer Status */}
+      <div className={`mt-6 p-2 text-sm text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-gray-800 rounded-md`}>
+        <p>Automated: <span className="font-semibold">98.7%</span> Success Rate</p>
+      </div>
+    </div>
+  );
+};
+
+
+const TechVisual: VisualComponent = ({ color, accent }) => {
+  const MetricCard = ({ icon: Icon, title, value, statusColor }) => (
+    <div className={`p-3 bg-gray-700/50 rounded-md shadow-inner border border-gray-600/50`}>
+      <Icon className={`w-5 h-5 mb-1 ${statusColor}`} />
+      <p className="text-xs text-gray-400">{title}</p>
+      <p className="text-lg font-bold text-white">{value}</p>
+    </div>
+  );
+
+  return (
+    <div
+      className={`relative w-full h-full p-4 bg-gray-900 border border-${color}-600 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-${accent}-500/50`}
+    >
+      {/* Terminal Header */}
+      <div
+        className={`flex items-center p-2 bg-gray-800 border-b border-${accent}-500`}
+      >
+        <Server className={`w-4 h-4 mr-2 text-${accent}-400`} />
+        <span className={`text-sm font-mono text-${color}-400`}>
+          [root@server] /monitor/status
+        </span>
+        {/* Animated indicator */}
+        <div className={`ml-auto w-2 h-2 rounded-full bg-green-500 shadow-lg shadow-green-500/50 animate-ping-slow`} />
+      </div>
+
+      {/* Main Content Area: Status and Metrics */}
+      <div className="p-3">
+        <h4 className="text-lg font-semibold text-white mb-3">System Health Overview</h4>
+        
+        {/* Metrics Grid (Responsive) */}
+        <div className="grid grid-cols-2 gap-3 mb-4 sm:grid-cols-2 md:grid-cols-2">
+          <MetricCard 
+            icon={Zap} 
+            title="Uptime" 
+            value="99.99%" 
+            statusColor="text-green-500" 
+          />
+          <MetricCard 
+            icon={Shield} 
+            title="Security" 
+            value="Active" 
+            statusColor="text-blue-500" 
+          />
+          <MetricCard 
+            icon={Globe} 
+            title="Latency" 
+            value="45ms" 
+            statusColor="text-yellow-500" 
+          />
+          <MetricCard 
+            icon={Server} 
+            title="Load" 
+            value="35%" 
+            statusColor={`text-${color}-500`} 
+          />
+        </div>
+
+        {/* Terminal Output Simulation */}
+        <div className="mt-4 p-2 bg-black/50 rounded-md h-20 overflow-y-auto font-mono text-xs">
+          <p className="text-green-400">INFO: Services online. All checks passed.</p>
+          <p className="text-yellow-400">WARN: Disk usage at 80%. Recommend scale-up.</p>
+          <p className="text-green-400">INFO: Network response 200 OK.</p>
+          <p className="text-gray-500">_</p>
+        </div>
+      </div>
+
+      {/* Footer Command Line */}
+      <div className={`absolute bottom-0 left-0 w-full p-2 bg-gray-800 border-t border-${accent}-500`}>
+        <p className={`font-mono text-sm text-${accent}-300`}>
+          $ <span className="animate-blink">_</span>
+        </p>
+      </div>
+    </div>
+  );
+};
 // --- Main App Component ---
 
 const App = () => {
@@ -1655,6 +2110,10 @@ const App = () => {
     branding: BrandingVisual,
     marketing: MarketingVisual,
     gmb: GmbVisual,
+    content: ContentVisual,
+    ecommerce: EcommerceVisual,
+    automation: AutomationVisual,
+    tech: TechVisual,
   };
 
   return (
