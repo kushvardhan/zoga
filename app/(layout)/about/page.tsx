@@ -187,7 +187,7 @@ const servicesList = [
   {
     icon: Layout,
     title: "Website Development",
-    desc: "Templates are for people who've given up. We handcraft blazing-fast websites that load before your competitors finish their morning chai. 🚀",
+    desc: "Templates are for people who've given up. We handcraft blazing-fast websites that load before your competitors finish their morning chai.",
   },
   {
     icon: Smartphone,
@@ -197,7 +197,7 @@ const servicesList = [
   {
     icon: PenTool,
     title: "UI/UX Design",
-    desc: "We design interfaces that make users fall in love AND click 'Buy Now'. Pretty that converts — that's the Zoga way. 💜",
+    desc: "We design interfaces that make users fall in love AND click 'Buy Now'. Pretty that converts — that's the Zoga way.",
   },
   {
     icon: Database,
@@ -207,7 +207,7 @@ const servicesList = [
   {
     icon: TrendingUp,
     title: "SEO & Digital Growth",
-    desc: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live. 📈",
+    desc: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live.",
   },
   {
     icon: RefreshCcw,
@@ -217,12 +217,12 @@ const servicesList = [
   {
     icon: Video,
     title: "Video & Creative Media",
-    desc: "In a world of 3-second attention spans, we create videos people actually finish watching. Reels, ads, brand films — all scroll-stopping content. 🎬",
+    desc: "In a world of 3-second attention spans, we create videos people actually finish watching. Reels, ads, brand films — all scroll-stopping content.",
   },
   {
     icon: MapPin,
     title: "Google My Business",
-    desc: "When someone searches 'best [your service] near me', you should be first. We make you the local legend from Ranchi to Mumbai. 📍",
+    desc: "When someone searches 'best [your service] near me', you should be first. We make you the local legend from Ranchi to Mumbai.",
   },
 ];
 

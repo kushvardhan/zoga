@@ -6,19 +6,30 @@ import type { ServiceData, ServiceId, VisualComponent } from "@/lib/type";
 import { AnimatePresence, motion, useMotionValue } from "framer-motion";
 import {
   Aperture,
+  BarChart2,
+  CheckCircle,
   Code,
+  CornerDownRight,
+  Database,
+  DollarSign,
+  Edit2,
+  FileText,
   Film,
+  Globe,
   Layout,
   Mail,
   MapPin,
   MessageSquare,
+  Save,
   Send,
+  Server,
+  Shield,
+  ShoppingCart,
   Target,
   Terminal,
   TrendingUp,
   User,
-  FileText, Edit2, Save, CheckCircle,
-  Zap,Server, Shield, Globe,CornerDownRight, Database,ShoppingCart, DollarSign, BarChart2,
+  Zap,
 } from "lucide-react";
 import React, {
   ChangeEvent,
@@ -27,8 +38,9 @@ import React, {
   ReactNode,
   RefObject,
   useEffect,
+  useMemo,
   useRef,
-  useState,useMemo,
+  useState,
 } from "react";
 
 import worldMapDark from "@/public/worldMapDark.png";
@@ -39,7 +51,7 @@ const SERVICES_DATA: ServiceData[] = [
     id: "webdev",
     title: "Web & App Development",
     subtitle: "Where Code Meets Craft — No Templates, No Excuses.",
-    copy: "Templates are for people who've given up on life. We handcraft blazing-fast websites and apps using Next.js, React Native, and serverless architecture. Your site will load before your competitors finish their morning chai. 99.99% uptime? That's not a promise — that's our minimum standard. 🚀",
+    copy: "Templates are for people who've given up on life. We handcraft blazing-fast websites and apps using Next.js, React Native, and serverless architecture. Your site will load before your competitors finish their morning chai. 99.99% uptime? That's not a promise — that's our minimum standard.",
     color: "cyan",
     icon: Code,
     deliverables: [
@@ -57,7 +69,7 @@ const SERVICES_DATA: ServiceData[] = [
     id: "webdesign",
     title: "UI/UX Design & Experience",
     subtitle: "Designs That Convert — Not Just Look Pretty.",
-    copy: "Pretty websites that don't convert are just expensive digital art. We design interfaces that make users fall in love AND click that 'Buy Now' button. From wireframes to high-fidelity prototypes, every pixel is engineered for conversion. Your users will thank you. Your accountant will too. 💜",
+    copy: "Pretty websites that don't convert are just expensive digital art. We design interfaces that make users fall in love AND click that 'Buy Now' button. From wireframes to high-fidelity prototypes, every pixel is engineered for conversion. Your users will thank you. Your accountant will too.",
     color: "fuchsia",
     icon: Layout,
     deliverables: [
@@ -75,7 +87,7 @@ const SERVICES_DATA: ServiceData[] = [
     id: "video",
     title: "Video & Creative Media",
     subtitle: "Scroll-Stopping Content That Actually Gets Watched.",
-    copy: "In a world of 3-second attention spans, we create videos people actually finish watching. From cinematic brand films to viral reels, motion graphics to animation — we turn your vision into content that captivates, converts, and gets shared. Your competitors' videos will look like PowerPoint presentations. 🎬",
+    copy: "In a world of 3-second attention spans, we create videos people actually finish watching. From cinematic brand films to viral reels, motion graphics to animation — we turn your vision into content that captivates, converts, and gets shared. Your competitors' videos will look like PowerPoint presentations.",
     color: "red",
     icon: Film,
     deliverables: [
@@ -93,7 +105,7 @@ const SERVICES_DATA: ServiceData[] = [
     id: "seo",
     title: "SEO & Organic Growth",
     subtitle: "Page 1 or Bust — We Don't Do Page 2.",
-    copy: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live. Our strategies combine predictive keyword modeling, authority link-building, and technical SEO that makes Google fall in love with your site. No black magic, just brilliant strategy. 📈",
+    copy: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 — where the customers, money, and glory live. Our strategies combine predictive keyword modeling, authority link-building, and technical SEO that makes Google fall in love with your site. No black magic, just brilliant strategy.",
     color: "lime",
     icon: TrendingUp,
     deliverables: [
@@ -454,6 +466,7 @@ interface FormFields {
   message: string;
 }
 
+
 const ContactForm = () => {
   const [formData, setFormData] = useState<FormFields>({
     name: "",
@@ -464,12 +477,33 @@ const ContactForm = () => {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  // Auto-hide message after 3.5s
+  useEffect(() => {
+    if (!message) return;
+
+    setFadeOut(false); // reset fade state
+
+    const timer1 = setTimeout(() => {
+      setFadeOut(true); // start fade-out animation
+    }, 2800); // start fading at ~2.8s
+
+    const timer2 = setTimeout(() => {
+      setMessage(""); // fully hide after fade-out
+    }, 3500);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [message]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -593,39 +627,46 @@ const ContactForm = () => {
 
         {/* Message */}
         <div>
-          <label
-            htmlFor="message"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-          >
-            Project Details
-          </label>
-          <div className="relative">
-            <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
-            <textarea
-              name="message"
-              id="message"
-              rows={4}
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="
-                w-full pl-11 pr-4 py-3 
-                border border-gray-300 dark:border-gray-700 
-                rounded-xl 
-                bg-gray-50 dark:bg-gray-800 
-                text-gray-900 dark:text-white 
-                focus:ring-2 focus:ring-sky-500 focus:border-sky-500
-                transition-all duration-300
-              "
-            ></textarea>
-          </div>
-        </div>
+  <label
+    htmlFor="message"
+    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+  >
+    Project Details
+  </label>
+
+  <div className="relative">
+    <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
+
+    <textarea
+      name="message"
+      id="message"
+      rows={4}
+      value={formData.message}
+      onChange={handleChange}
+      required
+      className="
+        w-full pl-11 pr-4 py-3 
+        h-32
+        resize-none
+        border border-gray-300 dark:border-gray-700 
+        rounded-xl 
+        bg-gray-50 dark:bg-gray-800 
+        text-gray-900 dark:text-white 
+        focus:ring-2 focus:ring-sky-500 focus:border-sky-500
+        transition-all duration-300
+      "
+    ></textarea>
+  </div>
+</div>
+
 
         {/* Status Message */}
         {message && (
           <p
             className={`
-              p-3 rounded-xl text-sm font-semibold animate-fadeIn
+              p-3 rounded-xl text-sm font-semibold 
+              animate-fadeIn
+              ${fadeOut ? "animate-fadeOut" : ""}
               ${
                 isError
                   ? "text-red-700 bg-red-100 dark:bg-red-900 dark:text-red-300"
@@ -688,6 +729,7 @@ const ContactForm = () => {
     </div>
   );
 };
+
 
 // --- Unique Visual Worlds for Each Service ---
 
@@ -1753,12 +1795,13 @@ const WebDevVisual: VisualComponent = ({ color, accent }) => {
 // Placeholder visuals for new services
 
 const ContentVisual: VisualComponent = ({ color, accent }) => {
-  const initialContent = "## The Future of AI Content\n\nArtificial Intelligence is revolutionizing content creation, allowing for rapid drafting and optimization. Our tools focus on providing high-quality, engaging, and SEO-friendly copy...\n\n- Drafted in under 5 minutes\n- Optimized for a high SEO Score\n\n[Optimization Status: 92% Complete]";
+  const initialContent =
+    "## The Future of AI Content\n\nArtificial Intelligence is revolutionizing content creation, allowing for rapid drafting and optimization. Our tools focus on providing high-quality, engaging, and SEO-friendly copy...\n\n- Drafted in under 5 minutes\n- Optimized for a high SEO Score\n\n[Optimization Status: 92% Complete]";
   const [content, setContent] = useState(initialContent);
   const [isFocused, setIsFocused] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  
-  const words = content.split(/\s+/).filter(word => word.length > 0).length;
+
+  const words = content.split(/\s+/).filter((word) => word.length > 0).length;
 
   // Function to simulate saving (for animation effect)
   const handleSave = () => {
@@ -1770,30 +1813,33 @@ const ContentVisual: VisualComponent = ({ color, accent }) => {
 
   // Function to render the content with syntax highlighting colors
   const renderHighlightedContent = useMemo(() => {
-    return content.split('\n').map((line, index) => {
+    return content.split("\n").map((line, index) => {
       let lineContent = line;
       let className = "text-gray-800 dark:text-gray-200"; // Default text color
 
-      if (line.startsWith('##')) {
+      if (line.startsWith("##")) {
         // Heading Color (e.g., Sub-header)
         lineContent = line.substring(2).trim();
         className = `font-bold text-lg text-${color}-600 dark:text-${color}-400`;
-      } else if (line.startsWith('-')) {
+      } else if (line.startsWith("-")) {
         // List Item Color
         lineContent = line;
         className = `text-${accent}-600 dark:text-${accent}-400 ml-4 font-mono`;
-      } else if (line.startsWith('[')) {
+      } else if (line.startsWith("[")) {
         // Status/Comment Color
         lineContent = line;
         className = `text-sm text-yellow-600 dark:text-yellow-400 font-semibold italic`;
       } else if (line.length === 0) {
-          // Empty line for spacing
-          lineContent = '\u200B'; // Non-breaking space
-          className = '';
+        // Empty line for spacing
+        lineContent = "\u200B"; // Non-breaking space
+        className = "";
       }
-      
+
       return (
-        <div key={index} className={`whitespace-pre-wrap leading-relaxed ${className}`}>
+        <div
+          key={index}
+          className={`whitespace-pre-wrap leading-relaxed ${className}`}
+        >
           {lineContent}
         </div>
       );
@@ -1801,20 +1847,24 @@ const ContentVisual: VisualComponent = ({ color, accent }) => {
   }, [content, color, accent]);
 
   // Use a simple div for rendering the text, simulating the look of an editor.
-  // Note: To make this truly interactive (editable), you'd use a library 
+  // Note: To make this truly interactive (editable), you'd use a library
   // or a contentEditable div, but this provides the required visual effect.
-  
+
   return (
     // Outer Container: Subtle Hover Effect & Pulsing Border
     <div
       className={`relative w-full h-full p-4 bg-white dark:bg-gray-800 border-2 border-transparent rounded-xl shadow-2xl overflow-hidden transition-all duration-500 
-        ${isFocused ? `ring-4 ring-${accent}-500/50` : `hover:shadow-${accent}-500/30 hover:shadow-xl`}
+        ${
+          isFocused
+            ? `ring-4 ring-${accent}-500/50`
+            : `hover:shadow-${accent}-500/30 hover:shadow-xl`
+        }
         // Pulsing Gradient Border for visual appeal (requires animation in Tailwind config)
         animate-border-pulse
       `}
       style={{
-          borderImageSource: `linear-gradient(to right, var(--tw-color-${color}-400), var(--tw-color-${accent}-500), var(--tw-color-${color}-400))`,
-          borderImageSlice: 1,
+        borderImageSource: `linear-gradient(to right, var(--tw-color-${color}-400), var(--tw-color-${accent}-500), var(--tw-color-${color}-400))`,
+        borderImageSlice: 1,
       }}
     >
       {/* Header Bar - Tool Menu */}
@@ -1823,20 +1873,28 @@ const ContentVisual: VisualComponent = ({ color, accent }) => {
             bg-gray-100/50 dark:bg-gray-700/50 backdrop-blur-sm 
             border-b border-${accent}-500/30 transition-colors duration-300`}
       >
-        <span className={`text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center`}>
-          <FileText className={`w-4 h-4 mr-2 text-${color}-500`} /> Document Editor
+        <span
+          className={`text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center`}
+        >
+          <FileText className={`w-4 h-4 mr-2 text-${color}-500`} /> Document
+          Editor
         </span>
         <div className="flex space-x-3 items-center">
           {/* Save Button with Animation */}
-          <button 
+          <button
             onClick={handleSave}
             className={`flex items-center text-xs px-2 py-1 rounded-full transition-all duration-300 
-                        ${isSaving ? `bg-green-500 text-white` : `bg-${accent}-100 dark:bg-${accent}-900 text-${accent}-600 hover:bg-${accent}-200 dark:hover:bg-${accent}-800`}`}
+                        ${
+                          isSaving
+                            ? `bg-green-500 text-white`
+                            : `bg-${accent}-100 dark:bg-${accent}-900 text-${accent}-600 hover:bg-${accent}-200 dark:hover:bg-${accent}-800`
+                        }`}
             disabled={isSaving}
           >
             {isSaving ? (
               <>
-                <CheckCircle className="w-3 h-3 mr-1 animate-ping-once" /> Saved!
+                <CheckCircle className="w-3 h-3 mr-1 animate-ping-once" />{" "}
+                Saved!
               </>
             ) : (
               <>
@@ -1844,17 +1902,26 @@ const ContentVisual: VisualComponent = ({ color, accent }) => {
               </>
             )}
           </button>
-          
-          <Edit2 className={`w-4 h-4 text-${color}-500 hover:text-${color}-400 cursor-pointer transform hover:scale-110 transition-transform`} title="Edit Mode" />
-          <Zap className={`w-4 h-4 text-${accent}-500 hover:text-${accent}-400 cursor-pointer transform hover:scale-110 transition-transform`} title="Optimize" />
+
+          <span title="Edit Mode">
+            <Edit2
+              className={`w-4 h-4 text-${color}-500 hover:text-${color}-400 cursor-pointer transform hover:scale-110 transition-transform`}
+            />
+          </span>
+
+          <span title="Optimize">
+            <Zap
+              className={`w-4 h-4 text-${accent}-500 hover:text-${accent}-400 cursor-pointer transform hover:scale-110 transition-transform`}
+            />
+          </span>
         </div>
       </div>
 
       {/* Content Area - Highly Visual Content Display */}
-      <div 
+      <div
         className={`w-full h-4/5 p-2 font-serif text-sm bg-transparent resize-none outline-none 
             transition-all duration-300 overflow-y-auto cursor-text
-            ${isFocused ? 'bg-gray-50/50 dark:bg-gray-700/50' : ''}
+            ${isFocused ? "bg-gray-50/50 dark:bg-gray-700/50" : ""}
         `}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -1862,33 +1929,39 @@ const ContentVisual: VisualComponent = ({ color, accent }) => {
         {renderHighlightedContent}
       </div>
 
-
       {/* Footer/Status Bar: Dynamic Status Indicator */}
-      <div className={`absolute bottom-0 left-0 right-0 p-2 text-xs 
+      <div
+        className={`absolute bottom-0 left-0 right-0 p-2 text-xs 
           bg-gray-50 dark:bg-gray-900 border-t 
-          border-gray-200 dark:border-gray-700`}>
+          border-gray-200 dark:border-gray-700`}
+      >
         <div className="flex justify-between items-center">
           <span className="text-gray-600 dark:text-gray-400">
-            Words: <span className={`font-bold text-${color}-500`}>{words}</span> | 
-            SEO Score: <span className={`font-bold text-${accent}-500`}>A+</span>
+            Words:{" "}
+            <span className={`font-bold text-${color}-500`}>{words}</span> | SEO
+            Score: <span className={`font-bold text-${accent}-500`}>A+</span>
           </span>
-          <span className={`flex items-center font-medium 
-              ${isSaving ? 'text-green-500' : `text-${color}-500 dark:text-${color}-400`}
+          <span
+            className={`flex items-center font-medium 
+              ${
+                isSaving
+                  ? "text-green-500"
+                  : `text-${color}-500 dark:text-${color}-400`
+              }
               transition-colors duration-500
-          `}>
-            {isSaving ? (
-                <>Saving... <span className="ml-1 animate-spin-slow">⚙️</span></>
-            ) : (
-                <>Draft Saved</>
-            )}
+          `}
+          >
+            {isSaving ? "Saving..." : "Draft Saved"}
           </span>
         </div>
       </div>
 
       {/* Subtle Background Watermark */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+      <div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
         text-6xl md:text-7xl font-extrabold opacity-5 dark:opacity-10 
-        pointer-events-none transition-opacity duration-300 z-0">
+        pointer-events-none transition-opacity duration-300 z-0"
+      >
         CONTENT
       </div>
     </div>
@@ -1906,40 +1979,64 @@ const EcommerceVisual: VisualComponent = ({ color, accent }) => {
       <div
         className={`flex items-center justify-between p-3 mb-4 bg-${color}-100 dark:bg-${color}-900 rounded-lg shadow-inner`}
       >
-        <h3 className={`text-lg font-bold text-${color}-800 dark:text-${color}-300 flex items-center`}>
+        <h3
+          className={`text-lg font-bold text-${color}-800 dark:text-${color}-300 flex items-center`}
+        >
           <ShoppingCart className="w-5 h-5 mr-2" /> E-Commerce Dashboard
         </h3>
-        <span className={`text-sm font-medium text-${accent}-600 dark:text-${accent}-400`}>Live Data</span>
+        <span
+          className={`text-sm font-medium text-${accent}-600 dark:text-${accent}-400`}
+        >
+          Live Data
+        </span>
       </div>
 
       {/* Metrics Grid (Responsive) */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-2">
         {/* Metric 1: Sales */}
-        <div className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}>
+        <div
+          className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}
+        >
           <DollarSign className={`w-6 h-6 mb-2 text-${color}-500`} />
-          <p className="text-sm text-gray-500 dark:text-gray-400">Total Sales</p>
-          <p className="text-xl font-extrabold text-gray-900 dark:text-white">${(sales * 78.5).toFixed(2)}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Total Sales
+          </p>
+          <p className="text-xl font-extrabold text-gray-900 dark:text-white">
+            ${(sales * 78.5).toFixed(2)}
+          </p>
         </div>
 
         {/* Metric 2: Orders */}
-        <div className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}>
+        <div
+          className={`p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md transform hover:scale-[1.03] transition-transform duration-300`}
+        >
           <BarChart2 className={`w-6 h-6 mb-2 text-${accent}-500`} />
           <p className="text-sm text-gray-500 dark:text-gray-400">New Orders</p>
-          <p className="text-xl font-extrabold text-gray-900 dark:text-white">{sales}</p>
+          <p className="text-xl font-extrabold text-gray-900 dark:text-white">
+            {sales}
+          </p>
         </div>
       </div>
-      
+
       {/* Mini Product Card Simulation */}
-      <div className={`mt-4 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-inner`}>
-          <div className="flex items-center">
-            <div className={`w-10 h-10 bg-${color}-400/50 rounded-md mr-3 flex items-center justify-center text-sm font-bold text-white`}>
-                P
-            </div>
-            <div>
-                <p className="font-semibold text-gray-800 dark:text-gray-100">Pro-Stack Widget</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">Inventory: 45 in stock</p>
-            </div>
+      <div
+        className={`mt-4 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-inner`}
+      >
+        <div className="flex items-center">
+          <div
+            className={`w-10 h-10 bg-${color}-400/50 rounded-md mr-3 flex items-center justify-center text-sm font-bold text-white`}
+          >
+            P
           </div>
+          <div>
+            <p className="font-semibold text-gray-800 dark:text-gray-100">
+              Pro-Stack Widget
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Inventory: 45 in stock
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Animated Growth Indicator */}
@@ -1950,84 +2047,131 @@ const EcommerceVisual: VisualComponent = ({ color, accent }) => {
   );
 };
 
+interface StepProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  status: string;
+  className?: string;
+  accent?: string;
+  color?: string;
+}
+
+const Step: React.FC<StepProps> = ({
+  icon: Icon,
+  title,
+  status,
+  className,
+  accent = "sky",
+  color = "sky",
+}) => (
+  <div className={`flex items-center space-x-2 ${className || ""}`}>
+    <div
+      className={`p-2 rounded-full bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 flex-shrink-0`}
+    >
+      <Icon className={`w-5 h-5 text-gray-600 dark:text-gray-300`} />
+    </div>
+    <div className="flex-grow">
+      <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+        {title}
+      </p>
+      <p
+        className={`text-xs ${
+          status === "Active" ? "text-green-500" : "text-gray-400"
+        }`}
+      >
+        {status}
+      </p>
+    </div>
+  </div>
+);
 
 const AutomationVisual: VisualComponent = ({ color, accent }) => {
-  const Step = ({ icon: Icon, title, status, className }) => (
-    <div className={`flex items-center space-x-2 ${className}`}>
-      <div className={`p-2 rounded-full bg-${accent}-100 dark:bg-${accent}-900 border-2 border-${accent}-500 flex-shrink-0`}>
-        <Icon className={`w-5 h-5 text-${accent}-500`} />
-      </div>
-      <div className="flex-grow">
-        <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{title}</p>
-        <p className={`text-xs ${status === 'Active' ? `text-${color}-500` : 'text-gray-400'}`}>{status}</p>
-      </div>
-    </div>
-  );
-
   return (
     <div
       className={`relative w-full h-full p-6 bg-white dark:bg-gray-900 border border-${accent}-600/50 rounded-xl shadow-2xl transition-all duration-500 hover:shadow-lg hover:shadow-${accent}-500/50`}
     >
       {/* Title */}
-      <h3 className={`text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center`}>
-        <Zap className={`w-6 h-6 mr-2 text-${color}-500`} /> Workflow: New Lead Sequence
+      <h3
+        className={`text-xl font-bold mb-4 text-gray-900 dark:text-white flex items-center`}
+      >
+        <Zap className={`w-6 h-6 mr-2 text-${color}-500`} /> Workflow: New Lead
+        Sequence
       </h3>
 
       {/* Workflow Steps - Column/Stack layout for responsiveness */}
       <div className="flex flex-col space-y-3">
-        {/* Step 1: Trigger */}
         <Step
           icon={Database}
           title="CRM Lead Input"
           status="Trigger"
           className="animate-fade-in"
+          accent={accent}
         />
 
-        {/* Arrow 1 */}
         <div className="flex justify-start pl-4">
-          <CornerDownRight className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-4`} />
+          <CornerDownRight
+            className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-4`}
+          />
         </div>
 
-        {/* Step 2: Processing */}
         <Step
           icon={Zap}
           title="Process & Validate Data"
           status="Active"
           className="ml-8 border-l-2 border-dashed border-gray-300 dark:border-gray-700 pl-4"
+          accent={accent}
         />
-        
-        {/* Arrow 2 */}
+
         <div className="flex justify-start pl-4">
-          <CornerDownRight className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-8`} />
+          <CornerDownRight
+            className={`w-4 h-4 text-${accent}-500 transform rotate-90 ml-8`}
+          />
         </div>
 
-        {/* Step 3: Action */}
         <Step
           icon={Mail}
           title="Send Initial Welcome Email"
           status="Complete"
           className="ml-16 border-l-2 border-dashed border-gray-300 dark:border-gray-700 pl-4"
+          accent={accent}
         />
       </div>
 
       {/* Footer Status */}
-      <div className={`mt-6 p-2 text-sm text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-gray-800 rounded-md`}>
-        <p>Automated: <span className="font-semibold">98.7%</span> Success Rate</p>
+      <div
+        className={`mt-6 p-2 text-sm text-${color}-600 dark:text-${color}-400 bg-${color}-50 dark:bg-gray-800 rounded-md`}
+      >
+        <p>
+          Automated: <span className="font-semibold">98.7%</span> Success Rate
+        </p>
       </div>
     </div>
   );
 };
 
+interface MetricCardProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  value: string | number;
+  statusColor?: string;
+}
+
+const MetricCard: React.FC<MetricCardProps> = ({
+  icon: Icon,
+  title,
+  value,
+  statusColor,
+}) => (
+  <div
+    className={`p-3 bg-gray-700/50 rounded-md shadow-inner border border-gray-600/50`}
+  >
+    <Icon className={`w-5 h-5 mb-1 ${statusColor}`} />
+    <p className="text-xs text-gray-400">{title}</p>
+    <p className="text-lg font-bold text-white">{value}</p>
+  </div>
+);
 
 const TechVisual: VisualComponent = ({ color, accent }) => {
-  const MetricCard = ({ icon: Icon, title, value, statusColor }) => (
-    <div className={`p-3 bg-gray-700/50 rounded-md shadow-inner border border-gray-600/50`}>
-      <Icon className={`w-5 h-5 mb-1 ${statusColor}`} />
-      <p className="text-xs text-gray-400">{title}</p>
-      <p className="text-lg font-bold text-white">{value}</p>
-    </div>
-  );
-
   return (
     <div
       className={`relative w-full h-full p-4 bg-gray-900 border border-${color}-600 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-${accent}-500/50`}
@@ -2041,52 +2185,62 @@ const TechVisual: VisualComponent = ({ color, accent }) => {
           [root@server] /monitor/status
         </span>
         {/* Animated indicator */}
-        <div className={`ml-auto w-2 h-2 rounded-full bg-green-500 shadow-lg shadow-green-500/50 animate-ping-slow`} />
+        <div
+          className={`ml-auto w-2 h-2 rounded-full bg-green-500 shadow-lg shadow-green-500/50 animate-ping-slow`}
+        />
       </div>
 
       {/* Main Content Area: Status and Metrics */}
       <div className="p-3">
-        <h4 className="text-lg font-semibold text-white mb-3">System Health Overview</h4>
-        
+        <h4 className="text-lg font-semibold text-white mb-3">
+          System Health Overview
+        </h4>
+
         {/* Metrics Grid (Responsive) */}
         <div className="grid grid-cols-2 gap-3 mb-4 sm:grid-cols-2 md:grid-cols-2">
-          <MetricCard 
-            icon={Zap} 
-            title="Uptime" 
-            value="99.99%" 
-            statusColor="text-green-500" 
+          <MetricCard
+            icon={Zap}
+            title="Uptime"
+            value="99.99%"
+            statusColor="text-green-500"
           />
-          <MetricCard 
-            icon={Shield} 
-            title="Security" 
-            value="Active" 
-            statusColor="text-blue-500" 
+          <MetricCard
+            icon={Shield}
+            title="Security"
+            value="Active"
+            statusColor="text-blue-500"
           />
-          <MetricCard 
-            icon={Globe} 
-            title="Latency" 
-            value="45ms" 
-            statusColor="text-yellow-500" 
+          <MetricCard
+            icon={Globe}
+            title="Latency"
+            value="45ms"
+            statusColor="text-yellow-500"
           />
-          <MetricCard 
-            icon={Server} 
-            title="Load" 
-            value="35%" 
-            statusColor={`text-${color}-500`} 
+          <MetricCard
+            icon={Server}
+            title="Load"
+            value="35%"
+            statusColor={`text-${color}-500`}
           />
         </div>
 
         {/* Terminal Output Simulation */}
         <div className="mt-4 p-2 bg-black/50 rounded-md h-20 overflow-y-auto font-mono text-xs">
-          <p className="text-green-400">INFO: Services online. All checks passed.</p>
-          <p className="text-yellow-400">WARN: Disk usage at 80%. Recommend scale-up.</p>
+          <p className="text-green-400">
+            INFO: Services online. All checks passed.
+          </p>
+          <p className="text-yellow-400">
+            WARN: Disk usage at 80%. Recommend scale-up.
+          </p>
           <p className="text-green-400">INFO: Network response 200 OK.</p>
           <p className="text-gray-500">_</p>
         </div>
       </div>
 
       {/* Footer Command Line */}
-      <div className={`absolute bottom-0 left-0 w-full p-2 bg-gray-800 border-t border-${accent}-500`}>
+      <div
+        className={`absolute bottom-0 left-0 w-full p-2 bg-gray-800 border-t border-${accent}-500`}
+      >
         <p className={`font-mono text-sm text-${accent}-300`}>
           $ <span className="animate-blink">_</span>
         </p>
@@ -2245,7 +2399,7 @@ const App = () => {
         <ProcessTimeline />
 
         {/* --- FINAL CTA SECTION --- */}
-        <section id="contact" className="pt-12">
+        <section id="contact" className="pt-12 mb-20">
           <ContactForm />
         </section>
       </main>
