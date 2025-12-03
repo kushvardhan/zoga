@@ -19,8 +19,10 @@ import {
   ArrowRight,
   ArrowUpRight,
   Award,
+  BarChart3,
   Camera,
   Code2,
+  Crown,
   Globe,
   Layers,
   LineChart,
@@ -34,6 +36,7 @@ import {
   TrendingUp,
   Users,
   Video,
+  WalletMinimal,
   Zap,
 } from "lucide-react";
 import Image from "next/image";
@@ -152,19 +155,19 @@ const PROJECTS = [
 
 const WHY_US = [
   {
-    title: "Ranchi Born, Globally Trusted",
-    desc: "From the heart of Jharkhand to clients across Mumbai, Delhi, Bangalore, and beyond. Silicon Valley quality at competitive prices. Your CFO will thank us.",
-    icon: Globe,
+    title: "Uncompromising Quality",
+    desc: "Precision engineering, thoughtful design, and flawless execution. Every pixel and every line of code is crafted to outperform expectations.",
+    icon: Crown, 
   },
   {
-    title: "We Actually Answer Calls",
-    desc: "Revolutionary concept, we know! 24/7 support with real humans who speak your language. No 'your call is important to us' nonsense. We pick up. Period.",
-    icon: Phone,
+    title: "Premium Work, Fair Pricing",
+    desc: "You get agency-level expertise without agency-level invoices. Clear pricing, zero fluff, and value that compounds with every project.",
+    icon: WalletMinimal,
   },
   {
-    title: "Your Growth = Our Obsession",
-    desc: "We lose sleep over your metrics so you don't have to. Every rupee invested should multiply — that's not a promise, that's our business model.",
-    icon: TrendingUp,
+    title: "Your Success Is Our KPI",
+    desc: "We track your growth like traders watching charts. When your numbers rise, so do ours — that’s how partnership is supposed to work.",
+    icon: BarChart3,
   },
 ];
 
