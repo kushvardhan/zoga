@@ -141,7 +141,7 @@ const faqs = [
     a: "For a premium custom build, typically 6-10 weeks. We sprint in 2-week cycles with full transparency — you see progress every Friday. No surprises, no 'it's almost done' for 3 months.",
   },
   {
-    q: "Why should we choose Zoga over bigger agencies?",
+    q: "Why should we choose Avioni over bigger agencies?",
     a: "Bigger agencies have layers of account managers between you and the people doing the work. With us, you talk directly to the experts. Plus, we're hungry. We treat every project like our reputation depends on it — because it does.",
   },
   {
@@ -197,7 +197,7 @@ const servicesList = [
   {
     icon: PenTool,
     title: "UI/UX Design",
-    desc: "We design interfaces that make users fall in love AND click 'Buy Now'. Pretty that converts — that's the Zoga way.",
+    desc: "We design interfaces that make users fall in love AND click 'Buy Now'. Pretty that converts — that's the Avioni way.",
   },
   {
     icon: Database,
@@ -555,7 +555,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
           <FadeIn>
             <div className="text-center mb-24">
               <h2 className="text-5xl md:text-6xl font-black text-zinc-900 dark:text-white mb-6 tracking-tighter">
-                The Zoga{" "}
+                The Avioni{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                   Advantage
                 </span>

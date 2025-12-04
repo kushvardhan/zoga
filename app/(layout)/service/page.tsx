@@ -466,7 +466,6 @@ interface FormFields {
   message: string;
 }
 
-
 const ContactForm = () => {
   const [formData, setFormData] = useState<FormFields>({
     name: "",
@@ -627,24 +626,24 @@ const ContactForm = () => {
 
         {/* Message */}
         <div>
-  <label
-    htmlFor="message"
-    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-  >
-    Project Details
-  </label>
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          >
+            Project Details
+          </label>
 
-  <div className="relative">
-    <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
+          <div className="relative">
+            <MessageSquare className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
 
-    <textarea
-      name="message"
-      id="message"
-      rows={4}
-      value={formData.message}
-      onChange={handleChange}
-      required
-      className="
+            <textarea
+              name="message"
+              id="message"
+              rows={4}
+              value={formData.message}
+              onChange={handleChange}
+              required
+              className="
         w-full pl-11 pr-4 py-3 
         h-32
         resize-none
@@ -655,10 +654,9 @@ const ContactForm = () => {
         focus:ring-2 focus:ring-sky-500 focus:border-sky-500
         transition-all duration-300
       "
-    ></textarea>
-  </div>
-</div>
-
+            ></textarea>
+          </div>
+        </div>
 
         {/* Status Message */}
         {message && (
@@ -729,7 +727,6 @@ const ContactForm = () => {
     </div>
   );
 };
-
 
 // --- Unique Visual Worlds for Each Service ---
 
@@ -1183,7 +1180,7 @@ export const BrandingVisual = ({ color, accent }: BrandingVisualProps) => {
   const [idle, setIdle] = useState(true);
   const idleTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  // Draw dominant ZOGA watermark
+  // Draw dominant Avioni watermark
   const drawWatermark = (
     ctx: CanvasRenderingContext2D,
     width: number,
@@ -1205,7 +1202,7 @@ export const BrandingVisual = ({ color, accent }: BrandingVisualProps) => {
     ctx.shadowBlur = idle ? 60 : 0; // stronger glow
     ctx.globalAlpha = idle ? 0.12 : 0.05; // more visible when idle
 
-    ctx.fillText("ZOGA", width / 2, height / 2);
+    ctx.fillText("Avioni", width / 2, height / 2);
     ctx.restore();
   };
 
@@ -2362,7 +2359,7 @@ const App = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-5xl sm:text-7xl lg:text-9xl font-black tracking-tighter text-slate-900 dark:text-white mb-6 leading-tight">
               <span className="text-slate-500 dark:text-gray-700 block text-2xl mb-4 tracking-widest uppercase">
-                THE SERVICE ZOGA
+                THE SERVICE Avioni
               </span>
               ENGINEERING{" "}
               <span className="text-cyan-500 dark:text-cyan-400 drop-shadow-neon">
