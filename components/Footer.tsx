@@ -167,10 +167,10 @@ const Footer = () => (
       "
       >
         <p>© 2025 Avioni Digital Agency. All rights reserved.</p>
-        <p className="flex items-center gap-1">
+        {/* <p className="flex items-center gap-1">
           Crafted with <span className="text-red-500">❤️</span> in Ranchi, India
           🇮🇳
-        </p>
+        </p> */}
       </div>
     </div>
   </footer>

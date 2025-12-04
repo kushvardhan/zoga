@@ -1,4 +1,4 @@
-// WEBSITES(WEB & APP DEV) data: 
+// WEBSITES(WEB & APP DEV) data:  these are the websites info to put on the "Web & App Dev" category of  the /work page
 
 interface Project {
   id: string;
@@ -19,7 +19,7 @@ const projects: Project[] = [
     title: "Ayurakshak",
     image: "/our-projects/Ayurakshak.png",
     duration: "3 months",
-    liveLink: "https://ayurakshak.com",
+    liveLink: "https://ayurakshak.vercel.app/",
     description: "Naturopathy & Ayurvedic healing platform",
     fullDescription:
       "A comprehensive healthcare platform dedicated to making traditional Naturopathy & Ayurvedic healing accessible to all. Ayurakshak is a registered NGO providing natural healthcare solutions to 10,000+ patients across India through 55+ hospitals and 70+ clinics. The platform bridges the gap between ancient wisdom and modern technology.",
@@ -211,3 +211,16 @@ const projects: Project[] = [
   notes: "Content gathered from the public site: homepage (services, trust section, partners), internship page (programs, placement stats), and service pages/case studies. Replace image path with a live screenshot if required."
 },
 ];
+
+
+// Youtube documentries : these are the youtube documentries to put on the "Video Editing" category of  the /work page
+
+https://youtu.be/ieSo-WK4DhY?si=ltVwxiG-7JrADlGO
+https://youtu.be/VpnhhuBUs54?si=qNMeUzM4raMv5oz-
+https://youtu.be/Aje2oek3UqY?si=EvGu2uMnRbb4YB1X
+https://youtu.be/kOd_kwb9n-Q?si=Nco3xJG3DvNbVgMe
+https://youtu.be/ifz87YbZx1k?si=HkNOF4xixGtVd7s4
+
+
+
+AND FOR OTHER CATEGORIES let it be with the pics and place where it's now
