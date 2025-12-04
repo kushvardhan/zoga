@@ -138,3 +138,23 @@
 .animate-fadeOut {
   animation: fadeOut 0.6s ease forwards;
 }
+
+/* SHOOTING STAR ANIMATION */
+@keyframes shooting-star {
+  0% {
+    opacity: 0.9;
+    transform: translate(-5px, -5px) scale(1);
+  }
+  70% {
+    opacity: 0.3;
+    transform: translate(25px, 25px) scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, 40px) scale(0.2);
+  }
+}
+
+.shoot {
+  animation: shooting-star 0.6s ease-out forwards;
+}
