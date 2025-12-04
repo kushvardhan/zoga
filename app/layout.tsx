@@ -208,18 +208,18 @@ const indiaKeywords = [
 ].join(", ");
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zoga.agency"),
+  metadataBase: new URL("https://Avioni.agency"),
   title: {
     default:
-      "Zoga - Best Web Development & Digital Marketing Agency in India | Ranchi, Jharkhand",
-    template: "%s | Zoga Digital Agency",
+      "Avioni - Best Web Development & Digital Marketing Agency in India | Ranchi, Jharkhand",
+    template: "%s | Avioni Digital Agency",
   },
   description:
-    "Zoga is India's trusted digital agency offering web development, mobile app development, UI/UX design, SEO, video editing, and digital marketing services. Based in Ranchi, Jharkhand, serving clients across Mumbai, Delhi, Bangalore, Chennai, Hyderabad, and all of India. Get world-class quality at competitive rates.",
+    "Avioni is India's trusted digital agency offering web development, mobile app development, UI/UX design, SEO, video editing, and digital marketing services. Based in Ranchi, Jharkhand, serving clients across Mumbai, Delhi, Bangalore, Chennai, Hyderabad, and all of India. Get world-class quality at competitive rates.",
   keywords: indiaKeywords,
-  authors: [{ name: "Zoga Digital Agency", url: "https://zoga.agency" }],
-  creator: "Zoga Digital Agency",
-  publisher: "Zoga Digital Agency",
+  authors: [{ name: "Avioni Digital Agency", url: "https://Avioni.agency" }],
+  creator: "Avioni Digital Agency",
+  publisher: "Avioni Digital Agency",
   robots: {
     index: true,
     follow: true,
@@ -234,9 +234,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://zoga.agency",
-    siteName: "Zoga Digital Agency",
-    title: "Zoga - Best Web Development & Digital Marketing Agency in India",
+    url: "https://Avioni.agency",
+    siteName: "Avioni Digital Agency",
+    title: "Avioni - Best Web Development & Digital Marketing Agency in India",
     description:
       "Transform your business with India's most trusted digital agency. Web development, app development, SEO, UI/UX design, video editing & digital marketing. Serving all major cities across India.",
     images: [
@@ -244,22 +244,22 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Zoga Digital Agency - Web Development & Digital Marketing",
+        alt: "Avioni Digital Agency - Web Development & Digital Marketing",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zoga - Best Digital Agency in India",
+    title: "Avioni - Best Digital Agency in India",
     description:
       "Web development, app development, SEO, UI/UX design & digital marketing services across India. Based in Ranchi, serving Mumbai, Delhi, Bangalore & more.",
     images: ["/og-image.png"],
-    creator: "@zoga_agency",
+    creator: "@Avioni_agency",
   },
   alternates: {
-    canonical: "https://zoga.agency",
+    canonical: "https://Avioni.agency",
     languages: {
-      "en-IN": "https://zoga.agency",
+      "en-IN": "https://Avioni.agency",
     },
   },
   category: "technology",

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Zoga - India's Trusted Digital Agency | Our Story & Mission",
+  title: "About Avioni - India's Trusted Digital Agency | Our Story & Mission",
   description:
-    "Learn about Zoga Digital Agency - Ranchi's premier web development and digital marketing company. Discover our mission to deliver world-class digital solutions at competitive rates. Trusted by businesses across Mumbai, Delhi, Bangalore, Chennai, and all of India.",
+    "Learn about Avioni Digital Agency - Ranchi's premier web development and digital marketing company. Discover our mission to deliver world-class digital solutions at competitive rates. Trusted by businesses across Mumbai, Delhi, Bangalore, Chennai, and all of India.",
   keywords: [
     // About & Company
-    "about Zoga digital agency",
+    "about Avioni digital agency",
     "digital agency Ranchi",
     "web development company Jharkhand",
     "IT company Ranchi",
@@ -36,28 +36,28 @@ export const metadata: Metadata = {
     "pan India web development",
   ].join(", "),
   openGraph: {
-    title: "About Us - Zoga Digital Agency | Our Story & Values",
+    title: "About Us - Avioni Digital Agency | Our Story & Values",
     description:
-      "Discover Zoga - Ranchi's leading digital agency delivering world-class web development, design, and marketing solutions across India. Quality meets affordability.",
-    url: "https://zoga.agency/about",
+      "Discover Avioni - Ranchi's leading digital agency delivering world-class web development, design, and marketing solutions across India. Quality meets affordability.",
+    url: "https://Avioni.agency/about",
     type: "website",
     images: [
       {
         url: "/og-about.png",
         width: 1200,
         height: 630,
-        alt: "About Zoga Digital Agency",
+        alt: "About Avioni Digital Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Zoga - India's Trusted Digital Agency",
+    title: "About Avioni - India's Trusted Digital Agency",
     description:
-      "Learn about Zoga - Our mission, values, and commitment to delivering exceptional digital solutions across India.",
+      "Learn about Avioni - Our mission, values, and commitment to delivering exceptional digital solutions across India.",
   },
   alternates: {
-    canonical: "https://zoga.agency/about",
+    canonical: "https://Avioni.agency/about",
   },
 };
 
@@ -68,4 +68,3 @@ export default function AboutLayout({
 }) {
   return <>{children}</>;
 }
-
