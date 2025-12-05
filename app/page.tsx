@@ -213,117 +213,239 @@ interface Props {
 }
 
 const HomeAbout = () => {
-  return (
-    <section className="relative py-24 overflow-hidden bg-[#020617]">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none" />
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Left Content: Text & Story */}
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    // Calculate mouse position relative to the section element
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCursorPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  return (
+    <section 
+      onMouseMove={handleMouseMove} // Track mouse movement across the whole section
+      className="relative py-20 bg-[#020617] overflow-hidden" // Ensure overflow-hidden for the glow guard
+    >
+      {/* 1. Static Soft Glow (Original) */}
+      <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[100px]" />
+
+      {/* 2. Interactive Cursor Glow (New Element) */}
+      {/* This element is invisible until mouse moves, creating a subtle following light */}
+      <div
+        className="
+          absolute pointer-events-none 
+          w-[150px] h-[150px] rounded-full 
+          bg-white/10 dark:bg-purple-400/15 
+          transition-opacity duration-500 ease-out opacity-0 
+          mix-blend-lighten blur-2xl
+          hover:opacity-100 lg:opacity-100 lg:transition-none 
+        "
+        style={{
+          // Use CSS Transform for smooth, hardware-accelerated positioning
+          transform: `translate(calc(${cursorPos.x}px - 50%), calc(${cursorPos.y}px - 50%))`,
+          // Ensure it's rendered below the main content but above the background
+          zIndex: 5, 
+        }}
+      />
+      <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[100px]" />
+
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 relative z-10">
+
+        {/* LEFT — Clean Identity */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
-          <div className="inline-block px-3 py-1 mb-6 border border-purple-500/30 rounded-full bg-purple-500/10">
-            <span className="text-xs font-bold tracking-wider text-purple-400 uppercase">
+          <div className="inline-block px-3 py-1 mb-5 border border-purple-500/30 rounded-full bg-purple-500/10">
+            <span className="text-xs font-semibold text-purple-400 uppercase">
               Who We Are
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            We don’t just build websites. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              We build digital empires.
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            We create digital experiences  
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              that scale brands.
             </span>
           </h2>
 
-          <p className="text-slate-400 text-lg mb-6 leading-relaxed">
-            Avioni is where obsessive engineering meets creative madness. While
-            your competitors are still figuring out WordPress, we&apos;re
-            crafting custom digital ecosystems that make their websites look
-            like they were built in 2005. (No offense to 2005.)
+          <p className="text-slate-400 text-base md:text-lg mb-8 max-w-md">
+            We build websites, apps, brands, and growth systems that help businesses stand out and sell in a noisy digital world.
           </p>
 
-          <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-            From complex SaaS dashboards that don&apos;t make users cry, to
-            marketing sites so beautiful they should be in museums — we deliver
-            world-class, secure, and infinitely scalable solutions. Based in
-            Ranchi, trusted across India and beyond.
-          </p>
-
-          {/* Stats Row */}
-          <div className="flex gap-8 md:gap-12 border-t border-white/10 pt-8 mb-8">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <h4 className="text-3xl font-bold text-white mb-1">
-                  {stat.value}
-                </h4>
-                <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">
-                  {stat.label}
-                </p>
+          {/* Value Points */}
+          <div className="space-y-3 mb-10">
+            {[
+              "High-performance websites, apps & digital systems",
+              "Conversion-focused UI/UX with modern aesthetics",
+              "Brand strategy powered by SEO, ads & content",
+            ].map((v, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <div className="w-2 h-2 mt-2 rounded-full bg-purple-400" />
+                <p className="text-slate-400 text-sm md:text-base">{v}</p>
               </div>
             ))}
           </div>
 
-          <Link href="/about">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-2 text-white font-semibold border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors"
-            >
-              Read Our Full Story
-              <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </motion.button>
-          </Link>
+          {/* Stats */}
+          <div className="flex gap-8 border-t border-white/10 pt-6">
+            {[
+              { value: "50+", label: "Projects" },
+              { value: "20+", label: "Industries" },
+              { value: "Global", label: "Clients" }
+            ].map((stat, i) => (
+              <div key={i}>
+                <h4 className="text-2xl md:text-3xl font-bold text-white">{stat.value}</h4>
+                <p className="text-xs text-slate-500 uppercase tracking-wide">{stat.label}</p>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Right Content: Visual Grid */}
+        {/* RIGHT — Visual Grid (simplified) */}
+        {/* RIGHT — Visual Grid with Interactivity */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
+          transition={{ duration: 0.7, delay: 0.1 }}
         >
-          {/* Grid Container */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-4 mt-12">
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300">
-                <Layers className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">Scalable Arch</h3>
-                <p className="text-xs text-slate-400">
-                  Built on Next.js for maximum performance.
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-600/20 to-blue-600/20 border border-purple-500/20 p-6 rounded-2xl">
-                <Award className="w-8 h-8 text-purple-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">Award Winning</h3>
-                <p className="text-xs text-slate-400">
-                  Recognized for design excellence globally.
-                </p>
-              </div>
+          {/* Increased gap and added slight column offset for a better staggered look */}
+          <div className="grid grid-cols-2 gap-5"> 
+
+            <div className="space-y-5 mt-10">
+              {/* Card 1: Engineering First (Blue/White Accent) */}
+              <InteractiveFeatureCard
+                icon={Layers}
+                title="Engineering First"
+                description="Fast, scalable, and secure builds for long-term growth."
+                backgroundClasses="bg-white/5 backdrop-blur-xl border border-white/10"
+                iconClasses="text-blue-400"
+                glowColor="shadow-blue-400/50"
+              />
+
+              {/* Card 2: Design Excellence (Purple/Pink Gradient Accent) */}
+              <InteractiveFeatureCard
+                icon={Award}
+                title="Design Excellence"
+                description="Modern, conversion-led UI/UX that captures attention."
+                backgroundClasses="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/20"
+                iconClasses="text-purple-400"
+                glowColor="shadow-purple-400/50"
+              />
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300">
-                <Users className="w-8 h-8 text-pink-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">User Centric</h3>
-                <p className="text-xs text-slate-400">
-                  UX that converts visitors into loyalists.
-                </p>
-              </div>
+            <div className="space-y-5">
+              {/* Card 3: Human-Centered (Pink/White Accent) */}
+              <InteractiveFeatureCard
+                icon={Users}
+                title="Human-Centered"
+                description="Intuitive user experiences (UX) people love to use."
+                backgroundClasses="bg-white/5 backdrop-blur-xl border border-white/10"
+                iconClasses="text-pink-400"
+                glowColor="shadow-pink-400/50"
+              />
 
-              {/* Image Card */}
-              <AvioniCard />
+              {/* Card 4: AvioniCard (Custom Component - No 3D interaction applied directly here) */}
+              <AvioniCard /> 
             </div>
+
           </div>
         </motion.div>
+
       </div>
     </section>
   );
 };
+
+const InteractiveFeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+  backgroundClasses,
+  iconClasses,
+  glowColor, // e.g., 'shadow-blue-500/50'
+  isAvioniCard = false, // Special case for AvioniCard if needed
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  backgroundClasses: string;
+  iconClasses: string;
+  glowColor: string;
+  isAvioniCard?: boolean;
+}) => {
+  // Motion values to track mouse position within the card container
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  // Transform x/y position into rotation for the 3D effect
+  // Max rotation is slight (e.g., +/- 5 degrees)
+  const rotateX = useTransform(y, [-100, 100], [5, -5]);
+  const rotateY = useTransform(x, [-100, 100], [-5, 5]);
+
+  // Handle mouse move event to update x and y MotionValues
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left; // x position within the element
+    const mouseY = e.clientY - rect.top; // y position within the element
+    
+    // Normalized position from -100 to 100 for smoother transform
+    x.set(mouseX - width / 2);
+    y.set(mouseY - height / 2);
+  };
+  
+  // Reset rotation when mouse leaves
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  if (isAvioniCard) {
+      // Return the AvioniCard directly if it's the custom component
+      return <AvioniCard />;
+  }
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ 
+        rotateX, 
+        rotateY, 
+        transformStyle: "preserve-3d", // Enables 3D rotation
+        perspective: "1000px", // Adds depth
+      }}
+      // Increased size via p-6, added a hover state for glow and shadow
+      className={`relative p-6 rounded-3xl group transition-all duration-300 ${backgroundClasses} shadow-md hover:shadow-xl hover:z-10`}
+      // Subtle Framer Motion transition for smoothness
+      transition={{ type: "spring", stiffness: 100, damping: 15 }}
+    >
+      {/* Inner Content Container - slightly lifted in 3D space */}
+      <motion.div style={{ z: 20 }}> 
+          <Icon className={`w-8 h-8 mb-4 ${iconClasses}`} />
+          <h3 className="text-white font-semibold text-lg mb-1">{title}</h3>
+          <p className="text-sm text-slate-400">{description}</p>
+      </motion.div>
+
+      {/* Hover Glow Effect Layer (appears from inside) */}
+      <div 
+        className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 
+                    ${glowColor} [box-shadow:inset_0_0_25px_var(--tw-shadow-color)]`} 
+      />
+    </motion.div>
+  );
+};
+
+
+
 interface AvioniCardProps {
   text?: string;
 }
@@ -959,6 +1081,8 @@ const FadeIn: React.FC<FadeInProps> = ({
     </div>
   );
 };
+
+
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -1016,17 +1140,15 @@ const Hero = () => {
           {/* Description - Enhanced Visibility */}
           <FadeIn delay={200}>
             <div className="relative mb-12 max-w-lg mx-auto lg:mx-0">
-              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-0 lg:opacity-100 shadow-lg" />
-              <p className="text-lg md:text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium lg:pl-4">
-                We craft digital experiences that turn visitors into customers,
-                and customers into raving fans. From Mumbai to Mangalore, Delhi
-                to Dhanbad — brands trust us for{" "}
-                <span className="text-zinc-900 dark:text-white font-bold">
-                  results that actually matter
-                </span>
-                .
-              </p>
-            </div>
+  <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-0 lg:opacity-100 shadow-lg" />
+
+  <p className="text-lg md:text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium lg:pl-4">
+    We help brands grow with high-impact 
+    <span className="font-semibold text-zinc-900 dark:text-white"> websites, apps, design, branding, SEO, ads, and content </span>
+    — everything you need to scale fast and stand out in a crowded digital world.
+  </p>
+</div>
+
           </FadeIn>
 
           {/* Buttons - Compact & Punchy */}
@@ -1359,6 +1481,7 @@ const MarqueeSection = () => {
     </div>
   );
 };
+
 
 const Services = () => (
   <section id="services" className="py-32 bg-white dark:bg-[#030014]">
@@ -2209,9 +2332,9 @@ const App = () => {
         {/* <InteractiveDashboard /> */}
         <MarqueeSection />
         <HomeAbout />
-        <WhyChooseUs />
+        {/* <WhyChooseUs /> */}
         <Services />
-        <ReasonsSection />
+        {/* <ReasonsSection /> */}
         <VideoProduction />
         <Portfolio />
         <ReviewsSection />
