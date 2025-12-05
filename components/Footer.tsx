@@ -21,30 +21,13 @@ const Footer = () => (
         {/* LOGO + DESC */}
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-5">
-            <div
-              className="
-              w-10 h-10 
-              rounded-xl 
-              bg-gradient-to-br 
-              from-purple-500 to-blue-500 
-              flex items-center justify-center 
-              text-white text-xl font-bold
-            "
-            >
-              Z
+            <div className="relative w-16 h-16 rounded-full overflow-hidden">
+              <img
+                src="/logowithBGREMOVE.png"
+                alt="Avioni Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span
-              className="
-              text-2xl font-bold 
-              bg-gradient-to-r 
-              from-purple-600 to-blue-500 
-              dark:from-white dark:to-slate-300
-              bg-clip-text 
-              text-transparent
-            "
-            >
-              Avioni
-            </span>
           </div>
 
           <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-5 max-w-md">

@@ -158,3 +158,24 @@
 .shoot {
   animation: shooting-star 0.6s ease-out forwards;
 }
+
+/* 3D Toggle Switch Enhancements */
+.theme-toggle-track {
+  background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+  box-shadow: inset 2px 2px 5px #a8b4c7, inset -2px -2px 5px #ffffff;
+}
+
+.dark .theme-toggle-track {
+  background: linear-gradient(145deg, #334155, #475569);
+  box-shadow: inset 2px 2px 5px #1e293b, inset -2px -2px 5px #64748b;
+}
+
+.theme-toggle-thumb {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.15), -1px -1px 4px rgba(255,255,255,0.8);
+}
+
+.dark .theme-toggle-thumb {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4), -1px -1px 4px rgba(255,255,255,0.1);
+}

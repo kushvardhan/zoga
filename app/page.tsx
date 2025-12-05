@@ -55,12 +55,6 @@ const PHONE_NUMBER = "+91 98355 04582";
 const EMAIL = "hello@Avioni.agency";
 const ADDRESS = "Ranchi, Jharkhand, India";
 
-const stats = [
-  { label: "Years Experience", value: "10+" },
-  { label: "Projects Shipped", value: "150+" },
-  { label: "Client Satisfaction", value: "99%" },
-];
-
 const MARQUEE_BRANDS = [
   { name: "Next.js", icon: Layers },
   { name: "React", icon: Code2 },
@@ -76,7 +70,7 @@ const SERVICES = [
     title: "Web Development",
     desc: "Templates are for people who've given up on life. We handcraft blazing-fast websites that load before you finish blinking. Your competitors will need therapy after seeing your site.",
     icon: Code2,
-    color: "from-blue-600 to-cyan-500",
+    color: "#faa200",
     span: "md:col-span-2",
   },
   {
@@ -84,7 +78,7 @@ const SERVICES = [
     title: "Mobile Apps",
     desc: "Apps so buttery smooth, Apple and Google will ask for our secrets. We won't tell them. Client confidentiality and all that jazz.",
     icon: Smartphone,
-    color: "from-purple-600 to-pink-500",
+    color: "#f79f47",
     span: "md:col-span-1",
   },
   {
@@ -92,7 +86,7 @@ const SERVICES = [
     title: "UI/UX Design",
     desc: "We design interfaces that make users fall in love with your product, not us. Though that happens too. A lot, actually.",
     icon: Palette,
-    color: "from-orange-500 to-red-500",
+    color: "#fed382",
     span: "md:col-span-1",
   },
   {
@@ -100,7 +94,7 @@ const SERVICES = [
     title: "SEO & Growth",
     desc: "Page 2 of Google is where websites go to die. We resurrect yours to Page 1 where the customers, money, and glory live. No black magic, just brilliant strategy.",
     icon: LineChart,
-    color: "from-green-500 to-emerald-500",
+    color: "#faa200",
     span: "md:col-span-2",
   },
   {
@@ -108,7 +102,7 @@ const SERVICES = [
     title: "Video Production",
     desc: "In a world of 3-second attention spans, we create videos people actually finish watching. Reels, ads, brand films — all scroll-stopping, share-worthy content.",
     icon: Video,
-    color: "from-rose-500 to-fuchsia-500",
+    color: "#f79f47",
     span: "md:col-span-1",
   },
   {
@@ -116,18 +110,9 @@ const SERVICES = [
     title: "Digital Marketing",
     desc: "We don't burn your ad budget on 'brand awareness'. Every rupee comes back with friends. Meta, Google, YouTube — we speak their language fluently.",
     icon: Megaphone,
-    color: "from-indigo-600 to-blue-500",
+    color: "#fed382",
     span: "md:col-span-1",
   },
-];
-
-const BRANDS = [
-  "Google Cloud",
-  "AWS",
-  "Vercel",
-  "Shopify Plus",
-  "React",
-  "Next.js",
 ];
 
 const PROJECTS = [
@@ -163,30 +148,6 @@ const PROJECTS = [
   },
 ];
 
-const WHY_US = [
-  {
-    title: "Uncompromising Quality",
-    desc: "Precision engineering, thoughtful design, and flawless execution. Every pixel and every line of code is crafted to outperform expectations.",
-    icon: Crown,
-  },
-  {
-    title: "Premium Work, Fair Pricing",
-    desc: "You get agency-level expertise without agency-level invoices. Clear pricing, zero fluff, and value that compounds with every project.",
-    icon: WalletMinimal,
-  },
-  {
-    title: "Your Success Is Our KPI",
-    desc: "We track your growth like traders watching charts. When your numbers rise, so do ours — that’s how partnership is supposed to work.",
-    icon: BarChart3,
-  },
-];
-
-const DASHBOARD_COLORS = {
-  neon: "from-[#39FF14] to-[#0affd2]",
-  pink: "from-[#FF00C8] to-[#FF6AD5]",
-  cyan: "from-[#00F0FF] to-[#00A2FF]",
-  amber: "from-[#FFB300] to-[#FF7800]",
-};
 const themes: Record<string, Theme> = {
   neon: { from: "#08f7fe", to: "#09fbd3", text: "#08f7fe" },
   pink: { from: "#ff1b8d", to: "#ff6ac1", text: "#ff1b8d" },
@@ -196,458 +157,7 @@ const themes: Record<string, Theme> = {
   green: { from: "#00ff8f", to: "#00c471", text: "#00ff8f" },
 };
 
-const VIDEOS = [
-  { id: "ieSo-WK4DhY", title: "Showreel" },
-  { id: "VpnhhuBUs54", title: "Social Reel" },
-  { id: "Aje2oek3UqY", title: "Documentary" },
-];
-
-export interface Review {
-  quote: string;
-  name: string;
-  title?: string;
-}
-
-interface Props {
-  review: Review;
-}
-
-const HomeAbout = () => {
-  return (
-    <section className="relative py-24 overflow-hidden bg-[#020617]">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Left Content: Text & Story */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="inline-block px-3 py-1 mb-6 border border-purple-500/30 rounded-full bg-purple-500/10">
-            <span className="text-xs font-bold tracking-wider text-purple-400 uppercase">
-              Who We Are
-            </span>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            We don’t just build websites. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              We build digital empires.
-            </span>
-          </h2>
-
-          <p className="text-slate-400 text-lg mb-6 leading-relaxed">
-            Avioni is where obsessive engineering meets creative madness. While
-            your competitors are still figuring out WordPress, we&apos;re
-            crafting custom digital ecosystems that make their websites look
-            like they were built in 2005. (No offense to 2005.)
-          </p>
-
-          <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-            From complex SaaS dashboards that don&apos;t make users cry, to
-            marketing sites so beautiful they should be in museums — we deliver
-            world-class, secure, and infinitely scalable solutions. Based in
-            Ranchi, trusted across India and beyond.
-          </p>
-
-          {/* Stats Row */}
-          <div className="flex gap-8 md:gap-12 border-t border-white/10 pt-8 mb-8">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <h4 className="text-3xl font-bold text-white mb-1">
-                  {stat.value}
-                </h4>
-                <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <Link href="/about">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-2 text-white font-semibold border-b border-purple-500 pb-1 hover:text-purple-400 transition-colors"
-            >
-              Read Our Full Story
-              <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Right Content: Visual Grid */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
-        >
-          {/* Grid Container */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-4 mt-12">
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300">
-                <Layers className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">Scalable Arch</h3>
-                <p className="text-xs text-slate-400">
-                  Built on Next.js for maximum performance.
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-600/20 to-blue-600/20 border border-purple-500/20 p-6 rounded-2xl">
-                <Award className="w-8 h-8 text-purple-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">Award Winning</h3>
-                <p className="text-xs text-slate-400">
-                  Recognized for design excellence globally.
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors duration-300">
-                <Users className="w-8 h-8 text-pink-400 mb-4" />
-                <h3 className="text-white font-bold mb-2">User Centric</h3>
-                <p className="text-xs text-slate-400">
-                  UX that converts visitors into loyalists.
-                </p>
-              </div>
-
-              {/* Image Card */}
-              <AvioniCard />
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-interface AvioniCardProps {
-  text?: string;
-}
-
-const AvioniCard = ({ text = "AVIONI" }: AvioniCardProps) => {
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  const glowRef = useRef<HTMLDivElement | null>(null);
-  const starRef = useRef<HTMLDivElement | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || !glowRef.current) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    glowRef.current.style.transform = `translate(${x - 100}px, ${y - 100}px)`;
-  };
-
-  const handleLetterEnter = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const target = e.target as HTMLSpanElement;
-    target.style.opacity = "0.45";
-    target.style.textShadow = "0 0 10px rgba(255,255,255,0.35)";
-  };
-
-  const handleLetterLeave = (e: React.MouseEvent<HTMLSpanElement>) => {
-    const target = e.target as HTMLSpanElement;
-    target.style.opacity = "0.04";
-    target.style.textShadow = "none";
-  };
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      className="relative h-52 rounded-2xl overflow-hidden border border-white/10 group cursor-pointer bg-black/40 backdrop-blur-xl"
-    >
-      {/* BACKGROUND BLOBS */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute -top-10 -left-10 w-52 h-52 bg-purple-500/20 blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-0 w-56 h-56 bg-cyan-400/20 blur-3xl rounded-full" />
-      </div>
-
-      {/* BASE GRID */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.04] group-hover:opacity-[0.15] transition-opacity duration-300"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern
-            id="gridPattern"
-            width="38"
-            height="38"
-            patternUnits="userSpaceOnUse"
-          >
-            <path d="M38 0 L0 0 0 38" stroke="white" strokeWidth="0.25" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#gridPattern)" />
-      </svg>
-
-      {/* SPOTLIGHT GLOW FOLLOWING CURSOR */}
-      <div
-        ref={glowRef}
-        className="absolute w-[200px] h-[200px] rounded-full bg-white/5 blur-[30px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20"
-        style={{ transform: "translate(-9999px, -9999px)" }}
-      />
-
-      {/* SHOOTING STAR */}
-      <div
-        ref={starRef}
-        className="pointer-events-none absolute w-[2px] h-[2px] bg-white rounded-full opacity-0 z-30"
-      />
-
-      {/* INDIVIDUAL LETTER GLOW */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-40 text-white text-5xl tracking-normal"
-        style={{ fontFamily: '"Cedarville Cursive", cursive' }}
-      >
-        {text.split("").map((char, index) => (
-          <span
-            key={index}
-            onMouseEnter={handleLetterEnter}
-            onMouseLeave={handleLetterLeave}
-            className="transition-all duration-100 pointer-events-auto select-none"
-            style={{
-              opacity: 0.04,
-              padding: "0 1px",
-              transition: "opacity 0.15s ease-out, text-shadow 0.15s ease-out",
-            }}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
-
-      {/* LOWER GRADIENT */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-30" />
-
-      {/* STATUS TEXT */}
-      <div className="absolute bottom-4 left-4 z-40">
-        <span className="text-xs font-mono text-green-400 tracking-tight">
-          ● System Online
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const ReviewCard: React.FC<Props> = ({ review }) => {
-  return (
-    <article className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 h-full flex flex-col justify-between">
-      <div>
-        <div className="mb-3 inline-flex items-center gap-2">
-          <svg
-            className="w-5 h-5 text-yellow-400"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            aria-hidden
-          >
-            <path d="M12 .587l3.668 7.431L23.6 9.75l-5.8 5.653 1.368 7.967L12 18.896 5.832 23.37 7.2 15.403.4 9.75l7.932-1.732z" />
-          </svg>
-        </div>
-
-        <p className="text-lg md:text-xl italic text-slate-700 dark:text-slate-300 mb-6 leading-relaxed break-words whitespace-pre-wrap">
-          “{review.quote}”
-        </p>
-      </div>
-
-      <footer className="mt-4">
-        <p className="font-semibold text-slate-900 dark:text-white truncate">
-          {review.name}
-        </p>
-        {review.title && (
-          <p className="text-sm text-blue-500 truncate">{review.title}</p>
-        )}
-      </footer>
-    </article>
-  );
-};
-
 // --- UI Components ---
-
-// 3D Tilt Card for Value Proposition
-const ValueCard3D = ({ item }: ValueCard3DProps) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-
-    const { clientX, clientY } = e;
-    const { width, height, left, top } = ref.current.getBoundingClientRect();
-
-    const xVal = ((clientX - (left + width / 2)) / width) * 30;
-    const yVal = ((clientY - (top + height / 2)) / height) * 30;
-
-    x.set(xVal);
-    y.set(yVal);
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setIsHovered(false);
-  };
-
-  const rotateX = useTransform(y, (value) => `${-value}deg`);
-  const rotateY = useTransform(x, (value) => `${value}deg`);
-
-  const Icon = item.icon;
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        perspective: 1000,
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        boxShadow: isHovered
-          ? "0 30px 60px rgba(0, 0, 0, 0.15)"
-          : "0 10px 20px rgba(0, 0, 0, 0.05)",
-      }}
-      className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-shadow duration-500 will-change-transform"
-    >
-      <motion.div
-        className="p-3 rounded-full inline-block mb-4"
-        style={{ transform: "translateZ(50px)" }}
-        whileHover={{ scale: 1.1, backgroundColor: "rgba(59,130,246,0.1)" }}
-      >
-        <Icon className="w-8 h-8 text-blue-500" />
-      </motion.div>
-
-      <motion.h3
-        className="text-2xl font-bold text-slate-900 dark:text-white mb-3"
-        style={{ transform: "translateZ(30px)" }}
-      >
-        {item.title}
-      </motion.h3>
-
-      <motion.p
-        className="text-slate-600 dark:text-slate-400 leading-relaxed"
-        style={{ transform: "translateZ(10px)" }}
-      >
-        {item.description}
-      </motion.p>
-    </motion.div>
-  );
-};
-
-const REASONS = [
-  {
-    icon: Sparkles,
-    title: "Creative Velocity",
-    description:
-      "We don't just iterate; we accelerate innovation. Expect unique designs and code tailored to outperform the market, not just match it.",
-  },
-  {
-    icon: Shield,
-    title: "Engineering Rigor",
-    description:
-      "Our commitment to performance means zero jitter, absolute responsiveness, and code that is both elegant and obsessively optimized for scale and security.",
-  },
-  {
-    icon: Users,
-    title: "Authentic Partnership",
-    description:
-      "We embed ourselves in your vision. Our collaboration model is transparent, proactive, and focused on delivering measurable, long-term business value.",
-  },
-];
-
-const REVIEWS = [
-  {
-    id: 1,
-    name: "Arvind Singh",
-    title: "CEO, TechNova Solutions",
-    rating: 5,
-    quote:
-      "I've worked with agencies that promised the moon and delivered a flashlight. Avioni? They promised results and delivered a rocket ship. Our conversions jumped 340% and our site loads faster than my morning chai brews. Absolute legends.",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    title: "Head of Product, FinEdge",
-    rating: 5,
-    quote:
-      "Our fintech dashboard used to look like Excel had a bad day. Avioni transformed it into something our users actually WANT to look at. Data visualization that doesn't induce headaches? Revolutionary. These folks are wizards.",
-  },
-  {
-    id: 3,
-    name: "Kiran Rao",
-    title: "Founder, UrbanFlow",
-    rating: 5,
-    quote:
-      "Seven agencies. SEVEN. All of them made me repeat myself like a broken record. Avioni understood our vision in one call, improved it, and delivered ahead of schedule. I didn't know agencies like this existed.",
-  },
-  {
-    id: 4,
-    name: "Mohan Lal",
-    title: "Director, Global Enterprise",
-    rating: 5,
-    quote:
-      "Choosing a Ranchi agency over Mumbai felt risky. Best. Decision. Ever. World-class quality, transparent communication, and they actually answer calls on weekends. My Mumbai agency never did that!",
-  },
-  {
-    id: 5,
-    name: "Suresh Nair",
-    title: "Partner, AlphaVC",
-    rating: 5,
-    quote:
-      "We've funded 50+ startups. The ones using Avioni consistently crush their digital metrics. It's not luck — these folks genuinely understand what makes products succeed. Our portfolio companies love them.",
-  },
-];
-
-const Reveal = ({ children, width = "100%", delay = 0.25 }: RevealProps) => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(ref, { once: true, margin: "-75px" });
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
-  return (
-    <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 75 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={mainControls}
-        transition={{ duration: 0.5, delay: delay }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-interface ValueItem {
-  icon: IconType;
-  title: string;
-  description: string;
-}
-
-interface ValueCard3DProps {
-  item: ValueItem;
-}
-
-/**
- * Simple TiltCard wrapper
- * - pointer-based tilt on desktop
- * - reduces intensity when user prefers reduced motion
- */
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -716,8 +226,8 @@ const MagneticButton = ({
 
   const styles =
     variant === "primary"
-      ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg shadow-indigo-500/20"
-      : "bg-transparent border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5";
+      ? "bg-[#faa200] text-[#222222] shadow-lg"
+      : "bg-transparent border border-[#fed382] dark:border-[#f79f47] text-[#222222] dark:text-[#fcf7ef] hover:bg-[#fde9c4] dark:hover:bg-[#222222]";
 
   return (
     <motion.button
@@ -728,7 +238,7 @@ const MagneticButton = ({
       onMouseLeave={() => setPosition({ x: 0, y: 0 })}
       onClick={onClick}
       disabled={disabled}
-      className={`relative overflow-hidden px-6 py-3 rounded-full font-bold text-sm transition-transform active:scale-95 ${styles} ${className} ${
+      className={`relative overflow-hidden px-6 py-3 rounded-lg font-bold text-sm transition-transform active:scale-95 ${styles} ${className} ${
         disabled ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >
@@ -757,7 +267,7 @@ const SectionHeading = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white mb-4"
+      className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#222222] dark:text-[#fcf7ef] mb-4"
     >
       {children}
     </motion.h2>
@@ -768,7 +278,7 @@ const SectionHeading = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="text-lg text-slate-600 dark:text-slate-400"
+        className="text-lg text-[#222222]/80 dark:text-[#fcf7ef]/80"
       >
         {subtitle}
       </motion.p>
@@ -796,7 +306,7 @@ const InputField = ({
   required,
 }: InputFieldProps) => (
   <div className="space-y-2">
-    <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+    <label className="text-sm font-medium text-[#222222] dark:text-[#fcf7ef]">
       {label}
     </label>
     <input
@@ -806,14 +316,13 @@ const InputField = ({
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+      className="w-full px-4 py-3 rounded-lg bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] focus:border-[#faa200] focus:ring-2 focus:ring-[#faa200]/20 outline-none transition-all text-[#222222] dark:text-[#fcf7ef] placeholder:text-[#222222]/60 dark:placeholder:text-[#fcf7ef]/60"
     />
   </div>
 );
 
 // --- Sections ---
 
-// 3. Interactive Spotlight Grid Background
 interface GridBackgroundProps {
   mousePos: { x: number; y: number } | null;
 }
@@ -853,9 +362,7 @@ const GridBackground: React.FC<GridBackgroundProps> = ({ mousePos }) => (
   </div>
 );
 
-// 4. Subtle Grid Particles (Fixed, non-mouse-interactive, moving along grid lines)
 const GridParticles = () => {
-  // Increased count to 6, all size 2, new cool colors, new right-side positions
   const particles = [
     {
       id: 1,
@@ -865,7 +372,7 @@ const GridParticles = () => {
       startY: "30%",
       duration: 24,
       animation: "grid-slide-1",
-    }, // Left/Center
+    },
     {
       id: 2,
       color: "bg-purple-400",
@@ -874,7 +381,7 @@ const GridParticles = () => {
       startY: "60%",
       duration: 28,
       animation: "grid-slide-2",
-    }, // Right/Center
+    },
     {
       id: 3,
       color: "bg-pink-400",
@@ -883,7 +390,7 @@ const GridParticles = () => {
       startY: "85%",
       duration: 22,
       animation: "grid-slide-3",
-    }, // Bottom/Center
+    },
     {
       id: 4,
       color: "bg-blue-400",
@@ -892,7 +399,7 @@ const GridParticles = () => {
       startY: "15%",
       duration: 26,
       animation: "grid-slide-4",
-    }, // Top/Left
+    },
     {
       id: 5,
       color: "bg-emerald-400",
@@ -901,7 +408,7 @@ const GridParticles = () => {
       startY: "40%",
       duration: 20,
       animation: "grid-slide-5",
-    }, // Right Side (New)
+    },
     {
       id: 6,
       color: "bg-indigo-400",
@@ -910,7 +417,7 @@ const GridParticles = () => {
       startY: "10%",
       duration: 27,
       animation: "grid-slide-6",
-    }, // Top/Right (New)
+    },
   ];
 
   return (
@@ -929,8 +436,6 @@ const GridParticles = () => {
     </div>
   );
 };
-
-// 5. Intersection Observer Hook
 
 interface FadeInProps {
   children: ReactNode;
@@ -959,6 +464,7 @@ const FadeIn: React.FC<FadeInProps> = ({
     </div>
   );
 };
+
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -972,7 +478,7 @@ const Hero = () => {
       className="relative min-h-[100vh] pt-32 pb-20 flex flex-col justify-center overflow-hidden"
     >
       {/* Background Layer */}
-      <div className="absolute inset-0 pointer-events-none bg-zinc-50 dark:bg-black transition-colors duration-500" />
+      <div className="absolute inset-0 pointer-events-none bg-[#fcf7ef] dark:bg-[#1a1a1a] transition-colors duration-500" />
 
       {/* Interactive Grid & Ambience */}
       <GridBackground mousePos={mousePos} />
@@ -1006,8 +512,7 @@ const Hero = () => {
           <FadeIn delay={100}>
             <h1 className="text-4xl md:text-6xl lg:text-[5.2rem] font-black tracking-tighter text-zinc-900 dark:text-white mb-8 leading-[0.9] selection:bg-purple-500 selection:text-white">
               WE Forge <br />
-              {/* CinematicText component with staggered word swap */}
-              <span className="text-transparent text-5xl md:text-7xl lg:text-[5.5rem] bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600">
+              <span className="text-[#faa200] text-5xl md:text-7xl lg:text-[5.5rem]">
                 DOMINANCE.
               </span>
             </h1>
@@ -1016,7 +521,7 @@ const Hero = () => {
           {/* Description - Enhanced Visibility */}
           <FadeIn delay={200}>
             <div className="relative mb-12 max-w-lg mx-auto lg:mx-0">
-              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-0 lg:opacity-100 shadow-lg" />
+              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-[#faa200] rounded opacity-0 lg:opacity-100 shadow-lg" />
               <p className="text-lg md:text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed font-medium lg:pl-4">
                 We craft digital experiences that turn visitors into customers,
                 and customers into raving fans. From Mumbai to Mangalore, Delhi
@@ -1033,21 +538,21 @@ const Hero = () => {
           <FadeIn delay={300}>
             <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
               {/* Start Project */}
-              <button
-                onClick={() => console.log("Audit")}
+              <a
+                href="#contact"
                 className="
-        group relative px-6 py-3 rounded-xl
+        group relative px-6 py-3 rounded-lg
         text-sm font-medium
-        bg-gradient-to-br from-blue-600 to-purple-600
-        text-white shadow-md shadow-blue-500/30
-        hover:shadow-purple-500/40
+        bg-[#faa200]
+        text-[#222222] shadow-md
+        hover:bg-[#f79f47]
         transition-all duration-300
         overflow-hidden
-        dark:from-blue-500 dark:to-purple-500
+        inline-block
       "
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Start Project
+                  Request a Call
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </span>
 
@@ -1058,19 +563,19 @@ const Hero = () => {
           group-hover:opacity-100 blur-md transition-all duration-500
         "
                 />
-              </button>
+              </a>
 
               {/* View Live Systems */}
               <button
                 onClick={() => console.log("Work")}
                 className="
-        group relative px-6 py-3 rounded-xl
+        group relative px-6 py-3 rounded-lg
         text-sm font-medium
-        border border-black/10 dark:border-white/15
-        bg-white text-black
-        dark:bg-neutral-900 dark:text-white
+        border border-[#222222]/20 dark:border-[#fcf7ef]/20
+        bg-transparent text-[#222222]
+        dark:bg-transparent dark:text-[#fcf7ef]
         shadow-sm
-        hover:bg-black/5 dark:hover:bg-white/10
+        hover:bg-[#fde9c4] dark:hover:bg-[#222222]
         transition-all duration-300
       "
               >
@@ -1096,13 +601,13 @@ const Hero = () => {
           <FadeIn delay={400}>
             <div className="mt-12 pt-5 border-zinc-200 dark:border-zinc-800 flex items-center justify-center lg:justify-start gap-12 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
               <div className="group cursor-default">
-                <span className="block text-2xl text-zinc-900 dark:text-white mb-1 group-hover:text-blue-500 transition-colors">
+                <span className="block text-2xl text-[#222222] dark:text-[#fcf7ef] mb-1 group-hover:text-[#faa200] transition-colors">
                   50+
                 </span>
                 Active Systems
               </div>
               <div className="group cursor-default">
-                <span className="block text-2xl text-zinc-900 dark:text-white mb-1 group-hover:text-purple-500 transition-colors">
+                <span className="block text-2xl text-[#222222] dark:text-[#fcf7ef] mb-1 group-hover:text-[#faa200] transition-colors">
                   98%
                 </span>
                 Retention Rate
@@ -1113,18 +618,6 @@ const Hero = () => {
 
         {/* Right Side: Visual Data Orb (Refined) */}
         <div className="relative h-[600px] hidden lg:flex items-center justify-center perspective-1000">
-          {/* The Orb Container */}
-          <div className="relative w-[550px] h-[550px] flex items-center justify-center select-none">
-            {/* Rotating Rings */}
-            <div className="absolute w-full h-full rounded-full border border-zinc-100 dark:border-white/5 animate-spin-ultra-slow" />
-            <div className="absolute w-[80%] h-[80%] rounded-full border border-zinc-200 dark:border-white/10 border-dashed animate-spin-reverse-slow" />
-            <div className="absolute w-[60%] h-[60%] rounded-full border border-blue-300/10 animate-spin-slow" />
-
-            {/* Floating Tech Nodes */}
-
-            {/* Central Core Gradient */}
-          </div>
-
           <div className="relative h-[500px] hidden lg:flex items-center justify-center perspective-1000">
             {/* Simulated 3D Network */}
             <motion.div
@@ -1180,9 +673,9 @@ const Hero = () => {
               </motion.div>
 
               {/* Central Core */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full blur-xl opacity-50 animate-pulse" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center shadow-2xl z-10">
-                <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#faa200] rounded-full blur-xl opacity-30 animate-pulse" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-[#fcf7ef] dark:bg-[#222222] rounded-full flex items-center justify-center shadow-2xl z-10">
+                <span className="text-2xl font-black text-[#faa200]">
                   Z
                 </span>
               </div>
@@ -1200,133 +693,9 @@ type Theme = {
   text: string;
 };
 
-const InteractiveDashboard = () => {
-  const [theme, setTheme] = useState<Theme>(themes.pink);
-
-  return (
-    <section className="w-full py-10 flex flex-col items-center gap-6">
-      {/* Color Buttons */}
-      <div className="flex flex-wrap justify-center gap-3">
-        {Object.keys(themes).map((key) => (
-          <button
-            key={key}
-            onClick={() => setTheme(themes[key])}
-            className="px-4 py-1.5 rounded-lg text-xs font-semibold border border-white/10 hover:scale-105 active:scale-95 transition"
-            style={{ color: themes[key].text }}
-          >
-            {key.toUpperCase()}
-          </button>
-        ))}
-      </div>
-
-      {/* Dashboard Container */}
-      <div className="perspective-1000 h-[400px] md:h-[500px] flex items-center justify-center w-full px-4">
-        <TiltCard className="w-full max-w-lg aspect-[4/3] relative group">
-          {/* Outer Glow */}
-          <div
-            className="absolute inset-0 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-all"
-            style={{
-              background: `linear-gradient(to bottom right, ${theme.from}, ${theme.to})`,
-            }}
-          />
-
-          {/* Main Card */}
-          <div className="relative h-full bg-white dark:bg-[#0a0a12] border border-slate-200 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col">
-            {/* Browser Header */}
-            <div className="h-12 border-b border-slate-100 dark:border-white/5 flex items-center px-4 gap-2 bg-slate-50/50 dark:bg-white/5">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-400" />
-                <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                <div className="w-3 h-3 rounded-full bg-green-400" />
-              </div>
-              <div className="ml-4 px-3 py-1 rounded-md bg-white dark:bg-white/5 text-[10px] font-mono opacity-50 w-full max-w-[200px]">
-                Avioni.agency/dashboard
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-4 md:p-6 flex-1 relative">
-              {/* Live Badge */}
-              <div className="absolute top-0 right-0 p-4 z-10">
-                <div
-                  className="px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"
-                  style={{ background: `${theme.text}20`, color: theme.text }}
-                >
-                  <div
-                    className="w-1.5 h-1.5 rounded-full animate-pulse"
-                    style={{ background: theme.text }}
-                  />
-                  Live
-                </div>
-              </div>
-
-              <div className="space-y-5">
-                {/* Revenue */}
-                <div className="flex items-end gap-4">
-                  <div>
-                    <p className="text-sm text-slate-500">Total Revenue</p>
-                    <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-                      $124,500
-                    </h3>
-                  </div>
-                  <span
-                    className="text-sm font-bold pb-1"
-                    style={{ color: theme.text }}
-                  >
-                    +24.5%
-                  </span>
-                </div>
-
-                {/* Graph */}
-                <div className="h-28 md:h-32 flex items-end gap-2">
-                  {[40, 70, 45, 90, 65, 85, 50].map((h, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ height: 0 }}
-                      animate={{ height: `${h}%` }}
-                      transition={{
-                        delay: 0.4 + i * 0.1,
-                        duration: 0.8,
-                        type: "spring",
-                      }}
-                      whileHover={{
-                        scale: 1.1,
-                        opacity: 1,
-                      }}
-                      className="flex-1 rounded-t-md opacity-80 cursor-pointer transition"
-                      style={{
-                        background: `linear-gradient(to top, ${theme.from}, ${theme.to})`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Cards */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
-                    <Activity style={{ color: theme.text }} className="mb-2" />
-                    <div className="text-lg font-bold">Active Users</div>
-                    <div className="text-sm opacity-50">1,234 online</div>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
-                    <Globe style={{ color: theme.text }} className="mb-2" />
-                    <div className="text-lg font-bold">Global Reach</div>
-                    <div className="text-sm opacity-50">12 Countries</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </TiltCard>
-      </div>
-    </section>
-  );
-};
-
 const MarqueeSection = () => {
   return (
-    <div className="py-12 border-y border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-[#050509] overflow-hidden">
+    <div className="py-12 border-y border-[#fde9c4] dark:border-[#222222] bg-[#fde9c4]/50 dark:bg-[#222222] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
         {/* <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
           Trusted by Startups
@@ -1342,10 +711,10 @@ const MarqueeSection = () => {
             (brand, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500/50 transition-colors min-w-[160px] justify-center"
+                className="flex items-center gap-3 px-6 py-3 rounded-lg border border-[#fed382] dark:border-[#f79f47] bg-[#fcf7ef] dark:bg-[#1a1a1a] hover:border-[#faa200] transition-colors min-w-[160px] justify-center"
               >
-                <brand.icon className="w-5 h-5 text-slate-400" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">
+                <brand.icon className="w-5 h-5 text-[#f79f47]" />
+                <span className="font-bold text-[#222222] dark:text-[#fcf7ef]">
                   {brand.name}
                 </span>
               </div>
@@ -1353,15 +722,15 @@ const MarqueeSection = () => {
           )}
         </motion.div>
         {/* Fade Edges */}
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-50 dark:from-[#050509] to-transparent z-10" />
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-50 dark:from-[#050509] to-transparent z-10" />
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#fde9c4] dark:from-[#222222] to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#fde9c4] dark:from-[#222222] to-transparent z-10" />
       </div>
     </div>
   );
 };
 
 const Services = () => (
-  <section id="services" className="py-32 bg-white dark:bg-[#030014]">
+  <section id="services" className="py-32 bg-[#fcf7ef] dark:bg-[#1a1a1a]">
     <SectionHeading subtitle="We don't just build websites. We build revenue engines.">
       Our Expertise
     </SectionHeading>
@@ -1373,26 +742,16 @@ const Services = () => (
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`${service.span} group relative overflow-hidden rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-8 md:p-10 transition-all hover:shadow-2xl hover:shadow-blue-500/10`}
+          className={`${service.span} group relative overflow-hidden rounded-lg bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] p-8 md:p-10 transition-all hover:shadow-xl`}
         >
-          <div
-            className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 blur-[80px] transition-opacity duration-500`}
-          />
-
-          <div
-            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg mb-8 group-hover:scale-110 transition-transform duration-300`}
-          >
-            <service.icon size={32} />
-          </div>
-
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#222222] dark:text-[#fcf7ef] mb-4">
             {service.title}
           </h3>
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+          <p className="text-lg text-[#222222]/80 dark:text-[#fcf7ef]/80 mb-8 leading-relaxed">
             {service.desc}
           </p>
           <Link href="/service">
-            <div className="flex items-center gap-2 font-bold text-blue-600 dark:text-blue-400 group-hover:gap-4 transition-all">
+            <div className="flex items-center gap-2 font-bold text-[#faa200] group-hover:gap-4 transition-all">
               Explore Service <ArrowRight size={20} />
             </div>
           </Link>
@@ -1403,21 +762,18 @@ const Services = () => (
 );
 
 const VideoProduction = () => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
   return (
-    <section className="py-24 transition-colors bg-white dark:bg-black text-black dark:text-white">
+    <section className="py-24 transition-colors bg-[#fcf7ef] dark:bg-[#1a1a1a] text-[#222222] dark:text-[#fcf7ef]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
             Featured{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-400 dark:to-pink-300">
+            <span className="text-[#faa200]">
               Showreel
             </span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mt-4 text-lg">
+          <p className="text-[#222222]/80 dark:text-[#fcf7ef]/80 max-w-2xl mx-auto mt-4 text-lg">
             A cinematic experience featuring brand films, motion graphics and
             scroll-stopping visual storytelling.
           </p>
@@ -1427,13 +783,13 @@ const VideoProduction = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
           {/* Main Reel */}
           <motion.div
-            className="lg:col-span-3 rounded-3xl overflow-hidden shadow-xl relative group"
+            className="lg:col-span-3 rounded-lg overflow-hidden shadow-xl relative group"
             whileHover={{ scale: 1.015 }}
             transition={{ type: "spring", stiffness: 200 }}
           >
-            <div className="relative aspect-video rounded-3xl overflow-hidden">
+            <div className="relative aspect-video rounded-lg overflow-hidden">
               <iframe
-                className="absolute inset-0 w-full h-full rounded-3xl"
+                className="absolute inset-0 w-full h-full rounded-lg"
                 src="https://www.youtube.com/embed/ieSo-WK4DhY?rel=0&modestbranding=1"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               />
@@ -1463,11 +819,11 @@ const VideoProduction = () => {
                 key={i}
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", damping: 18 }}
-                className="rounded-3xl shadow-lg overflow-hidden relative group"
+                className="rounded-lg shadow-lg overflow-hidden relative group"
               >
-                <div className="relative aspect-video rounded-3xl">
+                <div className="relative aspect-video rounded-lg">
                   <iframe
-                    className="absolute inset-0 w-full h-full rounded-3xl"
+                    className="absolute inset-0 w-full h-full rounded-lg"
                     src={link}
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   />
@@ -1487,10 +843,10 @@ const VideoProduction = () => {
             rel="noreferrer"
             href="https://www.youtube.com/channel/UCsSPdeATMbLkPXeN2Jah8nQ"
             className="
-          inline-flex items-center gap-2 px-7 py-3 rounded-full text-base font-semibold
-          bg-gradient-to-r from-purple-600 to-pink-500 
-          dark:from-purple-500 dark:to-pink-400
-          text-white shadow-lg shadow-purple-500/30 hover:shadow-pink-500/40
+          inline-flex items-center gap-2 px-7 py-3 rounded-lg text-base font-semibold
+          bg-[#faa200]
+          text-[#222222] shadow-lg
+          hover:bg-[#f79f47]
           transition-all hover:scale-[1.05]"
           >
             Visit Channel →
@@ -1501,62 +857,8 @@ const VideoProduction = () => {
   );
 };
 
-const WhyChooseUs = () => (
-  <section
-    id="why-us"
-    className="py-32 bg-slate-50 dark:bg-[#050509] relative overflow-hidden"
-  >
-    <div className="max-w-7xl mx-auto px-6 relative z-10">
-      <SectionHeading subtitle="Why businesses in Ranchi & beyond trust Avioni.">
-        The Avioni Advantage
-      </SectionHeading>
-
-      <div className="grid lg:grid-cols-3 gap-8">
-        {WHY_US.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-white dark:bg-[#0a0a12] p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl shadow-slate-200/50 dark:shadow-none"
-          >
-            <item.icon size={40} className="text-blue-600 mb-6" />
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-              {item.title}
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Trust Badge */}
-      <div className="mt-20 p-8 rounded-3xl bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center relative overflow-hidden">
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8">
-          <div className="text-left">
-            <p className="text-blue-200 font-bold uppercase tracking-wide text-xs mb-1">
-              Local Support
-            </p>
-            <p className="text-2xl font-bold flex items-center gap-2">
-              <Phone size={20} /> {PHONE_NUMBER}
-            </p>
-          </div>
-          <div className="h-12 w-px bg-white/20 hidden md:block" />
-          <div className="text-left">
-            <p className="text-blue-200 font-bold uppercase tracking-wide text-xs mb-1">
-              Location
-            </p>
-            <p className="text-xl font-bold">{ADDRESS}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
 const Portfolio = () => (
-  <section id="work" className="py-32 bg-white dark:bg-[#030014]">
+  <section id="work" className="py-32 bg-[#fcf7ef] dark:bg-[#1a1a1a]">
     <SectionHeading subtitle="Real projects. Real impact. Real results.">
       Selected Works
     </SectionHeading>
@@ -1575,7 +877,7 @@ const Portfolio = () => (
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer ${
+            className={`relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl cursor-pointer ${
               i % 2 === 1 ? "lg:order-2" : ""
             }`}
           >
@@ -1590,7 +892,6 @@ const Portfolio = () => (
               className="absolute inset-0 w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
             />
 
-
             <div className="absolute bottom-8 left-8 z-20">
               <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-bold inline-block mb-2">
                 {project.cat}
@@ -1600,10 +901,10 @@ const Portfolio = () => (
 
           {/* Text Side */}
           <div className={`${i % 2 === 1 ? "lg:order-1 lg:text-right" : ""}`}>
-            <h3 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h3 className="text-4xl font-bold text-[#222222] dark:text-[#fcf7ef] mb-4">
               {project.title}
             </h3>
-            <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+            <p className="text-lg text-[#222222]/80 dark:text-[#fcf7ef]/80 mb-8 leading-relaxed">
               {project.description}
             </p>
 
@@ -1615,7 +916,7 @@ const Portfolio = () => (
               {project.technologies.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-md bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 text-sm font-medium"
+                  className="px-3 py-1 rounded bg-[#fed382] dark:bg-[#f79f47] text-[#222222] dark:text-[#222222] text-sm font-medium"
                 >
                   {tag}
                 </span>
@@ -1637,197 +938,6 @@ const Portfolio = () => (
     </div>
   </section>
 );
-
-const ReasonsSection = () => {
-  return (
-    <section
-      id="why-us"
-      className="py-24 md:py-32 bg-white dark:bg-slate-800 transition-colors duration-500"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-6xl font-extrabold leading-tight text-slate-900 dark:text-white">
-            Why Trust{" "}
-            <span className="text-blue-500">The Avioni Difference?</span>
-          </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mt-4 max-w-3xl mx-auto">
-            Our value proposition is built on three non-negotiable pillars:
-            Creativity, Rigor, and Partnership. We are not a vendor; we are your
-            growth engine.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {REASONS.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <ValueCard3D item={item} />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// --- Client Reviews Section (The Continuous Flow) ---
-const ReviewsSection = () => {
-  // Duplicate reviews to create continuous loop effect
-  const reviewLoop = useMemo(() => [...REVIEWS, ...REVIEWS, ...REVIEWS], []);
-
-  return (
-    <section
-      id="reviews"
-      className="
-    relative
-    py-28 md:py-36
-    bg-slate-100 
-    dark:bg-[#050509]
-    transition-colors duration-500
-  "
-    >
-      {/* TOP GRADIENT FADE */}
-      <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-white dark:from-[#030014] to-transparent pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <h2
-            className="
-          text-5xl md:text-6xl font-extrabold leading-tight
-          text-slate-900 dark:text-white
-        "
-          >
-            Voices of <span className="text-purple-500">Impact</span>.
-          </h2>
-
-          <p
-            className="
-          text-lg md:text-xl 
-          text-slate-600 dark:text-slate-400 
-          mt-4 max-w-3xl mx-auto leading-relaxed
-        "
-          >
-            Real words from real clients — reflecting the clarity, precision,
-            and performance we deliver consistently.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* SCROLLER */}
-      <div
-        className="
-      relative w-full overflow-hidden whitespace-nowrap 
-      [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]
-      dark:[mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]
-      z-10
-    "
-      >
-        <motion.div
-          className="inline-flex w-fit"
-          animate={{ x: ["0%", "-33.33%"] }}
-          transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-        >
-          {reviewLoop.map((review, index) => (
-            <div
-              key={index}
-              className="
-            w-[250px] sm:w-[280px] md:w-[320px]
-            inline-block p-3 flex-shrink-0
-          "
-            >
-              <div
-                className="
-              relative rounded-2xl p-6 h-full flex flex-col justify-between
-              bg-white dark:bg-[#0a0a12]/95
-              border border-slate-200 dark:border-white/10
-
-              shadow-[0_4px_18px_-4px_rgba(0,0,0,0.12)]
-              dark:shadow-[0_8px_32px_-6px_rgba(0,0,0,0.55)]
-
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)]
-              dark:hover:shadow-[0_14px_40px_-6px_rgba(0,0,0,0.75)]
-              hover:border-purple-400/40
-              overflow-hidden
-            "
-              >
-                <div className="mb-4 opacity-70">
-                  <svg
-                    width="26"
-                    height="26"
-                    fill="currentColor"
-                    className="text-purple-500 dark:text-purple-400"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M7 5C4.24 5 2 7.24 2 10v6c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4h2V9c0-2.21-1.79-4-4-4zm10 0c-2.76 0-5 2.24-5 5v6c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-4h2V9c0-2.21-1.79-4-4-4z" />
-                  </svg>
-                </div>
-
-                <p
-                  className="
-                text-[15px] leading-relaxed 
-                text-slate-700 dark:text-zinc-300
-                mb-6 break-words whitespace-pre-wrap
-              "
-                >
-                  “{review.quote}”
-                </p>
-
-                <div className="pt-2 mt-auto">
-                  <p className="font-semibold text-slate-900 dark:text-white break-words">
-                    {review.name}
-                  </p>
-
-                  {review.title && (
-                    <p className="text-xs text-purple-600 dark:text-purple-400 mt-1 break-words">
-                      {review.title}
-                    </p>
-                  )}
-                </div>
-
-                <div
-                  className="
-                absolute inset-0 rounded-2xl pointer-events-none opacity-0
-                bg-gradient-to-tr from-purple-500/10 to-blue-500/10
-                dark:from-purple-600/10 dark:to-blue-600/10
-                transition-opacity duration-500 hover:opacity-100
-              "
-                />
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* BOTTOM GRADIENT FADE */}
-      <div
-        className="
-      pointer-events-none
-      absolute bottom-0 left-0 w-full h-20
-      bg-gradient-to-t from-slate-50 dark:from-[#0f0f14] to-transparent
-    "
-      />
-    </section>
-  );
-};
 
 const servicesList = [
   "Website Development",
@@ -1935,7 +1045,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-slate-50 dark:bg-[#050509]">
+    <section id="contact" className="py-32 bg-[#fde9c4] dark:bg-[#222222]">
       {popup.show && (
         <Popup
           title={popup.title}
@@ -1948,36 +1058,36 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
         {/* LEFT SIDE */}
         <div>
-          <h2 className="text-5xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-5xl font-bold text-[#222222] dark:text-[#fcf7ef] mb-6">
             Ready to Scale? <br />
-            <span className="text-blue-600">Let&apos;s Talk.</span>
+            <span className="text-[#faa200]">Request a Call Back.</span>
           </h2>
 
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
+          <p className="text-xl text-[#222222]/80 dark:text-[#fcf7ef]/80 mb-12">
             Whether you need a new website, a mobile app, or a digital marketing
             strategy, we are here to help.
           </p>
 
           <div className="space-y-6 mb-12">
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47]">
+              <div className="w-12 h-12 rounded-full bg-[#faa200] flex items-center justify-center text-[#222222]">
                 <Phone />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Call Us (Ranchi HQ)</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">
+                <p className="text-sm text-[#222222]/60 dark:text-[#fcf7ef]/60">Call Us (Ranchi HQ)</p>
+                <p className="text-lg font-bold text-[#222222] dark:text-[#fcf7ef]">
                   +91 98765 43210
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-              <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
+            <div className="flex items-center gap-4 p-4 rounded-lg bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47]">
+              <div className="w-12 h-12 rounded-full bg-[#f79f47] flex items-center justify-center text-[#222222]">
                 <Mail />
               </div>
               <div>
-                <p className="text-sm text-slate-500">Email Us</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">
+                <p className="text-sm text-[#222222]/60 dark:text-[#fcf7ef]/60">Email Us</p>
+                <p className="text-lg font-bold text-[#222222] dark:text-[#fcf7ef]">
                   hello@agency.com
                 </p>
               </div>
@@ -1986,32 +1096,23 @@ const Contact = () => {
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="bg-white dark:bg-[#0a0a12] p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/10">
+        <div className="bg-[#fcf7ef] dark:bg-[#1a1a1a] p-8 md:p-10 rounded-lg shadow-2xl border border-[#fed382] dark:border-[#f79f47]">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Name Inputs */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <InputField
-                label="First Name"
-                name="firstName"
-                placeholder="John"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                required
-              />
-              <InputField
-                label="Last Name"
-                name="lastName"
-                placeholder="Doe"
-                value={formData.lastName}
-                onChange={handleInputChange}
-              />
-            </div>
+            <InputField
+              label="Name"
+              name="firstName"
+              placeholder="Rohit"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
+            />
 
             <InputField
               label="Email Address"
               name="email"
               type="email"
-              placeholder="john@company.com"
+              placeholder="rohit@company.com"
               value={formData.email}
               onChange={handleInputChange}
               required
@@ -2027,7 +1128,7 @@ const Contact = () => {
 
             {/* SERVICES DROPDOWN — FULL, UNTOUCHED */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              <label className="text-sm font-medium text-[#222222] dark:text-[#fcf7ef]">
                 Services You Need
               </label>
 
@@ -2035,9 +1136,9 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={() => setOpen(!open)}
-                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-left text-sm flex justify-between items-center"
+                  className="w-full px-4 py-3 rounded-lg bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] text-left text-sm flex justify-between items-center"
                 >
-                  <span className="text-slate-700 dark:text-slate-300">
+                  <span className="text-[#222222] dark:text-[#fcf7ef]">
                     {selected.length > 0
                       ? selected.join(", ")
                       : "Select services..."}
@@ -2062,11 +1163,11 @@ const Contact = () => {
                 </button>
 
                 {open && (
-                  <div className="absolute z-20 mt-2 w-full bg-white dark:bg-[#0a0a12] border border-slate-200 dark:border-white/10 rounded-xl shadow-lg p-3 space-y-2">
+                  <div className="absolute z-20 mt-2 w-full bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47] rounded-lg shadow-lg p-3 space-y-2">
                     {servicesList.map((service) => (
                       <label
                         key={service}
-                        className="flex items-center gap-3 cursor-pointer px-2 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10"
+                        className="flex items-center gap-3 cursor-pointer px-2 py-2 rounded hover:bg-[#fde9c4] dark:hover:bg-[#222222]"
                       >
                         <input
                           type="checkbox"
@@ -2075,7 +1176,7 @@ const Contact = () => {
                           onChange={() => handleSelect(service)}
                           className="h-4 w-4"
                         />
-                        <span className="text-sm text-slate-700 dark:text-slate-300">
+                        <span className="text-sm text-[#222222] dark:text-[#fcf7ef]">
                           {service}
                         </span>
                       </label>
@@ -2085,7 +1186,7 @@ const Contact = () => {
                       <input
                         type="text"
                         placeholder="Specify your service..."
-                        className="w-full px-3 py-2 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm text-slate-700 dark:text-slate-300 outline-none"
+                        className="w-full px-3 py-2 rounded bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] text-sm text-[#222222] dark:text-[#fcf7ef] outline-none"
                         value={otherService}
                         onChange={(e) => setOtherService(e.target.value)}
                       />
@@ -2103,14 +1204,14 @@ const Contact = () => {
               value={formData.message}
               onChange={handleInputChange}
               required
-              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder:text-slate-400 resize-none outline-none"
+              className="w-full px-4 py-3 rounded-lg bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] text-[#222222] dark:text-[#fcf7ef] placeholder:text-[#222222]/60 dark:placeholder:text-[#fcf7ef]/60 resize-none outline-none"
             />
 
             <MagneticButton
               className="w-full py-4 text-lg"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? "Sending..." : "Request Call Back"}
             </MagneticButton>
           </form>
         </div>
@@ -2121,7 +1222,7 @@ const Contact = () => {
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#030014] text-slate-900 dark:text-slate-100 font-sans selection:bg-blue-500/30 transition-colors duration-500 overflow-x-hidden">
+    <div className="min-h-screen bg-[#fcf7ef] dark:bg-[#1a1a1a] text-[#222222] dark:text-[#fcf7ef] font-sans selection:bg-[#faa200]/30 transition-colors duration-500 overflow-x-hidden">
       <style>{`
           /* Rotational Animations for the Orb */
           @keyframes spin-ultra-slow {
@@ -2206,15 +1307,10 @@ const App = () => {
 
       <main>
         <Hero />
-        {/* <InteractiveDashboard /> */}
         <MarqueeSection />
-        <HomeAbout />
-        <WhyChooseUs />
         <Services />
-        <ReasonsSection />
         <VideoProduction />
         <Portfolio />
-        <ReviewsSection />
         <Contact />
       </main>
 

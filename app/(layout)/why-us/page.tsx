@@ -339,8 +339,8 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen transition-colors duration-500 selection:bg-cyan-500 selection:text-black bg-white dark:bg-black">
-      <div className="text-zinc-900 dark:text-zinc-100 font-sans overflow-x-hidden">
+    <div className="min-h-screen transition-colors duration-500 selection:bg-[#faa200] selection:text-[#222222] bg-[#fcf7ef] dark:bg-[#1a1a1a]">
+      <div className="text-[#222222] dark:text-[#fcf7ef] font-sans overflow-x-hidden">
         {/* Shared Navbar */}
         <Navbar />
 
@@ -348,11 +348,11 @@ export default function App() {
           {/* --- SECTION 1: HERO (Vibrant & Clean) --- */}
           <section className="px-6 mb-32 max-w-7xl mx-auto min-h-[70vh] flex flex-col justify-center relative">
             {/* Ambient Background Glow - CSS Only, No heavy SVG filters */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] -z-10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#faa200]/20 rounded-full blur-[120px] -z-10" />
 
             <FadeIn>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-widest mb-6">
-                <span className="w-2 h-2 rounded-full bg-purple-500 animate-ping" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#faa200]/30 bg-[#faa200]/10 text-[#faa200] text-xs font-bold uppercase tracking-widest mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#faa200] animate-ping" />
                 System Online
               </div>
             </FadeIn>
@@ -360,7 +360,7 @@ export default function App() {
             <FadeIn delay={100}>
               <h1 className="text-5xl md:text-7xl lg:text-[9rem] font-black tracking-tighter leading-[0.85] mb-8">
                 DIGITAL <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 animate-gradient-x">
+                <span className="text-[#faa200]">
                   ALCHEMY.
                 </span>
               </h1>
@@ -371,18 +371,18 @@ export default function App() {
                 <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed md:border-l-4 md:border-zinc-800 md:pl-6">
                   We transmute code into revenue. Zora is the agency that
                   bridges the gap between{" "}
-                  <span className="text-cyan-500 font-bold">
+                  <span className="text-[#faa200] font-bold">
                     obsessive engineering
                   </span>{" "}
                   and{" "}
-                  <span className="text-pink-500 font-bold">human emotion</span>
+                  <span className="text-[#f79f47] font-bold">human emotion</span>
                   .
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={300} className="mt-12 flex flex-wrap gap-6">
-              <button className="px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+              <button className="px-8 py-4 bg-[#faa200] text-[#222222] rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
                 Inititate Project <ArrowRight size={20} />
               </button>
               <div className="flex items-center gap-4 px-6 py-4 rounded-full border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm">
@@ -390,7 +390,7 @@ export default function App() {
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="w-8 h-8 rounded-full bg-zinc-300 dark:bg-zinc-700 border-2 border-white dark:border-black"
+                      className="w-8 h-8 rounded-full bg-[#fed382] dark:bg-[#f79f47] border-2 border-[#fcf7ef] dark:border-[#1a1a1a]"
                     />
                   ))}
                 </div>
@@ -402,17 +402,17 @@ export default function App() {
           </section>
 
           {/* --- SECTION 2: THE PROBLEM (Stark Contrast) --- */}
-          <section className="bg-zinc-100 dark:bg-zinc-900 py-24 px-6 border-y border-zinc-200 dark:border-zinc-800 overflow-hidden">
+          <section className="bg-[#fde9c4] dark:bg-[#222222] py-24 px-6 border-y border-[#fed382] dark:border-[#f79f47] overflow-hidden">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative">
               {/* Decorative Elements */}
-              <div className="absolute -right-20 top-0 text-[20rem] font-black text-zinc-200 dark:text-zinc-800 opacity-20 pointer-events-none select-none">
+              <div className="absolute -right-20 top-0 text-[20rem] font-black text-[#fed382] dark:text-[#f79f47] opacity-20 pointer-events-none select-none">
                 ?
               </div>
 
               <FadeIn>
                 <h2 className="text-4xl md:text-6xl font-black uppercase leading-[0.9]">
                   Most Websites <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-zinc-600 dark:from-zinc-600 dark:to-zinc-400">
+                  <span className="text-[#222222]/60 dark:text-[#fcf7ef]/60">
                     Feel Like
                   </span>{" "}
                   <br />
@@ -420,28 +420,28 @@ export default function App() {
                 </h2>
               </FadeIn>
               <FadeIn delay={200} className="space-y-8 z-10">
-                <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 transition-colors shadow-lg">
+                <div className="group p-6 rounded-2xl bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47] hover:border-[#faa200] transition-colors shadow-lg">
                   <div className="flex gap-4 mb-4">
-                    <div className="p-3 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-xl">
+                    <div className="p-3 bg-[#faa200]/10 text-[#faa200] rounded-xl">
                       <Fingerprint />
                     </div>
                     <h4 className="text-xl font-bold">
                       The &quot;Zombie&quot; Template
                     </h4>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400 pl-14">
+                  <p className="text-[#222222]/80 dark:text-[#fcf7ef]/80 pl-14">
                     Your competitors are using the same $50 themes. It&apos;s
                     lifeless. We build custom identities that have a pulse.
                   </p>
                 </div>
-                <div className="group p-6 rounded-2xl bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-lg">
+                <div className="group p-6 rounded-2xl bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47] hover:border-[#f79f47] transition-colors shadow-lg">
                   <div className="flex gap-4 mb-4">
-                    <div className="p-3 bg-orange-100 dark:bg-orange-900/30 text-orange-500 rounded-xl">
+                    <div className="p-3 bg-[#f79f47]/10 text-[#f79f47] rounded-xl">
                       <Activity />
                     </div>
                     <h4 className="text-xl font-bold">Lag Kills Sales</h4>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400 pl-14">
+                  <p className="text-[#222222]/80 dark:text-[#fcf7ef]/80 pl-14">
                     A pretty site that loads in 3 seconds is a failed site. We
                     engineer for sub-second loads and 100/100 scores.
                   </p>
@@ -453,13 +453,13 @@ export default function App() {
           {/* --- SECTION 3: THE ARSENAL (Colorful & Interactive) --- */}
           <section id="services" className="py-32 px-6 max-w-7xl mx-auto">
             <FadeIn className="mb-20">
-              <span className="px-4 py-1 rounded-full border border-purple-500/30 text-purple-600 dark:text-purple-400 text-xs font-bold uppercase tracking-widest bg-purple-500/5">
+              <span className="px-4 py-1 rounded-full border border-[#faa200]/30 text-[#faa200] text-xs font-bold uppercase tracking-widest bg-[#faa200]/5">
                 Our Capabilities
               </span>
               <h2 className="text-5xl md:text-8xl font-black mt-6 mb-6">
                 THE ARSENAL
               </h2>
-              <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full"></div>
+              <div className="h-1 w-24 bg-[#faa200] rounded-full"></div>
             </FadeIn>
 
             <div className="flex flex-col border-t border-zinc-200 dark:border-zinc-800">
@@ -472,7 +472,7 @@ export default function App() {
           </section>
 
           {/* --- SECTION 4: THE BLUEPRINT (Grid Layout) --- */}
-          <section className="py-24 bg-black text-white relative overflow-hidden">
+          <section className="py-24 bg-[#222222] text-[#fcf7ef] relative overflow-hidden">
             {/* Vibrant Grid Background */}
             <div
               className="absolute inset-0 opacity-20"
@@ -490,7 +490,7 @@ export default function App() {
                 <h2 className="text-4xl md:text-6xl font-black mb-4">
                   THE BLUEPRINT
                 </h2>
-                <p className="text-zinc-400">How we turn chaos into order.</p>
+                <p className="text-[#fcf7ef]/80">How we turn chaos into order.</p>
               </FadeIn>
 
               <div className="grid md:grid-cols-4 gap-6">
@@ -523,7 +523,7 @@ export default function App() {
                   <FadeIn
                     key={i}
                     delay={i * 100}
-                    className="relative p-8 border border-zinc-800 bg-zinc-900/80 backdrop-blur-xl rounded-3xl hover:-translate-y-2 transition-transform duration-300 group overflow-hidden"
+                    className="relative p-8 border border-[#f79f47] bg-[#1a1a1a]/80 backdrop-blur-xl rounded-3xl hover:-translate-y-2 transition-transform duration-300 group overflow-hidden"
                   >
                     <div
                       className={`absolute top-0 right-0 p-32 bg-gradient-to-br from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-2xl translate-x-10 -translate-y-10`}
@@ -539,7 +539,7 @@ export default function App() {
                       </span>
                     </div>
                     <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed">
+                    <p className="text-[#fcf7ef]/80 text-sm leading-relaxed">
                       {step.desc}
                     </p>
                   </FadeIn>
@@ -555,22 +555,22 @@ export default function App() {
                 <FadeIn>
                   <div className="inline-flex items-center gap-2 mb-6">
                     <Heart
-                      className="text-rose-500 fill-rose-500 animate-pulse"
+                      className="text-[#faa200] fill-[#faa200] animate-pulse"
                       size={20}
                     />
-                    <span className="font-bold tracking-widest text-xs uppercase text-zinc-500">
+                    <span className="font-bold tracking-widest text-xs uppercase text-[#222222]/60 dark:text-[#fcf7ef]/60">
                       The Human Element
                     </span>
                   </div>
                   <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight">
                     We are{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">
+                    <span className="text-[#faa200]">
                       Obsessed
                     </span>
                     <br />
                     With Details.
                   </h2>
-                  <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
+                  <p className="text-lg text-[#222222]/80 dark:text-[#fcf7ef]/80 mb-8 leading-relaxed">
                     Technology is cold. We bring the heat. Zora isn&apos;t just
                     a collection of code; it&apos;s a team of perfectionists who
                     care deeply about your success. We don&apos;t hide behind
@@ -622,7 +622,7 @@ export default function App() {
                     },
                   ].map((card, i) => (
                     <FadeIn key={i} delay={i * 100}>
-                      <div className="p-8 rounded-3xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-transparent group hover:shadow-xl transition-all duration-300 relative overflow-hidden h-full">
+                      <div className="p-8 rounded-3xl bg-[#fde9c4] dark:bg-[#222222] border border-[#fed382] dark:border-[#f79f47] hover:border-[#faa200] group hover:shadow-xl transition-all duration-300 relative overflow-hidden h-full">
                         <div
                           className={`absolute inset-0 opacity-0 group-hover:opacity-10 ${card.color} transition-opacity duration-300`}
                         />
@@ -630,7 +630,7 @@ export default function App() {
                           className={`w-2 h-12 ${card.color} rounded-full mb-6`}
                         />
                         <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-                        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                        <p className="text-sm text-[#222222]/80 dark:text-[#fcf7ef]/80">
                           {card.desc}
                         </p>
                       </div>
@@ -642,9 +642,9 @@ export default function App() {
           </section>
 
           {/* --- NEW SECTION 6: VELOCITY ECOSYSTEM (Live/Authentic Data) --- */}
-          <section className="py-24 bg-zinc-950 text-white relative overflow-hidden">
+          <section className="py-24 bg-[#1a1a1a] text-[#fcf7ef] relative overflow-hidden">
             {/* Moving Background Mesh */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/40 via-zinc-950 to-zinc-950" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#faa200]/20 via-[#1a1a1a] to-[#1a1a1a]" />
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
               <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-800 pb-8">
@@ -652,12 +652,12 @@ export default function App() {
                   <h2 className="text-3xl md:text-5xl font-black mb-2">
                     VELOCITY ECOSYSTEM
                   </h2>
-                  <p className="text-indigo-400">
+                  <p className="text-[#faa200]">
                     Live metrics from our client network.
                   </p>
                 </div>
-                <div className="flex items-center gap-2 text-green-400 text-sm font-mono mt-4 md:mt-0">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <div className="flex items-center gap-2 text-[#f79f47] text-sm font-mono mt-4 md:mt-0">
+                  <div className="w-2 h-2 bg-[#f79f47] rounded-full animate-pulse" />
                   LIVE DATA FEED
                 </div>
               </div>
@@ -665,17 +665,17 @@ export default function App() {
               {/* The "Ticker" Style Cards */}
               <div className="grid md:grid-cols-3 gap-6">
                 <FadeIn delay={0}>
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                  <div className="bg-[#222222]/50 border border-[#f79f47] p-6 rounded-2xl backdrop-blur-sm">
                     <div className="flex justify-between items-start mb-8">
-                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                      <span className="text-[#fcf7ef]/60 text-xs font-bold uppercase">
                         Total Traffic Generated
                       </span>
-                      <Globe2 className="text-cyan-500" size={20} />
+                      <Globe2 className="text-[#faa200]" size={20} />
                     </div>
                     <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
                       14.2M+
                     </div>
-                    <div className="text-xs text-green-400 flex items-center gap-1">
+                    <div className="text-xs text-[#f79f47] flex items-center gap-1">
                       <MoveRight className="-rotate-45" size={12} /> +12% this
                       week
                     </div>
@@ -683,17 +683,17 @@ export default function App() {
                 </FadeIn>
 
                 <FadeIn delay={100}>
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                  <div className="bg-[#222222]/50 border border-[#f79f47] p-6 rounded-2xl backdrop-blur-sm">
                     <div className="flex justify-between items-start mb-8">
-                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                      <span className="text-[#fcf7ef]/60 text-xs font-bold uppercase">
                         Revenue Unlocked
                       </span>
-                      <BarChart className="text-purple-500" size={20} />
+                      <BarChart className="text-[#faa200]" size={20} />
                     </div>
                     <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
                       $52.8M
                     </div>
-                    <div className="text-xs text-green-400 flex items-center gap-1">
+                    <div className="text-xs text-[#f79f47] flex items-center gap-1">
                       <MoveRight className="-rotate-45" size={12} /> +8.4% vs
                       last month
                     </div>
@@ -701,17 +701,17 @@ export default function App() {
                 </FadeIn>
 
                 <FadeIn delay={200}>
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl backdrop-blur-sm">
+                  <div className="bg-[#222222]/50 border border-[#f79f47] p-6 rounded-2xl backdrop-blur-sm">
                     <div className="flex justify-between items-start mb-8">
-                      <span className="text-zinc-500 text-xs font-bold uppercase">
+                      <span className="text-[#fcf7ef]/60 text-xs font-bold uppercase">
                         Uptime Guarantee
                       </span>
-                      <Cpu className="text-pink-500" size={20} />
+                      <Cpu className="text-[#faa200]" size={20} />
                     </div>
                     <div className="text-4xl font-mono font-bold mb-2 tabular-nums">
                       99.99%
                     </div>
-                    <div className="text-xs text-zinc-500">
+                    <div className="text-xs text-[#fcf7ef]/60">
                       Zero unplanned outages
                     </div>
                   </div>
@@ -739,25 +739,25 @@ export default function App() {
 
           {/* --- CTA SECTION --- */}
           <section id="contact" className="px-6 pb-20 pt-32">
-            <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-indigo-900 via-purple-900 to-black p-12 md:p-32 text-center text-white relative overflow-hidden group shadow-2xl shadow-purple-900/20">
+            <div className="max-w-7xl mx-auto rounded-[3rem] bg-gradient-to-br from-[#faa200] via-[#f79f47] to-[#222222] p-12 md:p-32 text-center text-[#222222] relative overflow-hidden group shadow-2xl shadow-[#faa200]/20">
               {/* Decorative Circles */}
-              <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-500 rounded-full blur-[150px] opacity-30 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full blur-[150px] opacity-30 translate-x-1/2 translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
+              <div className="absolute top-0 left-0 w-96 h-96 bg-[#fed382] rounded-full blur-[150px] opacity-30 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
+              <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f79f47] rounded-full blur-[150px] opacity-30 translate-x-1/2 translate-y-1/2 group-hover:opacity-50 transition-opacity duration-700"></div>
 
               <div className="relative z-10">
                 <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-8">
                   READY TO{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-white">
+                  <span className="text-[#fcf7ef]">
                     ASCEND?
                   </span>
                 </h2>
-                <p className="text-xl md:text-2xl text-indigo-200 mb-12 max-w-2xl mx-auto">
+                <p className="text-xl md:text-2xl text-[#222222]/80 mb-12 max-w-2xl mx-auto">
                   Your competition isn&apos;t waiting. Neither should you.
                 </p>
 
-                <button className="group relative inline-flex items-center gap-4 px-12 py-6 bg-white text-black rounded-full font-black text-xl hover:scale-105 transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.6)]">
+                <button className="group relative inline-flex items-center gap-4 px-12 py-6 bg-[#fcf7ef] text-[#222222] rounded-full font-black text-xl hover:scale-105 transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(252,247,239,0.6)]">
                   Book Strategy Call
-                  <div className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
+                  <div className="w-8 h-8 bg-[#222222] text-[#fcf7ef] rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
                     <ArrowRight size={16} />
                   </div>
                 </button>
