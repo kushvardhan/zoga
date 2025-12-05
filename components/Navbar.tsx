@@ -19,6 +19,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const SERVICES = [
   {
@@ -114,6 +115,12 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
+            <Link
+              className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              href="/" 
+            >
+             Home 
+            </Link>
             <div
               className="relative h-full flex items-center"
               onMouseEnter={() => setActiveDropdown("services")}
@@ -229,7 +236,7 @@ export default function Navbar() {
 
             {/* Mobile links */}
             <div className="flex flex-col gap-6 text-3xl font-bold text-slate-900 dark:text-white">
-              {["service", "work", "about", "contact"].map((item, index) => (
+              {["about","service", "work","why-us" ,"contact"].map((item, index) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: 20 }}
@@ -250,7 +257,7 @@ export default function Navbar() {
 
             <div className="mt-auto">
               <MagneticButton className="w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-lg">
-                Let&apos;s Talk
+                <Link href='/contact'>Let&apos;s Talk</Link>
               </MagneticButton>
             </div>
           </motion.div>
