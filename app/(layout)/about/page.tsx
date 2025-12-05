@@ -435,7 +435,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
   return (
     <div
       ref={containerRef}
-      className="pb-24 overflow-hidden bg-zinc-50 dark:bg-black transition-colors duration-700"
+      className="pb-24 overflow-hidden bg-[#fcf7ef] dark:bg-[#1a1a1a] transition-colors duration-700"
     >
       {/* Background Noise Texture */}
       <div
@@ -488,7 +488,7 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                 BEYOND
               </motion.span>
             </span>
-            <span className="block overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500">
+            <span className="block overflow-hidden text-[#faa200]">
               <motion.span
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -507,12 +507,12 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
           <FadeIn delay={0.3}>
             <p className="max-w-3xl mx-auto text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
               We are the architects of the new internet. Merging
-              <span className="font-bold text-zinc-900 dark:text-white">
+              <span className="font-bold text-[#222222] dark:text-[#fcf7ef]">
                 {" "}
                 chaotic art{" "}
               </span>
               with
-              <span className="font-bold text-zinc-900 dark:text-white">
+              <span className="font-bold text-[#222222] dark:text-[#fcf7ef]">
                 {" "}
                 disciplined engineering{" "}
               </span>
@@ -537,11 +537,11 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
             },
           ].map((item, i) => (
             <FadeIn key={i} delay={i * 0.1}>
-              <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center border-l-4 border-purple-500 pl-8 md:pl-12 hover:pl-16 transition-all duration-500 cursor-none">
-                <h3 className="text-5xl md:text-7xl font-black text-zinc-900 dark:text-white w-full md:w-1/2 leading-[0.9] tracking-tight">
+              <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center border-l-4 border-[#faa200] pl-8 md:pl-12 hover:pl-16 transition-all duration-500 cursor-none">
+                <h3 className="text-5xl md:text-7xl font-black text-[#222222] dark:text-[#fcf7ef] w-full md:w-1/2 leading-[0.9] tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-lg md:text-2xl text-zinc-600 dark:text-zinc-400 w-full md:w-1/2 leading-relaxed font-light">
+                <p className="text-lg md:text-2xl text-[#222222]/80 dark:text-[#fcf7ef]/80 w-full md:w-1/2 leading-relaxed font-light">
                   {item.text}
                 </p>
               </div>
@@ -551,17 +551,17 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
       </section>
 
       {/* --- NEW SECTION: WHY CHOOSE US (HOLOGRAPHIC GRID) --- */}
-      <section className="py-32 px-6 bg-zinc-100 dark:bg-black relative overflow-hidden">
+      <section className="py-32 px-6 bg-[#fde9c4] dark:bg-[#222222] relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeIn>
             <div className="text-center mb-24">
-              <h2 className="text-5xl md:text-6xl font-black text-zinc-900 dark:text-white mb-6 tracking-tighter">
+              <h2 className="text-5xl md:text-6xl font-black text-[#222222] dark:text-[#fcf7ef] mb-6 tracking-tighter">
                 The Avioni{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+                <span className="text-[#faa200]">
                   Advantage
                 </span>
               </h2>
-              <p className="text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
+              <p className="text-xl text-[#222222]/80 dark:text-[#fcf7ef]/80 max-w-2xl mx-auto">
                 Why industry leaders trust us with their digital soul.
               </p>
             </div>
@@ -576,15 +576,15 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
               >
-                <SpotlightCard className="rounded-3xl p-10 h-full flex flex-col justify-between hover:shadow-2xl hover:shadow-purple-500/10 transition-shadow duration-500">
-                  <div className="mb-6 w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-purple-600">
+                <SpotlightCard className="rounded-3xl p-10 h-full flex flex-col justify-between hover:shadow-2xl hover:shadow-[#faa200]/10 transition-shadow duration-500 bg-[#fcf7ef] dark:bg-[#1a1a1a] border border-[#fed382] dark:border-[#f79f47]">
+                  <div className="mb-6 w-16 h-16 rounded-2xl bg-[#fde9c4] dark:bg-[#222222] flex items-center justify-center text-[#faa200]">
                     <item.icon size={32} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
+                    <h3 className="text-3xl font-bold text-[#222222] dark:text-[#fcf7ef] mb-4">
                       {item.title}
                     </h3>
-                    <p className="text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    <p className="text-lg text-[#222222]/80 dark:text-[#fcf7ef]/80 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>

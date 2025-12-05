@@ -1173,7 +1173,7 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen pt-24 bg-zinc-50 dark:bg-black transition-colors duration-700"
+      className="min-h-screen pt-24 bg-[#fcf7ef] dark:bg-[#1a1a1a] transition-colors duration-700"
     >
       <div
         className="fixed inset-0 pointer-events-none opacity-30 z-0 mix-blend-overlay"
@@ -1187,21 +1187,21 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
       <section className="relative px-6 text-center mb-16 overflow-hidden pt-20">
         <motion.div style={{ y: yHero }} className="relative z-10">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-500 text-xs font-bold tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#faa200]/30 bg-[#faa200]/10 text-[#faa200] text-xs font-bold tracking-widest uppercase">
               <Award size={14} />
               <span>Award Winning Works</span>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="text-7xl md:text-[10rem] font-black text-zinc-900 dark:text-white tracking-tighter mb-6 leading-none">
+            <h1 className="text-7xl md:text-[10rem] font-black text-[#222222] dark:text-[#fcf7ef] tracking-tighter mb-6 leading-none">
               OUR{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-purple-600 to-pink-600">
+              <span className="text-[#faa200]">
                 WORK
               </span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <p className="text-xl md:text-2xl text-zinc-500 dark:text-zinc-400 max-w-3xl mx-auto mb-12 font-light">
+            <p className="text-xl md:text-2xl text-[#222222]/80 dark:text-[#fcf7ef]/80 max-w-3xl mx-auto mb-12 font-light">
               Browse our galaxy of digital products. From high-conversion SEO
               campaigns to immersive 3D web experiences.
             </p>
@@ -1209,7 +1209,7 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
         </motion.div>
 
         {/* Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[500px] bg-gradient-to-r from-purple-500/20 via-blue-500/10 to-pink-500/20 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[500px] bg-[#faa200]/20 blur-[120px] rounded-full pointer-events-none" />
       </section>
 
       <BrandMarquee />
@@ -1226,15 +1226,15 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
                   className={`group relative flex items-center gap-2 px-5 py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-300 border
                      ${
                        filter === cat.id
-                         ? "bg-zinc-900 dark:bg-white text-white dark:text-black border-transparent scale-105 shadow-2xl shadow-purple-500/20"
-                         : "bg-white dark:bg-zinc-900 text-zinc-500 border-zinc-200 dark:border-zinc-800 hover:border-purple-500 hover:text-purple-500"
+                         ? "bg-[#faa200] text-[#222222] border-transparent scale-105 shadow-2xl shadow-[#faa200]/20"
+                         : "bg-[#fcf7ef] dark:bg-[#222222] text-[#222222]/80 dark:text-[#fcf7ef]/80 border-[#fed382] dark:border-[#f79f47] hover:border-[#faa200] hover:text-[#faa200]"
                      }`}
                 >
                   <cat.icon
                     className={`w-4 h-4 ${
                       filter === cat.id
-                        ? "text-purple-400 dark:text-purple-600"
-                        : "text-zinc-400 group-hover:text-purple-500"
+                        ? "text-[#222222]"
+                        : "text-[#222222]/60 dark:text-[#fcf7ef]/60 group-hover:text-[#faa200]"
                     }`}
                   />
                   {cat.label}
@@ -1551,9 +1551,9 @@ export default function App() {
   const setView = () => {};
 
   return (
-    <div className="min-h-screen transition-colors duration-700 bg-zinc-50 dark:bg-[#050505] text-zinc-900 dark:text-white">
+    <div className="min-h-screen transition-colors duration-700 bg-[#fcf7ef] dark:bg-[#1a1a1a] text-[#222222] dark:text-[#fcf7ef]">
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 origin-left z-[60]"
+        className="fixed top-0 left-0 right-0 h-1 bg-[#faa200] origin-left z-[60]"
         style={{ scaleX }}
       />
 

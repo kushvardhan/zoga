@@ -97,23 +97,30 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/20 group-hover:shadow-purple-500/40 transition-all overflow-hidden">
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden">
               <Image
                 src="/logowithBGREMOVE.png"
                 alt="Avioni Logo"
                 fill
-                className={`object-contain p-1 ${isDark ? "invert" : ""}`}
+                className={`object-contain ${isDark ? "invert" : ""}`}
               />
             </div>
 
-            <span className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white">
+            <span className="font-black text-3xl tracking-tight text-[#222222] dark:text-[#fcf7ef]" style={{fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'}}>
               Avioni
             </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
+            <Link
+              className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              href="/"
+            >
+              Home
+            </Link>
+            
             <div
               className="relative h-full flex items-center"
               onMouseEnter={() => setActiveDropdown("services")}
@@ -122,45 +129,6 @@ export default function Navbar() {
               <button className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-8">
                 Services
               </button>
-
-              <AnimatePresence>
-                {activeDropdown === "services" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-[80%] left-1/2 -translate-x-1/2 w-[600px] p-6 bg-white dark:bg-[#0b0b13] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl grid grid-cols-2 gap-4"
-                  >
-                    {SERVICES.map((s) => (
-                      <Link
-                        key={s.id}
-                        href="/service"
-                        className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group"
-                      >
-                        <div
-                          className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} 
-      flex items-center justify-center text-white 
-      p-2 shadow-sm dark:shadow-none 
-      transform transition-all duration-200 
-      group-hover:scale-[1.04] group-hover:shadow-md`}
-                        >
-                          <s.icon size={22} className="opacity-95" />
-                        </div>
-
-                        <div>
-                          <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
-                            {s.title}
-                          </h4>
-                          <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                            {s.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
 
             <Link
@@ -185,15 +153,29 @@ export default function Navbar() {
 
           {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <button
+            {/* 3D Theme Toggle */}
+            <div 
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-white/10 transition-colors shadow-sm dark:shadow-white/5"
+              className="relative w-16 h-8 theme-toggle-track rounded-full cursor-pointer transition-all duration-300"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+              <motion.div
+                animate={{
+                  x: isDark ? 32 : 4,
+                  rotateY: isDark ? 180 : 0
+                }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                className="absolute top-1 w-6 h-6 theme-toggle-thumb rounded-full flex items-center justify-center transform-gpu"
+              >
+                <motion.div
+                  animate={{ rotate: isDark ? 0 : 180 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isDark ? <Moon size={12} className="text-slate-600" /> : <Sun size={12} className="text-yellow-600" />}
+                </motion.div>
+              </motion.div>
+            </div>
 
-            <MagneticButton className="hidden md:block px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-blue-500/25 transition-shadow">
+            <MagneticButton className="hidden md:block px-6 py-2.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-blue-500/25 transition-shadow">
               Start Project
             </MagneticButton>
 
@@ -206,6 +188,73 @@ export default function Navbar() {
           </div>
         </div>
       </motion.nav>
+
+      {/* BLUE BACKDROP */}
+      <AnimatePresence>
+        {activeDropdown === "services" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-30 bg-blue-500/20 backdrop-blur-sm"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* FULL-WIDTH MEGA MENU */}
+      <AnimatePresence>
+        {activeDropdown === "services" && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 z-40 bg-white/95 dark:bg-[#030014]/95 backdrop-blur-xl"
+            onMouseEnter={() => setActiveDropdown("services")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <div className="max-w-7xl mx-auto px-6 pt-32 pb-12 h-full flex items-center">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-full">
+                {SERVICES.map((service, index) => (
+                  <motion.div
+                    key={service.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }}
+                  >
+                    <Link
+                      href="/service"
+                      className="group block h-full p-6 rounded-2xl bg-gradient-to-br from-white to-slate-50 dark:from-slate-800/50 dark:to-slate-900/50 hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 border border-slate-200/50 dark:border-white/10 hover:border-blue-200 dark:hover:border-blue-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10"
+                    >
+                      <div className="flex items-start gap-4 mb-4">
+                        <div
+                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                        >
+                          <service.icon size={28} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            {service.title}
+                          </h3>
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+                            {service.desc}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+                        Learn More
+                        <ArrowRight size={16} className="ml-2" />
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -229,7 +278,7 @@ export default function Navbar() {
 
             {/* Mobile links */}
             <div className="flex flex-col gap-6 text-3xl font-bold text-slate-900 dark:text-white">
-              {["service", "work", "about", "contact"].map((item, index) => (
+              {["home", "service", "work", "about", "contact"].map((item, index) => (
                 <motion.div
                   key={item}
                   initial={{ opacity: 0, x: 20 }}
@@ -238,7 +287,7 @@ export default function Navbar() {
                   className="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-6"
                 >
                   <Link
-                    href={`/${item}`}
+                    href={item === "home" ? "/" : `/${item}`}
                     onClick={() => setIsMobileOpen(false)}
                   >
                     {item.charAt(0).toUpperCase() + item.slice(1)}
