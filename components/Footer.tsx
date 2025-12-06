@@ -1,7 +1,9 @@
 "use client";
 
 import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "@/lib/theme-provider";
 
 const Footer = () => (
   <footer
@@ -20,36 +22,21 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
         {/* LOGO + DESC */}
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-2 mb-5">
-            <div
-              className="
-              w-10 h-10 
-              rounded-xl 
-              bg-gradient-to-br 
-              from-purple-500 to-blue-500 
-              flex items-center justify-center 
-              text-white text-xl font-bold
-            "
-            >
-              Z
-            </div>
-            <span
-              className="
-              text-2xl font-bold 
-              bg-gradient-to-r 
-              from-purple-600 to-blue-500 
-              dark:from-white dark:to-slate-300
-              bg-clip-text 
-              text-transparent
-            "
-            >
-              Avioni
-            </span>
-          </div>
+          <Link href="/" className="flex items-center gap-3 group mb-8">
+  <div className="relative ">
+    <Image
+      src="/AvioniLogo.png"
+      alt="Avioni Logo"
+      width={240}
+      height={280}
+      className="object-contain p-1 dark:invert"
+    />
+  </div>
+</Link>
 
           <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-5 max-w-md">
             We turn ideas into visuals, code & experiences. From Ranchi to the
-            entire world — creative, fast & reliable. 🚀
+            entire world — creative, fast & reliable.
           </p>
 
           {/* CONTACT */}
@@ -139,7 +126,7 @@ const Footer = () => (
             <li>
               <Link
                 className="hover:text-purple-500 transition"
-                href="/#contact"
+                href="/contact"
               >
                 Contact
               </Link>

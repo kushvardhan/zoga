@@ -2082,29 +2082,63 @@ const Contact = () => {
           </p>
 
           <div className="space-y-6 mb-12">
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
-                <Phone />
-              </div>
-              <div>
-                <p className="text-sm text-slate-500">Call Us (Ranchi HQ)</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">
-                  +91 98765 43210
-                </p>
-              </div>
-            </div>
+            {/* PHONE */}
+<a
+  href="tel:+919876543210"
+  className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5"
+>
+  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+    <Phone />
+  </div>
+  <div>
+    <p className="text-sm text-slate-500">Call Us (HQ)</p>
+    <p className="text-lg font-bold text-slate-900 dark:text-white">
+      +91 98765 43210
+    </p>
+  </div>
+</a>
 
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5">
-              <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
-                <Mail />
-              </div>
-              <div>
-                <p className="text-sm text-slate-500">Email Us</p>
-                <p className="text-lg font-bold text-slate-900 dark:text-white">
-                  hello@agency.com
-                </p>
-              </div>
-            </div>
+{/* EMAIL */}
+<a
+  href="mailto:hello@agency.com"
+  className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5"
+>
+  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
+    <Mail />
+  </div>
+  <div>
+    <p className="text-sm text-slate-500">Email Us</p>
+    <p className="text-lg font-bold text-slate-900 dark:text-white">
+      hello@agency.com
+    </p>
+  </div>
+</a>
+
+{/* WHATSAPP */}
+<a
+  href="https://api.whatsapp.com/send?phone=919876543210&text=Hello%20Team%20Avioni%2C%20I%20want%20to%20know%20more."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5"
+>
+  <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-6 h-6"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M20.52 3.48A11.84 11.84 0 0012.06 0C5.46 0 .12 5.31.12 11.88a11.82 11.82 0 001.63 6l-1.7 6.2 6.35-1.66a11.9 11.9 0 005.66 1.43h.01c6.6 0 11.94-5.31 11.94-11.88a11.78 11.78 0 00-3.5-8.49zM12.06 21.4h-.01a9.52 9.52 0 01-4.86-1.33l-.35-.21-3.77.98 1.01-3.65-.23-.37a9.43 9.43 0 01-1.5-5.16C2.37 6.56 6.67 2.3 12.05 2.3c2.54 0 4.94.98 6.75 2.77a9.37 9.37 0 012.78 6.64c0 5.28-4.3 9.69-9.52 9.69zm5.25-7.14c-.28-.14-1.65-.82-1.91-.91-.26-.1-.46-.14-.65.14-.19.28-.74.91-.91 1.1-.17.19-.34.21-.62.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93s-.02-.43.12-.57c.12-.12.28-.34.43-.51.14-.17.19-.28.28-.48a.52.52 0 00-.02-.48c-.07-.14-.65-1.56-.89-2.14-.23-.56-.46-.49-.65-.5h-.56a1.08 1.08 0 00-.77.36c-.26.28-.99.97-.99 2.36 0 1.39 1.01 2.74 1.15 2.93.14.19 1.99 3.04 4.82 4.26.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.65-.67 1.88-1.32.23-.65.23-1.21.16-1.32-.07-.11-.26-.18-.54-.32z" />
+    </svg>
+  </div>
+  <div>
+    <p className="text-sm text-slate-500">WhatsApp</p>
+    <p className="text-lg font-bold text-slate-900 dark:text-white">
+      Chat with us
+    </p>
+  </div>
+</a>
+
           </div>
         </div>
 

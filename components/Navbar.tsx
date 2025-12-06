@@ -99,18 +99,14 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/20 group-hover:shadow-purple-500/40 transition-all overflow-hidden">
+            <div className="relative w-32 h-32">
               <Image
-                src="/logowithBGREMOVE.png"
+                src="/AvioniLogo.png"
                 alt="Avioni Logo"
                 fill
                 className={`object-contain p-1 ${isDark ? "invert" : ""}`}
               />
             </div>
-
-            <span className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white">
-              Avioni
-            </span>
           </Link>
 
           {/* Desktop Menu */}
