@@ -2100,7 +2100,7 @@ const Contact = () => {
 
 {/* EMAIL */}
 <a
-  href="mailto:hello@agency.com"
+  href="mailto:hello@Avioni.agency"
   className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5"
 >
   <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
@@ -2109,7 +2109,7 @@ const Contact = () => {
   <div>
     <p className="text-sm text-slate-500">Email Us</p>
     <p className="text-lg font-bold text-slate-900 dark:text-white">
-      hello@agency.com
+      hello@Avioni.agency
     </p>
   </div>
 </a>
@@ -2140,17 +2140,72 @@ const Contact = () => {
 </a>
 
           </div>
+<div className="relative mt-12">
+
+
+  {/* CONTENT CARD */}
+  <div className="p-6 rounded-3xl bg-gradient-to-b from-white/60 to-white/20 dark:from-white/5 dark:to-white/[0.02] border border-slate-200/50 dark:border-white/10 backdrop-blur-xl">
+
+    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+      Still Not Sure? We’ve Got You.
+    </h3>
+
+    <p className="text-slate-600 dark:text-slate-400 mb-8">
+      Whether you want clarity, pricing, ideas, or just a casual discussion —
+      explore these quick links and get exactly what you need.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+
+      {/* CONTACT PAGE BUTTON */}
+      <a
+        href="/contact"
+        className="w-full p-4 rounded-2xl bg-blue-600 text-white text-center font-semibold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20"
+      >
+        Go to Contact Page →
+      </a>
+
+      {/* FAQ */}
+      <a
+        href="/faqs"
+        className="hidden sm:block w-full p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-center font-semibold hover:bg-slate-50 dark:hover:bg-white/10 transition-all"
+      >
+        Read FAQs
+      </a>
+
+      {/* SERVICES */}
+      <a
+        href="/services"
+        className="hidden sm:block w-full p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-center font-semibold hover:bg-slate-50 dark:hover:bg-white/10 transition-all"
+      >
+        Explore Services
+      </a>
+
+      {/* CASUAL TALK */}
+      <a
+        href="/contact?type=casual-chat"
+        className="hidden sm:block w-full p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-semibold text-center hover:opacity-90 transition-all shadow-lg shadow-purple-600/20"
+      >
+        Have a Casual Talk →
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+
         </div>
 
         {/* RIGHT SIDE FORM */}
-        <div className="bg-white dark:bg-[#0a0a12] p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/10">
+        <div className="bg-white dark:bg-[#0a0a12] my-auto p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Name Inputs */}
             <div className="grid md:grid-cols-2 gap-6">
               <InputField
                 label="First Name"
                 name="firstName"
-                placeholder="John"
+                placeholder="Avioni"
                 value={formData.firstName}
                 onChange={handleInputChange}
                 required
@@ -2158,7 +2213,7 @@ const Contact = () => {
               <InputField
                 label="Last Name"
                 name="lastName"
-                placeholder="Doe"
+                placeholder="Surname"
                 value={formData.lastName}
                 onChange={handleInputChange}
               />
@@ -2168,7 +2223,7 @@ const Contact = () => {
               label="Email Address"
               name="email"
               type="email"
-              placeholder="john@company.com"
+              placeholder="hello@Avioni.agency"
               value={formData.email}
               onChange={handleInputChange}
               required
@@ -2177,7 +2232,7 @@ const Contact = () => {
               label="Phone Number"
               name="phone"
               type="tel"
-              placeholder="+91 99999 99999"
+              placeholder="+91 99999 XXXXX"
               value={formData.phone}
               onChange={handleInputChange}
             />
