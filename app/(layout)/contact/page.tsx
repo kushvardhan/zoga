@@ -298,7 +298,7 @@ const [talkAboutServices, setTalkAboutServices] = useState(false);
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Call Us</h3>
             <p className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-cyan-400 transition">
-              +1 (555) 123-4567
+              +91 9835504582
             </p>
           </div>
         </div>
@@ -309,7 +309,7 @@ const [talkAboutServices, setTalkAboutServices] = useState(false);
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">WhatsApp</h3>
             <Link
-              href="https://wa.me/15551234567"
+              href="https://wa.me/9835504582"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-300 hover:text-green-500 transition"
@@ -333,7 +333,7 @@ const [talkAboutServices, setTalkAboutServices] = useState(false);
         {/* SOCIAL ICONS */}
         <div className="flex gap-4 pt-4">
           <Link
-            href="https://wa.me/15551234567"
+            href="https://wa.me/9835504582"
             target="_blank"
             className="text-gray-600 dark:text-gray-300 hover:text-green-500 transition"
           >
