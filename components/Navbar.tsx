@@ -99,7 +99,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-32 h-32">
+            <div className="relative w-36 h-36">
               <Image
                 src="/AvioniLogo.png"
                 alt="Avioni Logo"
