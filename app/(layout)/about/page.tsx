@@ -173,7 +173,7 @@ const team = [
   {
     name: "Tausif A.",
     roles: ["SDE"],
-    portfolio: null,
+    portfolio:"https://tausif-ansari.netlify.app/",
     img: "/team/Tausif.jpeg",
   },
   {
