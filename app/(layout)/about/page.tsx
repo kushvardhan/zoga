@@ -32,7 +32,7 @@ import {
   Smartphone,
   TrendingUp,
   Video,
-  Zap,
+  Zap,Paperclip,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -156,13 +156,13 @@ const team = [
     name: "Kush V.",
     roles: ["SDE", "SEO", "Growth", "Brand"],
     portfolio: "https://kush-personal-portfolio-my-portfolio.vercel.app/",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&fit=crop",
+    img: "/team/Kush.jpeg",
   },
   {
     name: "Rahul K.",
     roles: ["UI/UX", "Editor", "Content", "MKTG"],
     portfolio: "https://rahulkumarci.framer.ai/",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&fit=crop",
+    img: "/team/Rahul.jpeg",
   },
   {
     name: "Rohit K.",
@@ -174,13 +174,13 @@ const team = [
     name: "Tausif A.",
     roles: ["SDE"],
     portfolio: null,
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&fit=crop",
+    img: "/team/Tausif.jpeg",
   },
   {
     name: "Aditya S.",
     roles: ["Full Stack"],
     portfolio: null,
-    img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&fit=crop",
+    img: "/team/Aditya.PNG",
   },
 ];
 
@@ -688,78 +688,80 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
           {/* Responsive grid: 2 cols mobile, 3 on md, and auto-fit on lg+ to fill space evenly */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
             {team.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ y: -5 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-5 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors flex-1"
-              >
-                {/* PORTFOLIO ICON */}
-                {member.portfolio && (
-                  <Link
-                    href={member.portfolio}
-                    target="_blank"
-                    className="
-            absolute top-3 right-3
-            w-7 h-7 flex items-center justify-center
-            rounded-full
-            bg-orange-500/10
-            text-orange-500
-            hover:bg-orange-500/20
-            hover:text-orange-400
-            transition-all duration-300
-            backdrop-blur-sm
-            border border-orange-500/20
-          "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M14 3h7v7m0 0L10 21l-7-7L14 3z"
-                      />
-                    </svg>
-                  </Link>
-                )}
+<motion.div
+  key={i}
+  initial={{ opacity: 0, scale: 0.9 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  whileHover={{ y: -5 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.4, delay: i * 0.05 }}
+  className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-5 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors flex-1"
+>
+  {/* PORTFOLIO ICON */}
+  {member.portfolio && (
+    <Link
+  href={member.portfolio}
+  target="_blank"
+  title={`Visit ${member.name.split(" ")[0]}'s portfolio`}
+  className="
+    absolute top-4 right-4 z-20
+    w-8 h-8 flex items-center justify-center
+    rounded-full
+    text-orange-600 dark:text-orange-400
+    border border-zinc-300 dark:border-zinc-700
+    hover:border-orange-600 dark:hover:border-orange-400
+    hover:shadow-md hover:shadow-orange-500/20
+    transition-all duration-300
+    bg-white/70 dark:bg-zinc-800/70
+  "
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-4 h-4"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21.44 11.05l-9.19 9.19a5 5 0 01-7.07-7.07l9.19-9.19a3 3 0 014.24 4.24l-9.2 9.2a1 1 0 11-1.41-1.42l8.48-8.48"
+    />
+  </svg>
+</Link>
 
-                {/* IMAGE */}
-                <div className="h-[60%] aspect-square rounded-2xl overflow-hidden mb-4 relative">
-                  <Image
-                    src={member.img}
-                    width={500}
-                    height={500}
-                    alt={member.name}
-                    className="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
+  )}
 
-                {/* NAME */}
-                <h3 className="font-semibold text-zinc-900 dark:text-white text-sm md:text-base">
-                  {member.name}
-                </h3>
+  {/* IMAGE */}
+  <div className="h-[60%] aspect-square rounded-2xl overflow-hidden mb-4 relative">
+    <Image
+      src={member.img}
+      width={500}
+      height={500}
+      alt={member.name}
+      className="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500"
+    />
+  </div>
 
-                {/* ROLES */}
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {member.roles.map((r) => (
-                    <span
-                      key={r}
-                      className="text-[10px] md:text-[11px] uppercase font-medium px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md"
-                    >
-                      {r}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+  {/* NAME */}
+  <h3 className="font-semibold text-zinc-900 dark:text-white text-sm md:text-base">
+    {member.name}
+  </h3>
+
+  {/* ROLES */}
+  <div className="flex flex-wrap gap-1 mt-1">
+    {member.roles.map((r) => (
+      <span
+        key={r}
+        className="text-[10px] md:text-[11px] uppercase font-medium px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded-md"
+      >
+        {r}
+      </span>
+    ))}
+  </div>
+</motion.div>
+
             ))}
           </div>
         </div>
