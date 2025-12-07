@@ -1093,7 +1093,7 @@ const Hero = () => {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative min-h-[100vh] pt-32 pb-20 flex flex-col justify-center overflow-hidden"
+      className="relative min-h-[100vh] pt-32 pb-20 flex flex-col justify-center overflow-hidden select-none"
     >
       {/* Background Layer */}
       <div className="absolute inset-0 pointer-events-none bg-zinc-50 dark:bg-black transition-colors duration-500" />
@@ -1448,11 +1448,11 @@ const InteractiveDashboard = () => {
 
 const MarqueeSection = () => {
   return (
-    <div className="py-12 border-y border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-[#050509] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
-        {/* <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
+    <div className="pt-8 pb-12 border-b border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-[#050509] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-6 text-center">
+        <p className="text-sm font-bold uppercase tracking-widest text-slate-400 select-none">
           Trusted by Startups
-        </p> */}
+        </p>
       </div>
       <div className="relative flex overflow-x-hidden group">
         <motion.div
@@ -1467,7 +1467,7 @@ const MarqueeSection = () => {
                 className="flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-blue-500/50 transition-colors min-w-[160px] justify-center"
               >
                 <brand.icon className="w-5 h-5 text-slate-400" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">
+                <span className="font-bold text-slate-700 dark:text-slate-200 select-none">
                   {brand.name}
                 </span>
               </div>
