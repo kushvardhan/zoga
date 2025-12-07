@@ -156,13 +156,13 @@ const team = [
     name: "Kush V.",
     roles: ["SDE", "SEO", "Growth", "Brand"],
     portfolio: "https://kush-personal-portfolio-my-portfolio.vercel.app/",
-    img: "/team/kush.jpeg",
+    img: "/team/kush.png",
   },
   {
     name: "Rahul K.",
     roles: ["UI/UX", "Editor", "Content", "MKTG"],
     portfolio: "https://rahulkumarci.framer.ai/",
-    img: "/team/rahul.jpeg",
+    img: "/team/rahul.png",
   },
   {
     name: "Rohit K.",
@@ -174,13 +174,13 @@ const team = [
     name: "Tausif A.",
     roles: ["SDE"],
     portfolio:"https://tausif-ansari.netlify.app/",
-    img: "/team/tausif.jpeg",
+    img: "/team/tausif.png",
   },
   {
     name: "Aditya S.",
     roles: ["Full Stack"],
     portfolio: null,
-    img: "/team/Aditya.png",
+    img: "/team/aditya.png",
   },
 ];
 
