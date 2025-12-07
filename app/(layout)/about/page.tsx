@@ -165,12 +165,6 @@ const team = [
     img: "/team/rahul.png",
   },
   {
-    name: "Rohit K.",
-    roles: ["SDE", "Sales"],
-    portfolio: null,
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&fit=crop",
-  },
-  {
     name: "Tausif A.",
     roles: ["SDE"],
     portfolio:"https://tausif-ansari.netlify.app/",
@@ -181,6 +175,12 @@ const team = [
     roles: ["Full Stack"],
     portfolio: null,
     img: "/team/aditya.png",
+  },
+  {
+    name: "Rohit K.",
+    roles: ["SDE", "Sales"],
+    portfolio: null,
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&fit=crop",
   },
 ];
 
