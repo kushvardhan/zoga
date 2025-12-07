@@ -61,19 +61,26 @@ const Footer = () => (
           </div>
 
           {/* SOCIALS */}
-          <div className="flex gap-3 mt-6">
+<div className="flex gap-3 mt-6 flex-wrap">
   {socialIcons.map((item, idx) => (
     <a
       key={idx}
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`p-2.5 bg-slate-100 dark:bg-white/5 rounded-full border border-slate-200 dark:border-white/10 transition-all duration-300 ease-out hover:scale-110 ${item.hover}`}
+      className={`p-1.5 sm:p-2.5 md:p-2
+        bg-slate-100 dark:bg-white/10
+        rounded-full border border-slate-300 dark:border-white/10
+        transition-all duration-300 ease-out
+        hover:scale-110
+        transition-colors
+        ${item.hover}`}
     >
       {item.icon}
     </a>
   ))}
 </div>
+
 
         </div>
 
@@ -183,9 +190,10 @@ const FooterColumn = ({ title, items }: { title: string; items: string[] }) => (
 const socialIcons = [
   {
     href: "https://twitter.com",
-    hover: "hover:bg-neutral-900 hover:text-white",
+    hover:
+      "hover:bg-neutral-900 hover:text-white dark:hover:bg-neutral-700 dark:hover:text-white",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24">
         <path
           fill="currentColor"
           d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231z"
@@ -195,10 +203,12 @@ const socialIcons = [
   },
   {
     href: "https://instagram.com",
-    hover:
-      "hover:bg-gradient-to-tr hover:from-pink-500 hover:to-purple-600 hover:text-white",
+    hover: `
+      hover:bg-gradient-to-tr hover:from-pink-500 hover:to-purple-600 hover:text-white 
+      dark:hover:from-pink-400 dark:hover:to-purple-500
+    `,
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24">
         <path
           fill="currentColor"
           d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1112 17.7a4.7 4.7 0 010-9.4zm6.2-2a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
@@ -208,9 +218,10 @@ const socialIcons = [
   },
   {
     href: "https://linkedin.com",
-    hover: "hover:bg-[#0077B5] hover:text-white", // Brighter cool LinkedIn blue
+    hover:
+      "hover:bg-[#0077B5] hover:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white",
     icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24">
+      <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24">
         <path
           fill="currentColor"
           d="M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.1 1 2.5 1s2.48 1 2.48 2.5zM0 8h5v16H0V8zm7.5 0h4.7v2.3h.1C13 8.9 15 8 17.2 8c5 0 5.8 3.3 5.8 7.7V24h-5V16.2c0-1.9 0-4.2-2.6-4.2-2.6 0-3 2-3 4V24h-5V8z"
@@ -220,10 +231,10 @@ const socialIcons = [
   },
   {
     href: "https://facebook.com",
-    hover: "hover:bg-[#1877F2] hover:text-white",
+    hover:
+      "hover:bg-[#1877F2] hover:text-white dark:hover:bg-[#1b6fe5] dark:hover:text-white",
     icon: (
-      <svg className="w-6 h-6 scale-[1.15]" viewBox="0 0 24 24">
-        {/* Increased size + scaling so it fills the circle like other icons */}
+      <svg className="w-5 h-5 md:w-6 md:h-6 scale-[1.10]" viewBox="0 0 24 24">
         <path
           fill="currentColor"
           d="M22 12a10 10 0 10-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.2 2.8.2v3H16c-1.6 0-2.1 1-2.1 2V12H19l-.5 3h-3.6v7A10 10 0 0022 12"
@@ -232,7 +243,6 @@ const socialIcons = [
     ),
   },
 ];
-
 
 
 export default Footer;
