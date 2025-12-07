@@ -111,12 +111,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              href="/" 
-            >
-             Home 
-            </Link>
+          
             <div
               className="relative h-full flex items-center"
               onMouseEnter={() => setActiveDropdown("services")}
@@ -183,6 +178,12 @@ export default function Navbar() {
               href="/why-us"
             >
               Why Us
+            </Link>
+            <Link
+              className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              href="/contact" 
+            >
+             Contact
             </Link>
           </div>
 
