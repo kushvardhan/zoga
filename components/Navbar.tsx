@@ -222,7 +222,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] bg-white dark:bg-[#030014] p-6 flex flex-col"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="text-xl font-bold">Menu</span>
+              <span className="text-2xl font-bold tracking-wide">Menu</span>
               <button
                 onClick={() => setIsMobileOpen(false)}
                 className="p-2 bg-slate-100 dark:bg-white/10 rounded-full"
@@ -234,29 +234,56 @@ export default function Navbar() {
             {/* Mobile links */}
             <div className="flex flex-col gap-6 text-3xl font-bold text-slate-900 dark:text-white">
               {["about","service", "work","why-us" ,"contact"].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-6"
-                >
-                  <Link
-                    href={`/${item}`}
-                    onClick={() => setIsMobileOpen(false)}
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </Link>
-                  <ArrowRight className="-rotate-45 text-slate-300" />
-                </motion.div>
+<motion.div
+  key={item}
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ delay: index * 0.1 }}
+  className="border-b border-slate-200 dark:border-white/10 pb-4"
+>
+  <Link
+    href={`/${item}`}
+    onClick={() => setIsMobileOpen(false)}
+    className="
+      group
+      flex items-center justify-between 
+      w-full py-3
+      text-[17px] 
+      font-semibold                      /* Stronger weight */
+      tracking-wide                      /* Cleaner typography */
+      text-slate-900 dark:text-slate-200
+      hover:text-black dark:hover:text-white
+      transition-all duration-200
+    "
+  >
+    <span className="font-semibold">
+      {item.charAt(0).toUpperCase() + item.slice(1)}
+    </span>
+
+    <ArrowRight
+      className="
+        -rotate-45 
+        size-5 
+        text-slate-800 dark:text-slate-200
+        group-hover:text-black dark:group-hover:text-white
+        group-hover:translate-x-1
+        transition-all duration-300
+      "
+    />
+  </Link>
+</motion.div>
+
               ))}
             </div>
 
-            <div className="mt-auto">
-              <MagneticButton className="w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-lg">
-                <Link href='/contact'>Let&apos;s Talk</Link>
-              </MagneticButton>
-            </div>
+            <div className="mt-auto flex justify-center">
+  <MagneticButton className="w-[90%] py-4 rounded-xl bg-blue-600 text-white font-bold text-lg text-center">
+    <Link href="/contact" className="block w-full">
+      Let&apos;s Talk
+    </Link>
+  </MagneticButton>
+</div>
+
           </motion.div>
         )}
       </AnimatePresence>
