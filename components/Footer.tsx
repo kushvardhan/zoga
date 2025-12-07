@@ -21,9 +21,9 @@ const Footer = () => (
         {/* LOGO + DESC */}
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-5">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden">
+            <div className="relative w-34 h-34 rounded-full overflow-hidden">
               <img
-                src="/logowithBGREMOVE.png"
+                src="/logo.png"
                 alt="Avioni Logo"
                 className="w-full h-full object-contain"
               />
@@ -149,7 +149,7 @@ const Footer = () => (
         text-slate-500 dark:text-slate-400
       "
       >
-        <p>© 2025 Avioni Digital Agency. All rights reserved.</p>
+        <p>© 2025 Avioni Digital Agency. All rights reserved.</p><strong>Design and developed By <i><a href="rowhit.in">rowhit</a></i></strong>
         {/* <p className="flex items-center gap-1">
           Crafted with <span className="text-red-500">❤️</span> in Ranchi, India
           🇮🇳

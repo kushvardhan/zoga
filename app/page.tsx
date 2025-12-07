@@ -238,9 +238,8 @@ const MagneticButton = ({
       onMouseLeave={() => setPosition({ x: 0, y: 0 })}
       onClick={onClick}
       disabled={disabled}
-      className={`relative overflow-hidden px-6 py-3 rounded-lg font-bold text-sm transition-transform active:scale-95 ${styles} ${className} ${
-        disabled ? "opacity-50 cursor-not-allowed" : ""
-      }`}
+      className={`relative overflow-hidden px-6 py-3 rounded-lg font-bold text-sm transition-transform active:scale-95 ${styles} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""
+        }`}
     >
       {children}
     </motion.button>
@@ -259,9 +258,8 @@ const SectionHeading = ({
   align = "center",
 }: SectionHeadingProps) => (
   <div
-    className={`mb-16 ${
-      align === "center" ? "text-center" : "text-left"
-    } max-w-4xl mx-auto px-4`}
+    className={`mb-16 ${align === "center" ? "text-center" : "text-left"
+      } max-w-4xl mx-auto px-4`}
   >
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
@@ -628,9 +626,8 @@ const Hero = () => {
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className={`absolute inset-0 rounded-full border border-slate-200 dark:border-white/10 ${
-                    i === 0 ? "border-dashed" : ""
-                  }`}
+                  className={`absolute inset-0 rounded-full border border-slate-200 dark:border-white/10 ${i === 0 ? "border-dashed" : ""
+                    }`}
                   style={{
                     transform: `rotate(${i * 30}deg) scale(${1 - i * 0.2})`,
                   }}
@@ -695,8 +692,8 @@ type Theme = {
 
 const MarqueeSection = () => {
   return (
-    <div className="py-12 border-y border-[#fde9c4] dark:border-[#222222] bg-[#fde9c4]/50 dark:bg-[#222222] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+    <div className="">
+      <div className="max-w-7xl mx-auto px-8 text-center">
         {/* <p className="text-sm font-bold uppercase tracking-widest text-slate-400">
           Trusted by Startups
         </p> */}
@@ -711,7 +708,7 @@ const MarqueeSection = () => {
             (brand, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 px-6 py-3 rounded-lg border border-[#fed382] dark:border-[#f79f47] bg-[#fcf7ef] dark:bg-[#1a1a1a] hover:border-[#faa200] transition-colors min-w-[160px] justify-center"
+                className="flex items-center gap-3 px-6 py-3 rounded-lg border border-[#fed382] dark:border-[#f79f47] bg-[#fcf7ef] dark:bg-[#1a1a1a]  hover:border-[#faa200] transition-colors min-w-[160px] justify-center"
               >
                 <brand.icon className="w-5 h-5 text-[#f79f47]" />
                 <span className="font-bold text-[#222222] dark:text-[#fcf7ef]">
@@ -731,9 +728,19 @@ const MarqueeSection = () => {
 
 const Services = () => (
   <section id="services" className="py-32 bg-[#fcf7ef] dark:bg-[#1a1a1a]">
-    <SectionHeading subtitle="We don't just build websites. We build revenue engines.">
-      Our Expertise
-    </SectionHeading>
+    <Link href="/" className="flex items-center gap-4 pl-100 pb-10 group">
+      <div className=" relative">
+        <Image
+
+          height={450}
+          width={450}
+          src="/imge.png"
+          alt="Avioni Logo"
+        />
+      </div>
+
+    </Link>
+    <div className="flex items-center">A process scientifically designed to help simulate 6 months in 12 days.</div>
 
     <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
       {SERVICES.map((service) => (
@@ -860,7 +867,15 @@ const VideoProduction = () => {
 const Portfolio = () => (
   <section id="work" className="py-32 bg-[#fcf7ef] dark:bg-[#1a1a1a]">
     <SectionHeading subtitle="Real projects. Real impact. Real results.">
-      Selected Works
+      <div className="flex items-center gap-4 pl-50 group">
+        <Image
+
+          height={450}
+          width={450}
+          src="/selectedwork.png"
+          alt="Avioni Logo"
+        />
+      </div>
     </SectionHeading>
 
     <div className="max-w-7xl mx-auto px-6 space-y-20">
@@ -877,9 +892,8 @@ const Portfolio = () => (
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl cursor-pointer ${
-              i % 2 === 1 ? "lg:order-2" : ""
-            }`}
+            className={`relative aspect-[4/3] rounded-lg overflow-hidden shadow-2xl cursor-pointer ${i % 2 === 1 ? "lg:order-2" : ""
+              }`}
           >
             <div
               className={`absolute inset-0 bg-gradient-to-br ${project.gradient} z-10 opacity-50 group-hover:opacity-30 transition-opacity duration-500`}
@@ -909,9 +923,8 @@ const Portfolio = () => (
             </p>
 
             <div
-              className={`flex flex-wrap gap-3 mb-8 ${
-                i % 2 === 1 ? "lg:justify-end" : ""
-              }`}
+              className={`flex flex-wrap gap-3 mb-8 ${i % 2 === 1 ? "lg:justify-end" : ""
+                }`}
             >
               {project.technologies.map((tag) => (
                 <span
@@ -1146,9 +1159,8 @@ const Contact = () => {
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className={`h-4 w-4 transition-transform ${
-                      open ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

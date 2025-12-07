@@ -156,25 +156,25 @@ const team = [
     name: "Kush V.",
     roles: ["SDE", "SEO", "Growth", "Brand"],
     portfolio: "https://kush-personal-portfolio-my-portfolio.vercel.app/",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&fit=crop",
+    img: "/team/13.png",
   },
   {
     name: "Rahul K.",
     roles: ["UI/UX", "Editor", "Content", "MKTG"],
     portfolio: "https://rahulkumarci.framer.ai/",
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&fit=crop",
+    img: "/team/11.png",
   },
   {
     name: "Rohit K.",
     roles: ["SDE", "Sales"],
-    portfolio: null,
+    portfolio: "https://rowhit.in/",
     img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&fit=crop",
   },
   {
     name: "Tausif A.",
     roles: ["SDE"],
-    portfolio: null,
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&fit=crop",
+    portfolio: "https://tausif-ansari.netlify.app/",
+    img: "/team/12.png",
   },
   {
     name: "Aditya S.",
@@ -698,51 +698,28 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                 className="group relative bg-zinc-100 dark:bg-zinc-900 rounded-2xl p-5 border border-zinc-200 dark:border-zinc-800 hover:border-purple-500/50 transition-colors flex-1"
               >
                 {/* PORTFOLIO ICON */}
+
+
+
+
+                {/* IMAGE */}
                 {member.portfolio && (
                   <Link
                     href={member.portfolio}
                     target="_blank"
-                    className="
-            absolute top-3 right-3
-            w-7 h-7 flex items-center justify-center
-            rounded-full
-            bg-orange-500/10
-            text-orange-500
-            hover:bg-orange-500/20
-            hover:text-orange-400
-            transition-all duration-300
-            backdrop-blur-sm
-            border border-orange-500/20
-          "
+
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M14 3h7v7m0 0L10 21l-7-7L14 3z"
+                    <div className="h-[60%] aspect-square rounded-2xl overflow-hidden mb-4 relative">
+                      <Image
+                        src={member.img}
+                        width={500}
+                        height={500}
+                        alt={member.name}
+                        className="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500"
                       />
-                    </svg>
+                    </div>
                   </Link>
                 )}
-
-                {/* IMAGE */}
-                <div className="h-[60%] aspect-square rounded-2xl overflow-hidden mb-4 relative">
-                  <Image
-                    src={member.img}
-                    width={500}
-                    height={500}
-                    alt={member.name}
-                    className="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
-                </div>
-
                 {/* NAME */}
                 <h3 className="font-semibold text-zinc-900 dark:text-white text-sm md:text-base">
                   {member.name}
@@ -791,11 +768,10 @@ const AboutPage = ({ setView }: { setView: (view: string) => void }) => {
                     {item.q}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      activeFAQ === i
-                        ? "rotate-180 text-purple-500"
-                        : "text-zinc-400"
-                    }`}
+                    className={`w-5 h-5 transition-transform duration-300 ${activeFAQ === i
+                      ? "rotate-180 text-purple-500"
+                      : "text-zinc-400"
+                      }`}
                   />
                 </button>
                 <AnimatePresence>
@@ -873,11 +849,10 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
               key={cat.id}
               onClick={() => setFilter(cat.id)}
               className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider transition-all duration-300 border
-                  ${
-                    filter === cat.id
-                      ? "bg-zinc-900 dark:bg-white text-white dark:text-black border-transparent scale-105 shadow-xl shadow-purple-500/20"
-                      : "bg-transparent text-zinc-500 border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 dark:hover:border-zinc-600 hover:text-zinc-800 dark:hover:text-zinc-200"
-                  }`}
+                  ${filter === cat.id
+                  ? "bg-zinc-900 dark:bg-white text-white dark:text-black border-transparent scale-105 shadow-xl shadow-purple-500/20"
+                  : "bg-transparent text-zinc-500 border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 dark:hover:border-zinc-600 hover:text-zinc-800 dark:hover:text-zinc-200"
+                }`}
             >
               <cat.icon className="w-4 h-4" />
               {cat.label}
@@ -900,11 +875,9 @@ const PortfolioPage = ({ setView }: { setView: (view: string) => void }) => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className={`${
-                  project.size === "large" ? "md:col-span-2 md:row-span-2" : ""
-                } ${project.size === "wide" ? "md:col-span-2" : ""} ${
-                  project.size === "tall" ? "md:row-span-2" : ""
-                }`}
+                className={`${project.size === "large" ? "md:col-span-2 md:row-span-2" : ""
+                  } ${project.size === "wide" ? "md:col-span-2" : ""} ${project.size === "tall" ? "md:row-span-2" : ""
+                  }`}
               >
                 <motion.div
                   whileHover={{ scale: 1.02, zIndex: 10 }}
@@ -1059,7 +1032,7 @@ export default function App() {
   });
 
   // Dummy setView function for components that still expect it
-  const setView = () => {};
+  const setView = () => { };
 
   return (
     <div className="min-h-screen transition-colors duration-700 bg-zinc-50 dark:bg-[#050505] text-zinc-900 dark:text-white">
