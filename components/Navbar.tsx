@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 
 const SERVICES = [
@@ -80,6 +80,23 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
+const hoverTimer = useRef<NodeJS.Timeout | null>(null);
+
+const handleMouseEnter = () => {
+  hoverTimer.current = setTimeout(() => {
+    setActiveDropdown("services");
+  }, 500); 
+};
+
+const handleMouseLeave = () => {
+  if (hoverTimer.current) {
+    clearTimeout(hoverTimer.current);
+    hoverTimer.current = null;
+  }
+  setActiveDropdown(null);
+};
+
+
   const { scrollY } = useScroll();
   useEffect(() => {
     return scrollY.onChange((latest) => setIsScrolled(latest > 50));
@@ -113,53 +130,81 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
           
             <div
-              className="relative h-full flex items-center"
-              onMouseEnter={() => setActiveDropdown("services")}
-              onMouseLeave={() => setActiveDropdown(null)}
+  className="relative h-full flex items-center"
+  onMouseEnter={handleMouseEnter}
+  onMouseLeave={handleMouseLeave}
+>
+  <Link
+    href="/service"
+    className="
+      text-sm font-semibold 
+      text-slate-600 dark:text-slate-300
+      hover:text-blue-600 dark:hover:text-blue-400
+      transition-colors py-8
+    "
+  >
+    Services
+  </Link>
+
+  <AnimatePresence>
+    {activeDropdown === "services" && (
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        className="
+          absolute top-[80%] left-1/2 -translate-x-1/2
+          w-[600px] p-6
+          bg-white dark:bg-[#0b0b13]
+          rounded-2xl border border-slate-200 dark:border-white/10
+          shadow-2xl grid grid-cols-2 gap-4
+          z-[999]
+        "
+      >
+        {SERVICES.map((s) => (
+          <Link
+            key={s.id}
+            href="/service"
+            className="
+              flex items-start gap-4 p-4 rounded-xl
+              hover:bg-slate-50 dark:hover:bg-white/5
+              transition-colors group
+            "
+          >
+            <div
+              className={`
+                w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color}
+                flex items-center justify-center text-white 
+                p-2 shadow-sm dark:shadow-none
+                transform transition-all duration-200
+                group-hover:scale-[1.04] group-hover:shadow-md
+              `}
             >
-              <button className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-8">
-                Services
-              </button>
-
-              <AnimatePresence>
-                {activeDropdown === "services" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-[80%] left-1/2 -translate-x-1/2 w-[600px] p-6 bg-white dark:bg-[#0b0b13] rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl grid grid-cols-2 gap-4"
-                  >
-                    {SERVICES.map((s) => (
-                      <Link
-                        key={s.id}
-                        href="/service"
-                        className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-colors group"
-                      >
-                        <div
-                          className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} 
-      flex items-center justify-center text-white 
-      p-2 shadow-sm dark:shadow-none 
-      transform transition-all duration-200 
-      group-hover:scale-[1.04] group-hover:shadow-md`}
-                        >
-                          <s.icon size={22} className="opacity-95" />
-                        </div>
-
-                        <div>
-                          <h4 className="font-bold text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
-                            {s.title}
-                          </h4>
-                          <p className="text-xs text-slate-500 leading-relaxed mt-1">
-                            {s.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <s.icon size={22} className="opacity-95" />
             </div>
+
+            <div>
+              <h4
+                className="
+                  font-bold text-slate-900 dark:text-white
+                  group-hover:text-blue-500 transition-colors
+                "
+              >
+                {s.title}
+              </h4>
+
+              <p className="text-xs text-slate-500 leading-relaxed mt-1">
+                {s.desc}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+
 
             <Link
               className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"

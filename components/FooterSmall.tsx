@@ -63,7 +63,7 @@ export default function FooterSmall() {
           <p className="text-zinc-500 dark:text-zinc-400">
             support@Avioni.studio
             <br />
-            +91 98765 43210
+            ++91 98355 04582
           </p>
         </div>
       </div>

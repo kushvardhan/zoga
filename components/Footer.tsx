@@ -50,9 +50,9 @@ const Footer = () => (
 
             <a
               className="flex items-center gap-2 hover:text-blue-500 dark:hover:text-blue-400 transition"
-              href="tel:+919876543210"
+              href="tel:+919835504582"
             >
-              <Phone size={16} /> +91 98765 43210
+              <Phone size={16} /> +91 98355 04582
             </a>
 
             <p className="flex items-center gap-2">
@@ -230,18 +230,18 @@ const socialIcons = [
     ),
   },
   {
-    href: "https://facebook.com",
-    hover:
-      "hover:bg-[#1877F2] hover:text-white dark:hover:bg-[#1b6fe5] dark:hover:text-white",
-    icon: (
-      <svg className="w-5 h-5 md:w-6 md:h-6 scale-[1.10]" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M22 12a10 10 0 10-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.2 2.8.2v3H16c-1.6 0-2.1 1-2.1 2V12H19l-.5 3h-3.6v7A10 10 0 0022 12"
-        />
-      </svg>
-    ),
-  },
+  href: "https://facebook.com",
+  hover:
+    "hover:bg-[#1453C8] hover:text-white dark:hover:bg-[#124AB6] dark:hover:text-white",
+  icon: (
+    <svg className="w-5 h-5 md:w-6 md:h-6 scale-[1.10]" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M22 12a10 10 0 10-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.2 2.8.2v3H16c-1.6 0-2.1 1-2.1 2V12H19l-.5 3h-3.6v7A10 10 0 0022 12"
+      />
+    </svg>
+  ),
+},
 ];
 
 

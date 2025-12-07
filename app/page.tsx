@@ -227,7 +227,7 @@ const HomeAbout = () => {
   return (
     <section 
       onMouseMove={handleMouseMove} // Track mouse movement across the whole section
-      className="relative py-20 bg-[#020617] overflow-hidden" // Ensure overflow-hidden for the glow guard
+      className="relative py-20 bg-[#020617] overflow-hidden select-none" // Ensure overflow-hidden for the glow guard
     >
       {/* 1. Static Soft Glow (Original) */}
       <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-purple-600/10 rounded-full blur-[100px]" />
@@ -1890,6 +1890,7 @@ const ReviewsSection = () => {
               dark:hover:shadow-[0_14px_40px_-6px_rgba(0,0,0,0.75)]
               hover:border-purple-400/40
               overflow-hidden
+              select-none
             "
               >
                 <div className="mb-4 opacity-70">
@@ -2084,7 +2085,7 @@ const Contact = () => {
           <div className="space-y-6 mb-12">
             {/* PHONE */}
 <a
-  href="tel:+919876543210"
+  href="tel:+919835504582"
   className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5"
 >
   <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
@@ -2093,7 +2094,7 @@ const Contact = () => {
   <div>
     <p className="text-sm text-slate-500">Call Us (HQ)</p>
     <p className="text-lg font-bold text-slate-900 dark:text-white">
-      +91 98765 43210
+      +91 98355 04582
     </p>
   </div>
 </a>
